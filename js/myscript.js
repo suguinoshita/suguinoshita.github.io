@@ -1,6 +1,4 @@
 
-
-
 function fillPolygon(points, color) {
     if (points.length > 0) {
         ctx.fillStyle = color; // all css colors are accepted by this property
@@ -17,15 +15,40 @@ function fillPolygon(points, color) {
 }
 
 
-
-
 function myFunction(Section){
     switch(Section){
         case 1:
             /**alert("The input value has changed.");*/
-            var in1 = document.getElementById("Sec1dim1").value;
-            var out1 = in1;
+            var h = document.getElementById("Sec1dim1").value;
+            var b = document.getElementById("Sec1dim2").value;
+            var t = document.getElementById("Sec1dim3").value;
+			
+			
+			var x0 = 50-b/2;
+			var y0 = 100-5;
+			var points = [ 
+				{x: x0   , y: y0-h},
+				{x: x0   , y: y0  },
+				{x: x0+b , y: y0  },
+				{x: x0+b , y: y0-t},
+				{x: x0+t , y: y0-t},
+				{x: x0+t , y: y0-h},
+				{x: x0   , y: y0-h}
+			];
+			
+            var out1 = h;
             document.getElementById("Output1").value = "result is " + out1;
+			
+			
+			var canvas = document.getElementById("myCanvas1");
+			var ctx = canvas.getContext("2d");
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			fillPolygon(points, 'green');
+			ctx.lineWidth = 3;
+			ctx.strokeStyle = '#003300';
+			ctx.stroke();
+			
+			
             break;
         default:
             alert("Nothing has changed.");
@@ -61,3 +84,5 @@ fillPolygon(points, 'green');
 ctx.lineWidth = 3;
 ctx.strokeStyle = '#003300';
 ctx.stroke();
+
+myFunction(1)
