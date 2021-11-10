@@ -349,6 +349,18 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
 
 }
 
+.forms_text{
+	width: 100%;
+	float: left;
+	text-align: left;
+	margin-top: 1px;	
+	margin-bottom: 0px;	
+	color: #ffffff;
+	color: #000;
+	margin-left: 0;
+
+}
+
 .making_tetx{
 	width: 100%;
 	float: left;
@@ -559,6 +571,30 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
     margin-top: 6px;
 }
 
+.email-bt-hidden {
+    background: #ececec;
+    border: none;
+    color: #000;
+    width: 100%;
+    height: 55px;
+    font-size: 22px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 6px;
+	visibility: hidden;
+}
+
+.selectpicker {
+    background: #ececec;
+    border: none;
+    color: #000;
+    width: 100%;
+    height: 55px;
+    font-size: 20px;
+    padding: auto 0;
+    border-radius: 10px;
+}
+	
 .massage-bt {
     background: #ececec;
     border: none;

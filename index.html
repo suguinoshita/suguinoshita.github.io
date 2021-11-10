@@ -8,12 +8,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 <!-- site metas -->
-<title>Focus</title>
+<title>Beam calculator</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">	
 <!-- bootstrap css -->
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-select.min.css">
 <!-- style css -->
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <!-- Responsive-->
@@ -59,6 +60,7 @@
             </div>
          </div>
          <!-- end header inner -->
+	  <!--
       <section >
       	<div class="bannen_inner">
             <div class="container">
@@ -93,53 +95,225 @@
      </div>
     </div>
     </section>
+	 -->
 	</header>
     <!-- banner end -->
     <!-- choose start -->
     <div id="about" class="choose_section">
     	<div class="container">
     		<div class="col-sm-12">
-    			<h1 class="choose_text">Why you should <span class="color">choose us</span></h1>
-    			<p class="lorem_text">Making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover any web sites still</p>
+    			<h1 class="choose_text">Beam section properties calculator and <span class="color">comparison</span></h1>
+    			<p class="lorem_text">Check and compare different beam cross-section properties and improve your designs!</p>
     		</div>
     	</div>
     </div>
     <div class="choose_section_2">
     	<div class="container">
     	    <div class="row">
-    		    <div class="col-sm-4">
+    		    <div class="col-sm-4" id="Form1" name="myForm">
     			    <div class="power_full">
     				    <!-- <div class="icon"><a href="#"><img src="images/power-full-icon.png"></a></div>-->
-    				    <div class="icon"><canvas id="myCanvas1" width="100" height="100" background=transparent></canvas></div>
-    				    <h2 class="powerful_text">Powerful Features</h2>
-    				    <p class="making_tetx">making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still </p>
-    			    
-						<div class="form-group">
-							<input type="number" class="email-bt" placeholder="80" value=80 id="Sec1dim1" onchange="myFunction(1)">
-						</div>
-						<div class="form-group">
-							<input type="number" class="email-bt" placeholder="70" value=70 id="Sec1dim2" onchange="myFunction(1)">
-						</div>
-						<div class="form-group">
-							<input type="number" class="email-bt" placeholder="5" value=5 id="Sec1dim3" onchange="myFunction(1)">
-						</div>
-						<div class="form-group">
-							<input type="number" class="email-bt" placeholder="-" id="Sec1dim4" onchange="myFunction(1)" disabled>
-						</div>
-						<div class="form-group">
-							<input type="text" class="email-bt"  id="Output1" readonly>
-						</div>
+    				    <div class="icon"><canvas name="myCanvas" id="myCanvas1" width="100" height="100" background=transparent></canvas></div>
+						<form>
+							<div class="form-group">
+								<p class="forms_text">Section type: </p>
+								<select class="selectpicker" name="sectionSelector" id="Select1" placeholder="Select one"> </select>
+							</div>
+							
+							<div class="form-group">
+								<p class="forms_text">Height (h): </p>
+								<input type="number" class="email-bt" placeholder="80" value=80 name="dim1" onchange="myFunction2(this)">
+							</div>
+							<div class="form-group">
+								<p class="forms_text">Width (b): </p>
+								<input type="number" class="email-bt" placeholder="70" value=70 name="dim2" onchange="myFunction2(this)">
+							</div>
+							<div class="form-group">
+								<p class="forms_text">Thickness (t): </p>
+								<input type="number" class="email-bt" placeholder="5" value=5 name="dim3" onchange="myFunction2(this)">
+							</div>
+							<div class="form-group">
+								<p class="forms_text"><br/></p>
+								<input type="number" class="email-bt-hidden" placeholder="-" value=0 name="dim4" onchange="myFunction2(this)" disabled>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">Area (length<sup>2</sup>): </p>
+								<input type="text" class="email-bt" name="area" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">Perimeter (length): </p>
+								<input type="text" class="email-bt" name="perimeter" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">x<sub>c</sub> (length): </p>
+								<input type="text" class="email-bt" name="xc" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">y<sub>c</sub> (length): </p>
+								<input type="text" class="email-bt" name="yc" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">I<sub>x</sub> (length<sup>4</sup>): </p>
+								<input type="text" class="email-bt" name="Ixx" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">I<sub>y</sub> (length<sup>4</sup>): </p>
+								<input type="text" class="email-bt" name="Iyy" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">I<sub>z</sub> (length<sup>4</sup>): </p>
+								<input type="text" class="email-bt" name="Izz" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">S<sub>x,min</sub> (length<sup>3</sup>): </p>
+								<input type="text" class="email-bt" name="Sx_min" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">S<sub>y,min</sub> (length<sup>3</sup>): </p>
+								<input type="text" class="email-bt" name="Sy_min" readonly>
+							</div>
+						</form>
 					</div>
     			    <div class="btn_main">
     			        <button type="button" class="read_bt"><a href="#">Read More</a></button>
     			    </div>
     		    </div>
-    		    <div class="col-sm-4">
+    		    <div class="col-sm-4" id="Form2" name="myForm">
     			    <div class="power">
-    				    <div class="icon"><a href="#"><img src="images/optimised-icon.png"></a></div>
-    				    <h2 class="totaly_text">Totaly Optimised</h2>
-    				    <p class="making">making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still </p>
+    				    <!-- <div class="icon"><a href="#"><img src="images/power-full-icon.png"></a></div>-->
+    				    <div class="icon"><canvas name="myCanvas" id="myCanvas2" width="100" height="100" background=transparent></canvas></div>
+    				    <!-- <h2 class="powerful_text">Powerful Features</h2>-->
+    				    <!-- <p class="making_tetx"> </p>-->
+						<form>
+							<div class="form-group">
+								<p class="forms_text">Section type: </p>
+								<select class="selectpicker" name="sectionSelector" id="Select2" placeholder="Select one"> </select>
+							</div>
+							
+							<div class="form-group">
+								<p class="forms_text">Height (h): </p>
+								<input type="number" class="email-bt" placeholder="80" value=80 name="dim1" onchange="myFunction2(this)">
+							</div>
+							<div class="form-group">
+								<p class="forms_text">Width (b): </p>
+								<input type="number" class="email-bt" placeholder="70" value=70 name="dim2" onchange="myFunction2(this)">
+							</div>
+							<div class="form-group">
+								<p class="forms_text">Thickness, web (t<sub>b</sub>): </p>
+								<input type="number" class="email-bt" placeholder="5" value=5 name="dim3" onchange="myFunction2(this)">
+							</div>
+							<div class="form-group">
+								<p class="forms_text">Thickness, flanges (t<sub>w</sub>): </p>
+								<input type="number" class="email-bt" placeholder="-"  value=0 name="dim4" onchange="myFunction2(this)" >
+							</div>
+							<div class="form-group">
+								<p class="forms_text">Area (length<sup>2</sup>): </p>
+								<input type="text" class="email-bt" name="area" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">Perimeter (length): </p>
+								<input type="text" class="email-bt" name="perimeter" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">x<sub>c</sub> (length): </p>
+								<input type="text" class="email-bt" name="xc" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">y<sub>c</sub> (length): </p>
+								<input type="text" class="email-bt" name="yc" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">I<sub>x</sub> (length<sup>4</sup>): </p>
+								<input type="text" class="email-bt" name="Ixx" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">I<sub>y</sub> (length<sup>4</sup>): </p>
+								<input type="text" class="email-bt" name="Iyy" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">I<sub>z</sub> (length<sup>4</sup>): </p>
+								<input type="text" class="email-bt" name="Izz" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">S<sub>x,min</sub> (length<sup>3</sup>): </p>
+								<input type="text" class="email-bt" name="Sx_min" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">S<sub>y,min</sub> (length<sup>3</sup>): </p>
+								<input type="text" class="email-bt" name="Sy_min" readonly>
+							</div>
+						</form>
+					</div>
+    			    <div class="btn_main">
+    			        <button type="button" class="read_bt"><a href="#">Read More</a></button>
     			    </div>
+    		    </div>
+    		    <div class="col-sm-4" id="Form3" name="myForm">
+    			    <div class="power">
+    				    <!-- <div class="icon"><a href="#"><img src="images/power-full-icon.png"></a></div>-->
+    				    <div class="icon"><canvas name="myCanvas" id="myCanvas3" width="100" height="100" background=transparent></canvas></div>
+    				    <!-- <h2 class="powerful_text">Powerful Features</h2>-->
+    				    <!-- <p class="making_tetx"> </p>-->
+						<form>
+							<div class="form-group">
+								<p class="forms_text">Section type: </p>
+								<select class="selectpicker" name="sectionSelector" placeholder="Select one"> </select>
+							</div>
+							
+							<div class="form-group">
+								<p class="forms_text">Height (h): </p>
+								<input type="number" class="email-bt" placeholder="80" value=80 name="dim1" onchange="myFunction2(this)">
+							</div>
+							<div class="form-group">
+								<p class="forms_text">Width (b): </p>
+								<input type="number" class="email-bt" placeholder="70" value=70 name="dim2" onchange="myFunction2(this)">
+							</div>
+							<div class="form-group">
+								<p class="forms_text">Thickness, web (t<sub>b</sub>): </p>
+								<input type="number" class="email-bt" placeholder="5" value=5 name="dim3" onchange="myFunction2(this)">
+							</div>
+							<div class="form-group">
+								<p class="forms_text">Thickness, flanges (t<sub>w</sub>): </p>
+								<input type="number" class="email-bt" placeholder="-"  value=0 name="dim4" onchange="myFunction2(this)" >
+							</div>
+							<div class="form-group">
+								<p class="forms_text">Area (length<sup>2</sup>): </p>
+								<input type="text" class="email-bt" name="area" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">Perimeter (length): </p>
+								<input type="text" class="email-bt" name="perimeter" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">x<sub>c</sub> (length): </p>
+								<input type="text" class="email-bt" name="xc" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">y<sub>c</sub> (length): </p>
+								<input type="text" class="email-bt" name="yc" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">I<sub>x</sub> (length<sup>4</sup>): </p>
+								<input type="text" class="email-bt" name="Ixx" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">I<sub>y</sub> (length<sup>4</sup>): </p>
+								<input type="text" class="email-bt" name="Iyy" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">I<sub>z</sub> (length<sup>4</sup>): </p>
+								<input type="text" class="email-bt" name="Izz" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">S<sub>x,min</sub> (length<sup>3</sup>): </p>
+								<input type="text" class="email-bt" name="Sx_min" readonly>
+							</div>
+							<div class="form-group">
+								<p class="forms_text">S<sub>y,min</sub> (length<sup>3</sup>): </p>
+								<input type="text" class="email-bt" name="Sy_min" readonly>
+							</div>
+						</form>
+					</div>
     			    <div class="btn_main">
     			        <button type="button" class="read_bt"><a href="#">Read More</a></button>
     			    </div>
@@ -159,6 +333,7 @@
     </div>
     <!-- choose start -->
     <!-- about start -->
+	<!--
     <div class="about_main layout_padding">
     	<div class="container">
     		<div class="row">
@@ -180,6 +355,7 @@
     </div>
     <!-- about end -->
     <!-- service start -->
+	<!--
     <div id="service" class="choose_section">
     	<div class="container">
     		<div class="col-sm-12">
@@ -247,9 +423,10 @@ teimpor sittem elit inuning ut sed.</p>
             </div>   		
     	</div>
     </div>
-
+    -->
     <!-- service end -->
     <!-- contact start -->
+	<!-- 
     <div id="contact" class="contact_section">
     	<div class="container">
     		<div class="col-sm-12">
@@ -370,9 +547,10 @@ teimpor sittem elit inuning ut sed.</p>
     		</div>
     	</div>
     </div>
+	-->
     <div class="copyright_main">
     	<div class="container">
-    		<p class="copy_text">© 2018 All Rights Reserved. <a href="https://html.design">Free Website Templates</a></p>
+    		<p class="copy_text">© 2021 All Rights Reserved. <a href="https://html.design">Free Website Templates</a></p>
     	</div>
     </div>
 
