@@ -1,3 +1,6 @@
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
 function handleInput(e){
   var value = this.valueAsNumber;
   console.log("type: %s, value: %o", typeof value, value);  
@@ -7,7 +10,7 @@ function setTwoNumberDecimal(event) {
     this.value = parseFloat(this.value).toFixed(2);
 }
 
-function fillPolygon(data, color,lineColor,mycanvas) {
+function fillPolygon(data,cg, color,lineColor,mycanvas) {
 	//alert(mycanvas+'data='+data.length);
 	if (data.length == 2) {
 		var points = data[0];
@@ -25,6 +28,7 @@ function fillPolygon(data, color,lineColor,mycanvas) {
 		ctx.fillStyle = color; // all css colors are accepted by this property
 		var point = points[0];
 		ctx.beginPath();
+		ctx.setLineDash([]);
 		ctx.moveTo(point.x, point.y);   // point 1
 		for (var i = 1; i < points.length; ++i) {
 			point = points[i];
@@ -48,6 +52,7 @@ function fillPolygon(data, color,lineColor,mycanvas) {
 			ctx.fillStyle = "white"; // all css colors are accepted by this property
 			var point = points[0];
 			ctx.beginPath();
+			ctx.setLineDash([]);
 			ctx.moveTo(point.x, point.y);   // point 1
 			for (var i = 1; i < points.length; ++i) {
 				point = points[i];
@@ -61,9 +66,57 @@ function fillPolygon(data, color,lineColor,mycanvas) {
 			ctx.stroke();
 		}
 	} 
+	
+	ctx.beginPath();
+	ctx.setLineDash([5, 3]);/*dashes are 5px and spaces are 3px*/
+	ctx.lineWidth = 1;
+	ctx.strokeStyle = "black";
+	ctx.moveTo(canvas.width/2, canvas.height);
+	ctx.lineTo(canvas.width/2, 0);
+	ctx.stroke();
+	
+	ctx.beginPath();
+	ctx.setLineDash([5, 3]);/*dashes are 5px and spaces are 3px*/
+	ctx.lineWidth = 1;
+	ctx.strokeStyle = "black";
+	ctx.moveTo(           0, canvas.height-cg[1]-bottom_margin);
+	ctx.lineTo(canvas.width, canvas.height-cg[1]-bottom_margin);
+	ctx.stroke();
+		
+	ctx.font = "10px Arial";
+	ctx.fillStyle = "#000"; 
+	ctx.fillText("x",            0+3, canvas.height-cg[1]-bottom_margin-5);
+	ctx.fillText("x", canvas.width-5, canvas.height-cg[1]-bottom_margin-5);
+	ctx.font = "10px Arial";
+	ctx.fillStyle = "#000";
+	ctx.fillText("y",canvas.width/2+2, canvas.height-3);
+	ctx.fillText("y",canvas.width/2+2, 5);
+	
+	
 	//alert(mycanvas+' updated');
 }
 
+function drawChart() {
+	var data = google.visualization.arrayToDataTable([
+		['Task', 'Hours per Day'],
+		['Work', 8],
+		['Eat', 2],
+		['TV', 4],
+		['Gym', 2],
+		['Sleep', 8]
+		]);
+
+	// Optional; add a title and set the width and height of the chart
+	var options = {'background':'transparent','width':150, 'height':150};
+
+	// Display the chart inside the <div> element with id="piechart"
+	var chart = new google.visualization.PieChart(document.getElementById('Chart1'));
+	chart.draw(data, options);
+	var chart = new google.visualization.PieChart(document.getElementById('Chart2'));
+	chart.draw(data, options);
+	var chart = new google.visualization.PieChart(document.getElementById('Chart3'));
+	chart.draw(data, options);
+}
 
 function dimChange(elem){
 	/*alert("dimChange.."+elem.tagName+elem.value);*/
@@ -99,9 +152,6 @@ function recalculateSection(myForm){
 	var canvas = document.getElementById(mycanvas);
 	var ctx = canvas.getContext("2d");
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	//var scale = getScale();	
-	//var points = calc_points(section,dims,canvas.width,canvas.height,bottom_margin,scale);
-	//fillPolygon(points, 'green','#003300',mycanvas);	
 	updatePictures()
 }
 
@@ -116,13 +166,16 @@ function updatePictures(){
 		var t = parseFloat(fm.querySelectorAll('input[name="dim3"]')[0].value);
 		var t2 = parseFloat(fm.querySelectorAll('input[name="dim4"]')[0].value);
 		var dims = [h,b,t,t2];
+		var xc = parseFloat(fm.querySelectorAll('input[name="xc"]')[0].value);
+		var yc = parseFloat(fm.querySelectorAll('input[name="yc"]')[0].value);
+		var cg = [xc*scale,yc*scale];
 		var mycanvas = fm.querySelectorAll('canvas[name="myCanvas"]')[0].id;
 		var canvas = document.getElementById(mycanvas);
 		var ctx = canvas.getContext("2d");
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		//alert('drawing on '+mycanvas);
 		var points = calc_points(section,dims,canvas.width,canvas.height,bottom_margin,scale);
-		fillPolygon(points, 'green','#003300',mycanvas);
+		fillPolygon(points,cg, 'green','#003300',mycanvas);
 		//alert('drawing on '+mycanvas+' done');
 	}	
 }
@@ -151,8 +204,8 @@ function getScale() {
 		
 		for (var d of dims) {
 			if (d > 0) {
-				scales.push(canvas.width/d);
-				scales.push((canvas.height-bottom_margin-5)/d);
+				scales.push((canvas.width-10)/d);
+				scales.push((canvas.height-bottom_margin-10)/d);
 			}
 		}		
 	}
@@ -832,7 +885,7 @@ function calc_points(section,dims,canvas_width,canvas_height,bottom_margin,scale
 
 
 //alert("loading1.");
-const bottom_margin = 5;
+const bottom_margin = 10;
 var options =
 [
   {

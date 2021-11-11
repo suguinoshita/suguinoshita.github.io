@@ -107,6 +107,51 @@
     		</div>
     	</div>
     </div>
+	<div class="choose_section_2">
+    	<div class="container">
+    	    <div class="row">
+    		    <div class="col-sm">
+    			    <div class="power">
+						<div class="form-group">
+							<p class="forms_text">Mass/Volume:</p>
+						</div>
+						<div class="icon" id="Chart1" ></div>
+					</div>
+    			    <div class="btn_main">
+    			        <p class="forms_text"><br/></p>
+    			    </div>
+    		    </div>
+				
+    		    <div class="col-sm">
+    			    <div class="power">
+						<div class="form-group">
+							<p class="forms_text">Stress:</p>
+						</div>
+						<div class="icon">
+							<div id="Chart2" ></div>
+						</div>
+					</div>
+    			    <div class="btn_main">
+    			        <p class="forms_text"><br/></p>
+    			    </div>
+    		    </div>
+				
+    		    <div class="col-sm">
+    			    <div class="power">
+						<div class="form-group">
+							<p class="forms_text">Stiffness:</p>
+						</div>
+						<div class="icon">
+							<div id="Chart3" ></div>
+						</div>
+					</div>
+    			    <div class="btn_main">
+    			        <p class="forms_text"><br/></p>
+    			    </div>
+    		    </div>
+    	    </div>    		
+    	</div>
+    </div>
     <div class="choose_section_2">
     	<div class="container">
     	    <div class="row">
@@ -656,33 +701,32 @@ teimpor sittem elit inuning ut sed.</p>
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-
-      <script src="js/jquery-3.0.0.min.js"></script>
-      <script src="js/plugin.js"></script>
-      <!-- sidebar -->
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="js/custom.js"></script>
-      <!-- javascript --> 
-      <script src="js/myscript.js"></script>
-      <script src="js/owl.carousel.js"></script>
-      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-      <script>
-         $(document).ready(function(){
-         $(".fancybox").fancybox({
-         openEffect: "none",
-         closeEffect: "none"
-         });
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/plugin.js"></script>
+    <!-- sidebar -->
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/custom.js"></script>
+    <!-- javascript --> 
+    <script src="js/myscript.js"></script>
+    <script src="js/owl.carousel.js"></script>
+    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <script>
+        $(document).ready(function(){
+        $(".fancybox").fancybox({
+        openEffect: "none",
+        closeEffect: "none"
+        });
          
-         $(".zoom").hover(function(){
+        $(".zoom").hover(function(){
          
-         $(this).addClass('transition');
-         }, function(){
-         
-         $(this).removeClass('transition');
-         });
-         });
-         </script> 
+        $(this).addClass('transition');
+        }, function(){
+        
+        $(this).removeClass('transition');
+        });
+        </script> 
  
 </body>
 </html>
