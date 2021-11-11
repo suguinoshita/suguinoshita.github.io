@@ -65,14 +65,14 @@ function fillPolygon(data, color,lineColor,mycanvas) {
 }
 
 
-function myFunction2(elem){
-	/*alert("function2.."+elem.tagName+elem.value);*/
+function dimChange(elem){
+	/*alert("dimChange.."+elem.tagName+elem.value);*/
 	var myForm = elem.closest('div[name="myForm"]');
-	myFunction3(myForm);	
+	recalculateSection(myForm);	
 }
 
 
-function myFunction3(myForm){
+function recalculateSection(myForm){
 	
 	//alert("function3."+myForm.tagName);
 	/*alert("The input value has changed."+myForm.tagName);*/
@@ -128,14 +128,17 @@ function updatePictures(){
 }
 
 function getScale() {
-	var scale = 1;
-	//alert('scale='+scale);
+	// Calculate the scale needed to fit all the pictures on each canvas, keeping the proportions
+	
+	var scales = [];
 	var formList = document.getElementsByName('myForm');
 	for (const fm of formList) {
 		var section = fm.querySelectorAll('select[name="sectionSelector"]')[0].value;
 		if (section == 'Circular' || section == 'Circular tube') {
 			var d1 = parseFloat(fm.querySelectorAll('input[name="dim1"]')[0].value);
 			var dims = [d1,d1];
+		} else if  (section == 'None') {
+			var dims = [0,0];
 		} else {
 			var d1 = parseFloat(fm.querySelectorAll('input[name="dim1"]')[0].value);
 			var d2 = parseFloat(fm.querySelectorAll('input[name="dim2"]')[0].value);
@@ -146,31 +149,21 @@ function getScale() {
 		var ctx = canvas.getContext("2d");
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		
-		//alert('scale1='+scale);
 		for (var d of dims) {
-			if (d > canvas.width &&  canvas.width/d < scale) {
-				scale = canvas.width/d;
+			if (d > 0) {
+				scales.push(canvas.width/d);
+				scales.push((canvas.height-bottom_margin-5)/d);
 			}
-			if (d > (canvas.height-bottom_margin) &&  (canvas.height-bottom_margin)/d < scale) {
-				scale = (canvas.height-bottom_margin)/d;
-			}
-		}
-		//alert('scale2='+scale);
-		if (scale == 1) {
-			var temp = Math.max(dims[0],dims[1]);
-			if (temp < canvas.width &&  temp < (canvas.height-bottom_margin)) {
-					scale = Math.min(canvas.width,(canvas.height-bottom_margin))/temp;
-				
-			}
-		}
-		//alert('scale3='+scale);
-		
+		}		
 	}
+	var scale = Math.min(...scales); // keep the min scale
+	//alert('scale='+scale);
 	return scale;
 }
 
 function updateForm(fm) {
 	// Enables or Disables the form based on the "Section type" selection
+	
 	var section = fm.querySelectorAll('select[name="sectionSelector"]')[0].value;
 	//alert('updating form ='+fm.id);
 	if (section == 'None') {
@@ -182,6 +175,14 @@ function updateForm(fm) {
 				lbl.className = "forms_text_disabled";
 			}
 		}
+		lbl = fm.querySelectorAll('p[name="dim1"]')[0];
+		lbl.innerHTML = "<br/>";
+		lbl = fm.querySelectorAll('p[name="dim2"]')[0];
+		lbl.innerHTML = "<br/>";
+		lbl = fm.querySelectorAll('p[name="dim3"]')[0];
+		lbl.innerHTML = "<br/>";
+		lbl = fm.querySelectorAll('p[name="dim4"]')[0];
+		lbl.innerHTML = "<br/>";
 		// set inputs to gray
 		var inputsList = fm.querySelectorAll('input[class="email-bt"]');
 		for (const inp of inputsList) {
@@ -450,8 +451,8 @@ function selectorChange(elem) {
 	
 	//alert("selectorChange");
 	var myForm = elem.closest('div[name="myForm"]');
-	//alert('myFunction3, form'+myForm.id);
-	myFunction3(myForm);
+	//alert('recalculateSection, form'+myForm.id);
+	recalculateSection(myForm);
 	//alert('updating form');
 	updateForm(myForm);
 }
@@ -586,8 +587,8 @@ function calc_properties(section,dims){
 			res.A = 2*b*tf + (h-2*tf)*tw;
 			res.perimeter = 4*b+2*h-2*tw;
 			res.xc = ((h-2*tf)*tw*tw/2+tf*b*b)/(res.A);
-			res.yc = b/2;
-			res.Ixx = (b-tw)*Math.pow((h-2*tf),3)/12;
+			res.yc = h/2;
+			res.Ixx = b*h*h*h/12 - (b-tw)*Math.pow((h-2*tf),3)/12;
 			var Iy0 = (h-2*tf)*tw*tw*tw/3 + 2*tf*b*b*b/3;
 			res.Iyy = Iy0 - res.A*res.xc*res.xc;
 			res.Izz = res.Ixx + res.Iyy;
@@ -599,16 +600,16 @@ function calc_properties(section,dims){
 			var b = dims[1];
 			var tw = dims[2];
 			var tf = dims[3];
-			res.A = 2*b*tf + (h-2*tf)*tw;
-			res.perimeter = 4*b+2*h-2*tw;
+			res.A = 2*h*tf + (b-2*tf)*tw;
+			res.perimeter = 4*h+2*b-2*tw;
 			res.xc = b/2;
-			res.yc = ((h-2*tf)*tw*tw/2+tf*b*b)/(res.A);
-			res.Iyy = (b-tw)*Math.pow((h-2*tf),3)/12;
-			var Ix0 = (h-2*tf)*tw*tw*tw/3 + 2*tf*b*b*b/3;
+			res.yc = ((b-2*tf)*tw*tw/2+tf*h*h)/(res.A);
+			res.Iyy = h*b*b*b/12 - (h-tw)*Math.pow((b-2*tf),3)/12;
+			var Ix0 = (b-2*tf)*tw*tw*tw/3 + 2*tf*h*h*h/3;
 			res.Ixx = Ix0 - res.A*res.yc*res.yc;
 			res.Izz = res.Ixx + res.Iyy;
-			res.Sx_min = res.Ixx/(b-res.yc);
-			res.Sy_min = res.Iyy/(h-res.xc);
+			res.Sx_min = res.Ixx/(h-res.yc);
+			res.Sy_min = res.Iyy/(b-res.xc);
 			break;
 		case 'I section':
 			var h = dims[0];
@@ -761,17 +762,17 @@ function calc_points(section,dims,canvas_width,canvas_height,bottom_margin,scale
 			var b = dims[1]*scale;
 			var tw = dims[2]*scale;
 			var tf = dims[3]*scale;
-			var x0 = canvas_width/2-h/2;
+			var x0 = canvas_width/2-b/2;
 			var y0 = canvas_height-bottom_margin;
 			var points = [ 
-				{x: x0      , y: y0-b },
+				{x: x0      , y: y0-h },
 				{x: x0      , y: y0   },
-				{x: x0+h    , y: y0   },
-				{x: x0+h    , y: y0-b },
-				{x: x0+h-tf , y: y0-b },
-				{x: x0+h-tf , y: y0-tw},
+				{x: x0+b    , y: y0   },
+				{x: x0+b    , y: y0-h },
+				{x: x0+b-tf , y: y0-h },
+				{x: x0+b-tf , y: y0-tw},
 				{x: x0+tf   , y: y0-tw},
-				{x: x0+tf   , y: y0-b }
+				{x: x0+tf   , y: y0-h }
 				];
 			break;
 		case 'I section':
@@ -877,14 +878,13 @@ var options =
   }
 ];
 
-//var selectBoxList = document.getElementsByName('sectionSelector');
+
 var selectBoxList = document.querySelectorAll('select[name="sectionSelector"]');
 for (const selectBox of selectBoxList) {
 	for(var i = 0, l = options.length; i < l; i++){
 		var option = options[i];
 		selectBox.options.add( new Option(option.text, option.value, option.selected) );
 	}
-	//selectBox.onchange="selectorChange(this)";
 }
 
 var myForm = document.querySelector('#Form1');
@@ -896,10 +896,6 @@ section.value = "L section";
 
 var formList = document.getElementsByName('myForm');
 for (const fm of formList) {
-	myFunction3(fm);
+	recalculateSection(fm);
 	updateForm(fm);
 }
-/*
-myFunction(1);
-myFunction(2);
-*/
