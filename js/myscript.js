@@ -1,4 +1,5 @@
-google.charts.load('current', {'packages':['corechart']});
+google.charts.load("current", {packages:["corechart"]});
+//google.charts.load('current', {'packages':['bar']});
 google.charts.setOnLoadCallback(drawChart);
 
 function handleInput(e){
@@ -97,26 +98,60 @@ function fillPolygon(data,cg, color,lineColor,mycanvas) {
 }
 
 function drawChart() {
-	var data = google.visualization.arrayToDataTable([
-		['Task', 'Hours per Day'],
-		['Work', 8],
-		['Eat', 2],
-		['TV', 4],
-		['Gym', 2],
-		['Sleep', 8]
-		]);
+    var data = google.visualization.arrayToDataTable([
+		['Section', 'Axial stress', 'Bending stress, x-axis', 'Bending stress, y-axis'],
+		['Section 1', 4, 5, -2],
+		['Section 2', -8, 2, 4],
+		['Section 3', 2, 5, 6],
+		['Section 4', 4, 7, 3]
+    ]);
+    
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+                     { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                     2,
+                     { calc: "stringify",
+                         sourceColumn: 2,
+                         type: "string",
+                         role: "annotation" },
+                     3,
+                     { calc: "stringify",
+                         sourceColumn: 3,
+                         type: "string",
+                         role: "annotation" }
+                     ]);
 
 	// Optional; add a title and set the width and height of the chart
-	var options = {'background':'transparent','width':150, 'height':150};
+    var options = { bar: {groupWidth: "80%"},
+        hAxis: {format: 'percent'},
+        bars: 'horizontal',
+        //chartArea: {width: '100%', height: '100%'},
+        theme: 'maximized',
+        //hAxis: {textPosition: 'out'},
+        //vAxis: {textPosition: 'out'},
+        legend: 'bottom',
+        };
 
 	// Display the chart inside the <div> element with id="piechart"
-	var chart = new google.visualization.PieChart(document.getElementById('Chart1'));
-	chart.draw(data, options);
-	var chart = new google.visualization.PieChart(document.getElementById('Chart2'));
-	chart.draw(data, options);
-	var chart = new google.visualization.PieChart(document.getElementById('Chart3'));
-	chart.draw(data, options);
+	var chart = new google.visualization.BarChart(document.getElementById('Chart1'));
+	chart.draw(view, options);
+	var chart = new google.visualization.BarChart(document.getElementById('Chart2'));
+	chart.draw(view, options);
+	var chart = new google.visualization.BarChart(document.getElementById('Chart3'));
+	chart.draw(view, options);
+    /*
+    var chart = new google.charts.Bar(document.getElementById('Chart1'));
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+    var chart = new google.charts.Bar(document.getElementById('Chart2'));
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+    var chart = new google.charts.Bar(document.getElementById('Chart3'));
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+    */
 }
+google.charts.setOnLoadCallback(drawChart);
 
 function dimChange(elem){
 	/*alert("dimChange.."+elem.tagName+elem.value);*/
