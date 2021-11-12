@@ -294,7 +294,7 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
 }
 
 .color{
-	color: #2aaf80;
+	color: #3cba54;
 }
 
 .choose_section_2{
@@ -310,7 +310,7 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
 	border-radius: 30px;
 	padding: 20px;
 	box-shadow: 0px 0px 8px 0px;
-    border: 2px solid #55b994;
+    border: 2px solid #298039;
 }
 
 .power{
@@ -358,6 +358,19 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
 	color: #000;
 	margin-left: 0;
 
+}
+
+.notes_text{
+	width: 100%;
+	float: left;
+	text-align: left;
+	margin-top: 1px;	
+	margin-bottom: 0px;	
+	color: #ffffff;
+	color: #000;
+	margin-left: 0;
+    font-size: 12px;
+	font-family: 'Raleway', sans-serif;
 }
 
 .forms_text_disabled{
@@ -780,11 +793,11 @@ button.main_bt a:hover {
 }
 
 input:checked + .slider {
-  background-color: #009400;
+  background-color: #298039;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #009400;
+  box-shadow: 0 0 1px #298039;
 }
 
 input:checked + .slider:before {
