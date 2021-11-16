@@ -818,10 +818,55 @@ input:checked + .slider:before {
 .switch span {
   display: inline-block;
   position: relative;
-  width: 100%;
   margin-left: 60px;
+  font-size:12px;
+  float: left;
 }
 
 }	
 
+table {
+  font-family: 'Poppins', sans-serif;
+  border-collapse: collapse;
+  color: #000;
+  width: 100%;
+  *margin-left: -80px;
+  table-layout: fixed;
+  vertical-align: middle;
 
+}
+td, th {
+  text-align: center;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+th {
+  color: #110f0a;
+}
+
+tr:nth-child(even) {
+  background-color: #eeeeee;
+  }
+
+.fix {
+  position: absolute;
+  *position: relative;
+  margin-left: -80px;
+  width: 80px;
+  vertical-align: middle;
+  border: none;
+  color: #110f0a;
+}
+
+.outer{
+  position: relative;
+  margin-right: -50px;
+}
+
+.inner{
+  overflow-x: scroll;
+  overflow-y: visible;
+  width: 100%;
+  margin-left: 10px;
+}

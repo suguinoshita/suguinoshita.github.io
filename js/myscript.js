@@ -2,6 +2,23 @@ google.charts.load("current", {packages:["corechart"]});
 //google.load('visualization', '1.0', {'packages':['corechart']});
 //google.charts.load('current', {'packages':['bar']});
 google.charts.setOnLoadCallback(drawCharts);
+//create trigger to resizeEnd event
+$(window).resize(function() {
+    if(this.resizeTO) clearTimeout(this.resizeTO);
+    this.resizeTO = setTimeout(function() {
+        $(this).trigger('resizeEnd');
+    }, 500);
+});
+//redraw graph when window resize is completed
+$(window).on('resizeEnd', function() {
+    var chart = document.getElementById('Chart1');
+    chart.clearChart();
+    var chart = document.getElementById('Chart2');
+    chart.clearChart();
+    var chart = document.getElementById('Chart3');
+    chart.clearChart();
+    drawCharts();
+});
 
 function handleInput(e){
   var value = this.valueAsNumber;

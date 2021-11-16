@@ -45,11 +45,9 @@
                         <div class="limit-box">
                            <nav class="main-menu">
                               <ul class="menu-area-main">
-                                 <li><a href="#home">Home</a></li>
-                                 <li><a href="#about">About</a></li>
-                                 <li><a href="#service">Service</a></li>
-                                 <li><a href="#testimonial">Testimonial</a></li>
-                                 <li><a href="#contact">Contact Us</a></li>
+                                 <li><a href="index.html">Home</a></li>
+                                 <li><a href="html/table.html">Equations</a></li>
+                                 <li><a href="html/sensitivity.html">Sensitivity</a></li>
                               </ul>
                            </nav>
                         </div>
@@ -132,7 +130,7 @@
 						</div>
 						<div class="icon" id="Chart2" style="width:100%, height:250px">
 						</div>
-						<span class="notes_text">&ndash; Axial stiffness &prop; E.A/L<br/>
+						<span class="notes_text">&ndash; Axial stiffness = E.A/L<br/>
 											  &ndash; Bending stiffness = E.I<sub>xx</sub>/L or E.I<sub>yy</sub>/L<br/>
 											  &ndash; Torsional stiffness = G.I<sub>zz</sub>/L<br/>
 						</span>
@@ -173,15 +171,15 @@
 								<label class="switch">
 									<input type="checkbox" name="refSwitch" onchange="setReference(this)" checked="true">
 									<div class="slider round"></div>
-									<span class="forms_text" name="refSwitch" > Set as reference</span>
+									<span class="forms_text" name="refSwitch"> Set as reference</span>
 								</label>
 							</div>
-						
+
 							<div class="form-group">
 								<p class="forms_text" name="sectionSelector" >Section type: </p>
 								<select class="selectpicker" name="sectionSelector" id="Select1" placeholder="Select one" onchange="selectorChange(this)"> </select>
 							</div>
-							
+
 							<div class="form-group" name="dim1">
 								<p class="forms_text" name="dim1">Height (h): </p>
 								<input type="number" class="email-bt" placeholder="80" value=80 name="dim1" onchange="dimChange(this)">
