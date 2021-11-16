@@ -1,23 +1,11 @@
-google.charts.load("current", {packages:["corechart"]});
+//google.charts.load("current", {packages:["corechart"]});
+
+google.load("visualization", "1", {packages:["corechart"]});
 //google.load('visualization', '1.0', {'packages':['corechart']});
 //google.charts.load('current', {'packages':['bar']});
 google.charts.setOnLoadCallback(drawCharts);
-//create trigger to resizeEnd event
-$(window).resize(function() {
-    if(this.resizeTO) clearTimeout(this.resizeTO);
-    this.resizeTO = setTimeout(function() {
-        $(this).trigger('resizeEnd');
-    }, 500);
-});
-//redraw graph when window resize is completed
-$(window).on('resizeEnd', function() {
-    var chart = document.getElementById('Chart1');
-    chart.clearChart();
-    var chart = document.getElementById('Chart2');
-    chart.clearChart();
-    var chart = document.getElementById('Chart3');
-    chart.clearChart();
-    drawCharts();
+$(window).resize(function(){
+  drawCharts();
 });
 
 function handleInput(e){
@@ -332,10 +320,10 @@ function drawChart(array,ref,myChartId,num) {
         vAxis: {textPosition: 'out'},
         legend: {position: 'top', maxLines: 3, alignment: 'center'},
 		colors: colors,
-		chartArea: {left:85,top:40, width: '50%', height: '70%'},
+		chartArea: {left:90,top:40},
 		//chartArea: {width: '100%', height: '80%'},
-		width: '100%',
-		height: '80%',
+		//width: '100%',
+		//height: '80%',
         };
 
 	// Display the chart inside the <div> element with id="piechart"

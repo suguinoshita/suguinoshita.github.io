@@ -861,7 +861,8 @@ tr:nth-child(even) {
 
 .outer{
   position: relative;
-  margin-right: -50px;
+  margin-right: 20px;
+  margin-left: 80px;
 }
 
 .inner{
@@ -869,4 +870,12 @@ tr:nth-child(even) {
   overflow-y: visible;
   width: 100%;
   margin-left: 10px;
+}
+
+
+.chart {
+  text-align: center;
+  margin-top: 40px;
+  width: 100%; 
+  min-height: 200px;
 }

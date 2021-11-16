@@ -9,6 +9,12 @@
 <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 <!-- site metas -->
 <title>Beam calculator</title>
+<!-- for FF, Chrome, Opera -->
+<link rel="icon" type="image/png" href="../images/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="../images/favicon-32x32.png" sizes="32x32">
+<!-- for IE -->
+<link rel="icon" type="image/x-icon" href="../images/favicon-16x16.ico" >
+<link rel="shortcut icon" type="image/x-icon" href="../images/favicon-16x16.ico"/>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">	
@@ -29,70 +35,34 @@
 	<header id="home"class="section">
 	<div class="header_main">
          <!-- header inner -->
-         <div class="header">
+        <div class="header">
             <div class="container">
-               <div class="row">
-                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                     <div class="full">
-                        <div class="center-desk">
-                           <div class="logo"><a href="../index.html"><img src="../images/logo.png" style="max-width: 100%;"></a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                     <div class="menu-area">
-                        <div class="limit-box">
-                           <nav class="main-menu">
-                              <ul class="menu-area-main">
-                                 <li><a href="../index.html">Home</a></li>
-                                 <li><a href="table.html">Equations</a></li>
-                                 <li><a href="sensitivity.html">Sensitivity</a></li>
-                              </ul>
-                           </nav>
-                        </div>
-                     </div>
-                 </div>
-               </div>
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                        <div class="full">
+							<div class="center-desk">
+								<div class="logo"><a href="../index.html"><img src="../images/logo.png" style="max-width: 100%;"></a>
+								</div>
+							</div>
+						</div>
+					</div>
+                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+						<div class="menu-area">
+							<div class="limit-box">
+								<nav class="main-menu">
+									<ul class="menu-area-main">
+										<li><a href="../index.html">Home</a></li>
+										<li><a href="table.html">Equations</a></li>
+										<li><a href="sensitivity.html">Sensitivity</a></li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
             </div>
-         </div>
-         <!-- end header inner -->
-	  <!--
-      <section >
-      	<div class="bannen_inner">
-            <div class="container">
-                <div class="row marginii">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    	<div class="taital_main">
-                    		
-                    	</div>
-                        <h1 class="web_text"><strong>Unlimited Web Hosting</strong></h1>
-                        <p class="donec_text">Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. 
-                           Aenean dignissim pellentesque felis.Donec nec justo
-                           eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.</p>
-                         <a class="get_bg" href="#" role="button">Get Started</a>
-                         <a class="btn btn-lg btn-dark" href="about.html" role="button">Contact Us</a>
-                    </div>
-                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                 <div class="img-box">
-                    <figure><img src="images/woofer.png" alt="img"/ style="max-width: 100%;"></figure>
-                 </div>
-            </div>
-           </div>
-           <div class="emaim-bt">
-           	<div class="col-md-9 margin-0">
-            <div class="input-group mb-3 margin-top-20">
-                <input type="text" class="form-control" placeholder="Enter domain name here">
-            <div class="input-group-append">
-                <button class="search_bt" type="Subscribe"><a href="#">Search</a></button>  
-            </div>
-            </div>           
         </div>
-       </div>
-     </div>
     </div>
-    </section>
-	 -->
 	</header>
     <!-- banner end -->
     <!-- choose start -->
@@ -104,137 +74,134 @@
     		</div>
     	</div>
     </div>
-	<div class="choose_section_2">
-    	<div class="container">
-            <div class="outer">
-                <div class="inner">
-                    <!-- <p class="forms_text">Formulas</p> -->
-                    <table style="font-size: 12px;">
-                        <tr>
-                            <th class=fix><br/>Cross-section</th>
-                            <th>Dimensions</th>
-                            <th>Centroid</th>
-                            <th>Area</th>
-                            <th>Perimeter</th>
-                            <th>Second moment of area,<br/> x-axis</th>
-                            <th>Second moment of area,<br/> y-area</th>
-                            <th>Polar moment of<br/> inertia</th>
-                            <th>Elastic modulus, x-axis, \(S_{x,min}\)<br/>\(\sigma=\frac{M_{x}c}{I_{xx}}=\frac{M_{x}}{S_{x}}\)</th>
-                            <th>Elastic modulus, y-axis, \(S_{y,min}\)<br/>\(\sigma=\frac{M_{y}c}{I_{yy}}=\frac{M_{y}}{S_{y}}\)</th>
-                        </tr>
-                        <tr>
-                            <td class=fix style="font-weight: bold;">Circular</td>
-                            <td>image</td>
-                            <td>$$ {\begin{align}x_{c} &= D/2 \\y_{c} &= D/2\end{align}} $$</td>
-                            <td>$$ {A = \frac{\pi D^2}{4} = \pi R^2} $$</td>
-                            <td>$$ {\begin{align}P &= \pi D \\&= 2 \pi R\end{align}} $$</td>
-                            <td>$$ {I_{xx}=\frac{\pi D^4}{64}=\frac{\pi R^4}{4}} $$</td>
-                            <td>$$ {I_{yy}=I_{xx}} $$} $$</td>
-                            <td>$$ {\begin{align}I_{zz} &= I_{xx} + I_{yy} \\ &= \frac{\pi D^4}{32}=\frac{\pi R^4}{2}\end{align}} $$</td>
-                            <td>$$ {S_{x,min}=\frac{I_{xx}}{R}=\frac{\pi R^3}{4}} $$</td>
-                            <td>$$ {S_{y,min}=S_{x,min}} $$</td>
-                        </tr>
-                        <tr>
-                            <td class=fix style="font-weight: bold;">Circular tube</td>
-                            <td>image</td>
-                            <td>$$ {\begin{align}x_{c} &= D/2 \\y_{c} &= D/2\end{align}} $$</td>
-                            <td>$$ {\begin{align}A &= \frac{\pi (D_{o}^2-D_{i}^2)}{4} \\&= \pi (R_{o}^2-R_{i}^2)\end{align}} $$</td>
-                            <td>$$ {\begin{align}P_{out} &= \pi D_{o} \\&= 2 \pi R_{o}\\P_{int} &= \pi D_{i} \\&= 2 \pi.R_{i}\end{align}} $$</td>
-                            <td>$$ {\begin{align}I_{xx}&=\frac{\pi (D_{o}^4-D_{i}^4)}{64}\\&=\frac{\pi (R_{o}^4-R_{i}^4)}{4}\end{align}} $$</td>
-                            <td>$$ {I_{yy}=I_{xx}} $$</td>
-                            <td>$$ {\begin{align}I_{zz} &= I_{xx} + I_{yy} \\ &= \frac{\pi (D_{o}^4-D_{i}^4)}{32}\\&=\frac{\pi (R_{o}^4-R_{i}^4)}{2}\end{align}} $$</td>
-                            <td>$$ {\begin{align}S_{x,min}&=\frac{I_{xx}}{R}\\&=\frac{\pi (R_{o}^4-R_{i}^4)}{4R_{o}}\end{align}} $$</td>
-                            <td>$$ {S_{y,min}=S_{x,min}} $$</td>
-                        </tr>
-                        <tr>
-                            <td class=fix style="font-weight: bold;">Rectangular</td>
-                            <td>image</td>
-                            <td>$$ {\begin{align}x_{c} &= b/2 \\y_{c} &= h/2\end{align}} $$</td>
-                            <td>$$ {A = h b} $$</td>
-                            <td>$$ {P = 2 h + 2 b} $$</td>
-                            <td>$$ {I_{xx}=\frac{bh^3}{12}} $$</td>
-                            <td>$$ {I_{yy}=\frac{hb^3}{12}} $$</td>
-                            <td>$$ {\begin{align}I_{zz} &= I_{xx} + I_{yy} \\ &= \frac{bh^3+hb^3}{12}\end{align}} $$</td>
-                            <td>$$ {S_{x,min}=\frac{I_{xx}}{h - y_{c}}=\frac{2 I_{xx}}{h}} $$</td>
-                            <td>$$ {S_{y,min}=\frac{I_{yy}}{b - x_{c}}=\frac{2 I_{yy}}{b}} $$</td>
-                        </tr>
-                        <tr>
-                            <td class=fix style="font-weight: bold;">Rectangular tube</td>
-                            <td>image<br/>$$ {\begin{align}h_{i} &= h-2t\\b_{i}&=b-2t\end{align}} $$</td>
-                            <td>$$ {\begin{align}x_{c} &= b/2 \\y_{c} &= h/2\end{align}} $$</td>
-                            <td>$$ {\begin{align}A &= hb - h_{i}b_{i}\\A &= 2(h+b)t - 4t^2\end{align}} $$</td>
-                            <td>$$ {\begin{align}P_{out} &= 2 h + 2 b \\P_{int} &= 2(h+b)-8t\end{align}} $$</td>
-                            <td>$$ {I_{xx}=\frac{bh^3-b_{i}h_{i}^3}{12}} $$</td>
-                            <td>$$ {I_{yy}=\frac{hb^3-h_{i}b_{i}^3}{12}} $$</td>
-                            <td>$$ {\begin{align}I_{zz} &= I_{xx} + I_{yy} \\ &=\frac{bh^3+hb^3-b_{i}h_{i}^3-h_{i}b_{i}^3}{12}\end{align}} $$</td>
-                            <td>$$ {S_{x,min}=\frac{I_{xx}}{h - y_{c}}=\frac{2 I_{xx}}{h}} $$</td>
-                            <td>$$ {S_{y,min}=\frac{I_{yy}}{b - x_{c}}=\frac{2 I_{yy}}{b}} $$</td>
-                        </tr>
-                        <tr>
-                            <td class=fix style="font-weight: bold;">L section</td>
-                            <td>image</td>
-                            <td>$$ {\begin{align}x_{c} &= \frac{t}{2A}(b^2+ht-t^2) \\y_{c} &= \frac{t}{2A}(h^2+bt-t^2)\end{align}} $$</td>
-                            <td>$$ {A=(h+b)t-t^2} $$</td>
-                            <td>$$ {P = 2 h + 2 b} $$</td>
-                            <td>$$ {I_{xx}=\frac{(bt^2+h^3-t^3)t}{3}-A y_{c}^2} $$</td>
-                            <td>$$ {I_{yy}=\frac{(ht^2+b^3-t^3)t}{3}-A x_{c}^2} $$</td>
-                            <td>$$ {\begin{align}I_{zz} &= I_{xx} + I_{yy} \\ &=\frac{(h^3+b^3+(h+b)t^2-2 t^3)t}{3}-A(x_{c}^2+y_{c}^2)\end{align}} $$</td>
-                            <td>$$ {S_{x,min}=\frac{I_{xx}}{h - y_{c}}} $$</td>
-                            <td>$$ {S_{y,min}=\frac{I_{yy}}{b - x_{c}}} $$</td>
-                        </tr>
-                        <tr>
-                            <td class=fix style="font-weight: bold;">C channel</td>
-                            <td>image</td>
-                            <td>$$ {\begin{align}x_{c} &= \frac{1}{A}(\frac{t_{w}^2}{2}(h-2 t_f)+t_f b^2 ) \\y_{c} &= h/2\end{align}} $$</td>
-                            <td>$$ {A = 2 b t_f + (h-2 t_f)t_w} $$</td>
-                            <td>$$ {P = 4b+2h-2t_w} $$</td>
-                            <td>$$ {I_{xx}=\frac{bh^3}{12} - \frac{(b-t_w)(h-2t_f)^3}{12}} $$</td>
-                            <td>$$ {I_{yy}=\frac{(h-2t_f)t_{w}^3+2t_{f}b^3}{3} - A x_{c}^2} $$</td>
-                            <td>$$ {I_{zz} = I_{xx} + I_{yy}} $$</td>
-                            <td>$$ {S_{x,min}=\frac{I_{xx}}{h - y_{c}}=\frac{2 I_{xx}}{h}} $$</td>
-                            <td>$$ {S_{y,min}=\frac{I_{yy}}{b - x_{c}} } $$</td>
-                        </tr>
-                        <tr>
-                            <td class=fix style="font-weight: bold;">U channel</td>
-                            <td>image</td>
-                            <td>$$ {\begin{align}x_{c} &= \frac{1}{A}(\frac{t_{w}^2}{2}(b-2 t_f)+t_f h^2 ) \\y_{c} &= b/2\end{align}} $$</td>
-                            <td>$$ {A = 2 h t_f + (b-2 t_f)t_w} $$</td>
-                            <td>$$ {P = 4h+2b-2t_w} $$</td>
-                            <td>$$ {I_{xx}=\frac{bh^3}{12} - \frac{(b-t_w)(h-2t_f)^3}{12}} $$</td>
-                            <td>$$ {I_{yy}=\frac{(h-2t_f)t_{w}^3+2t_{f}b^3}{3} - A x_{c}^2} $$</td>
-                            <td>$$ {I_{zz} = I_{xx} + I_{yy}} $$</td>
-                            <td>$$ {S_{x,min}=\frac{I_{xx}}{h - y_{c}}=\frac{2 I_{xx}}{h}} $$</td>
-                            <td>$$ {S_{y,min}=\frac{I_{yy}}{b - x_{c}} } $$</td>
-                        </tr>
-                        <tr>
-                            <td class=fix style="font-weight: bold;">I section</td>
-                            <td>image</td>
-                            <td>$$ {\begin{align}x_{c} &= b/2 \\y_{c} &= h/2\end{align}} $$</td>
-                            <td>$$ {A = 2 b t_f + (h-2 t_f)t_w} $$</td>
-                            <td>$$ {P = 4b+2h-2t_w} $$</td>
-                            <td>$$ {I_{xx}=\frac{bh^3}{12} - \frac{(b-t_w)(h-2t_f)^3}{12}} $$</td>
-                            <td>$$ {I_{yy}=\frac{2 t_{f} b^3 + (h-2 t_{f}) t_{w}^3}{12}} $$</td>
-                            <td>$$ {I_{zz} = I_{xx} + I_{yy}} $$</td>
-                            <td>$$ {S_{x,min}=\frac{I_{xx}}{h - y_{c}}=\frac{2 I_{xx}}{h}} $$</td>
-                            <td>$$ {S_{y,min}=\frac{I_{yy}}{b - x_{c}}=\frac{2 I_{yy}}{b} } $$</td>
-                        </tr>
-                        <tr>
-                            <td class=fix style="font-weight: bold;">H section</td>
-                            <td>image</td>
-                            <td>$$ {\begin{align}x_{c} &= b/2 \\y_{c} &= h/2\end{align}} $$</td>
-                            <td>$$ {A = 2 h t_f + (b-2 t_f)t_w} $$</td>
-                            <td>$$ {P = 4b+2h-2t_w} $$</td>
-                            <td>$$ {I_{xx}=\frac{2 t_{f} b^3 + (b-2 t_{f}) t_{w}^3}{12}} $$</td>
-                            <td>$$ {I_{yy}=\frac{hb^3}{12} - \frac{(h-t_w)(b-2t_f)^3}{12}} $$</td>
-                            <td>$$ {I_{zz} = I_{xx} + I_{yy}} $$</td>
-                            <td>$$ {S_{x,min}=\frac{I_{xx}}{h - y_{c}}=\frac{2 I_{xx}}{h}} $$</td>
-                            <td>$$ {S_{y,min}=\frac{I_{yy}}{b - x_{c}}=\frac{2 I_{yy}}{b}} $$</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-    	</div>
-
+    <div class="choose_section_2">
+		<div class="outer">
+			<div class="inner">
+				<!-- <p class="forms_text">Formulas</p> -->
+				<table style="font-size: 12px;">
+					<tr>
+						<th class=fix><br/>Cross-section</th>
+						<th>Dimensions</th>
+						<th>Centroid</th>
+						<th>Area</th>
+						<th>Perimeter</th>
+						<th>Second moment of area,<br/> x-axis</th>
+						<th>Second moment of area,<br/> y-area</th>
+						<th>Polar moment of<br/> inertia</th>
+						<th>Elastic modulus, x-axis, \(S_{x,min}\)<br/>\(\sigma=\frac{M_{x}c}{I_{xx}}=\frac{M_{x}}{S_{x}}\)</th>
+						<th>Elastic modulus, y-axis, \(S_{y,min}\)<br/>\(\sigma=\frac{M_{y}c}{I_{yy}}=\frac{M_{y}}{S_{y}}\)</th>
+					</tr>
+					<tr>
+						<td class=fix style="font-weight: bold;">Circular</td>
+						<td>image</td>
+						<td>$$ {\begin{align}x_{c} &= D/2 \\y_{c} &= D/2\end{align}} $$</td>
+						<td>$$ {A = \frac{\pi D^2}{4} = \pi R^2} $$</td>
+						<td>$$ {\begin{align}P &= \pi D \\&= 2 \pi R\end{align}} $$</td>
+						<td>$$ {I_{xx}=\frac{\pi D^4}{64}=\frac{\pi R^4}{4}} $$</td>
+						<td>$$ {I_{yy}=I_{xx}} $$} $$</td>
+						<td>$$ {\begin{align}I_{zz} &= I_{xx} + I_{yy} \\ &= \frac{\pi D^4}{32}=\frac{\pi R^4}{2}\end{align}} $$</td>
+						<td>$$ {S_{x,min}=\frac{I_{xx}}{R}=\frac{\pi R^3}{4}} $$</td>
+						<td>$$ {S_{y,min}=S_{x,min}} $$</td>
+					</tr>
+						<tr>
+						<td class=fix style="font-weight: bold;">Circular tube</td>
+						<td>image</td>
+						<td>$$ {\begin{align}x_{c} &= D/2 \\y_{c} &= D/2\end{align}} $$</td>
+						<td>$$ {\begin{align}A &= \frac{\pi (D_{o}^2-D_{i}^2)}{4} \\&= \pi (R_{o}^2-R_{i}^2)\end{align}} $$</td>
+						<td>$$ {\begin{align}P_{out} &= \pi D_{o} \\&= 2 \pi R_{o}\\P_{int} &= \pi D_{i} \\&= 2 \pi.R_{i}\end{align}} $$</td>
+						<td>$$ {\begin{align}I_{xx}&=\frac{\pi (D_{o}^4-D_{i}^4)}{64}\\&=\frac{\pi (R_{o}^4-R_{i}^4)}{4}\end{align}} $$</td>
+						<td>$$ {I_{yy}=I_{xx}} $$</td>
+						<td>$$ {\begin{align}I_{zz} &= I_{xx} + I_{yy} \\ &= \frac{\pi (D_{o}^4-D_{i}^4)}{32}\\&=\frac{\pi (R_{o}^4-R_{i}^4)}{2}\end{align}} $$</td>
+						<td>$$ {\begin{align}S_{x,min}&=\frac{I_{xx}}{R}\\&=\frac{\pi (R_{o}^4-R_{i}^4)}{4R_{o}}\end{align}} $$</td>
+						<td>$$ {S_{y,min}=S_{x,min}} $$</td>
+					</tr>
+					<tr>
+						<td class=fix style="font-weight: bold;">Rectangular</td>
+						<td>image</td>
+						<td>$$ {\begin{align}x_{c} &= b/2 \\y_{c} &= h/2\end{align}} $$</td>
+						<td>$$ {A = h b} $$</td>
+						<td>$$ {P = 2 h + 2 b} $$</td>
+						<td>$$ {I_{xx}=\frac{bh^3}{12}} $$</td>
+						<td>$$ {I_{yy}=\frac{hb^3}{12}} $$</td>
+						<td>$$ {\begin{align}I_{zz} &= I_{xx} + I_{yy} \\ &= \frac{bh^3+hb^3}{12}\end{align}} $$</td>
+						<td>$$ {S_{x,min}=\frac{I_{xx}}{h - y_{c}}=\frac{2 I_{xx}}{h}} $$</td>
+						<td>$$ {S_{y,min}=\frac{I_{yy}}{b - x_{c}}=\frac{2 I_{yy}}{b}} $$</td>
+					</tr>
+					<tr>
+						<td class=fix style="font-weight: bold;">Rectangular tube</td>
+						<td>image<br/>$$ {\begin{align}h_{i} &= h-2t\\b_{i}&=b-2t\end{align}} $$</td>
+						<td>$$ {\begin{align}x_{c} &= b/2 \\y_{c} &= h/2\end{align}} $$</td>
+						<td>$$ {\begin{align}A &= hb - h_{i}b_{i}\\A &= 2(h+b)t - 4t^2\end{align}} $$</td>
+						<td>$$ {\begin{align}P_{out} &= 2 h + 2 b \\P_{int} &= 2(h+b)-8t\end{align}} $$</td>
+						<td>$$ {I_{xx}=\frac{bh^3-b_{i}h_{i}^3}{12}} $$</td>
+						<td>$$ {I_{yy}=\frac{hb^3-h_{i}b_{i}^3}{12}} $$</td>
+						<td>$$ {\begin{align}I_{zz} &= I_{xx} + I_{yy} \\ &=\frac{bh^3+hb^3-b_{i}h_{i}^3-h_{i}b_{i}^3}{12}\end{align}} $$</td>
+						<td>$$ {S_{x,min}=\frac{I_{xx}}{h - y_{c}}=\frac{2 I_{xx}}{h}} $$</td>
+						<td>$$ {S_{y,min}=\frac{I_{yy}}{b - x_{c}}=\frac{2 I_{yy}}{b}} $$</td>
+					</tr>
+					<tr>
+						<td class=fix style="font-weight: bold;">L section</td>
+						<td>image</td>
+						<td>$$ {\begin{align}x_{c} &= \frac{t}{2A}(b^2+ht-t^2) \\y_{c} &= \frac{t}{2A}(h^2+bt-t^2)\end{align}} $$</td>
+						<td>$$ {A=(h+b)t-t^2} $$</td>
+						<td>$$ {P = 2 h + 2 b} $$</td>
+						<td>$$ {I_{xx}=\frac{(bt^2+h^3-t^3)t}{3}-A y_{c}^2} $$</td>
+						<td>$$ {I_{yy}=\frac{(ht^2+b^3-t^3)t}{3}-A x_{c}^2} $$</td>
+						<td>$$ {\begin{align}I_{zz} &= I_{xx} + I_{yy} \\ &=\frac{(h^3+b^3+(h+b)t^2-2 t^3)t}{3}-A(x_{c}^2+y_{c}^2)\end{align}} $$</td>
+						<td>$$ {S_{x,min}=\frac{I_{xx}}{h - y_{c}}} $$</td>
+						<td>$$ {S_{y,min}=\frac{I_{yy}}{b - x_{c}}} $$</td>
+					</tr>
+					<tr>
+						<td class=fix style="font-weight: bold;">C channel</td>
+						<td>image</td>
+						<td>$$ {\begin{align}x_{c} &= \frac{1}{A}(\frac{t_{w}^2}{2}(h-2 t_f)+t_f b^2 ) \\y_{c} &= h/2\end{align}} $$</td>
+						<td>$$ {A = 2 b t_f + (h-2 t_f)t_w} $$</td>
+						<td>$$ {P = 4b+2h-2t_w} $$</td>
+						<td>$$ {I_{xx}=\frac{bh^3}{12} - \frac{(b-t_w)(h-2t_f)^3}{12}} $$</td>
+						<td>$$ {I_{yy}=\frac{(h-2t_f)t_{w}^3+2t_{f}b^3}{3} - A x_{c}^2} $$</td>
+						<td>$$ {I_{zz} = I_{xx} + I_{yy}} $$</td>
+						<td>$$ {S_{x,min}=\frac{I_{xx}}{h - y_{c}}=\frac{2 I_{xx}}{h}} $$</td>
+						<td>$$ {S_{y,min}=\frac{I_{yy}}{b - x_{c}} } $$</td>
+					</tr>
+					<tr>
+						<td class=fix style="font-weight: bold;">U channel</td>
+						<td>image</td>
+						<td>$$ {\begin{align}x_{c} &= \frac{1}{A}(\frac{t_{w}^2}{2}(b-2 t_f)+t_f h^2 ) \\y_{c} &= b/2\end{align}} $$</td>
+						<td>$$ {A = 2 h t_f + (b-2 t_f)t_w} $$</td>
+						<td>$$ {P = 4h+2b-2t_w} $$</td>
+						<td>$$ {I_{xx}=\frac{bh^3}{12} - \frac{(b-t_w)(h-2t_f)^3}{12}} $$</td>
+						<td>$$ {I_{yy}=\frac{(h-2t_f)t_{w}^3+2t_{f}b^3}{3} - A x_{c}^2} $$</td>
+						<td>$$ {I_{zz} = I_{xx} + I_{yy}} $$</td>
+						<td>$$ {S_{x,min}=\frac{I_{xx}}{h - y_{c}}=\frac{2 I_{xx}}{h}} $$</td>
+						<td>$$ {S_{y,min}=\frac{I_{yy}}{b - x_{c}} } $$</td>
+					</tr>
+					<tr>
+						<td class=fix style="font-weight: bold;">I section</td>
+						<td>image</td>
+						<td>$$ {\begin{align}x_{c} &= b/2 \\y_{c} &= h/2\end{align}} $$</td>
+						<td>$$ {A = 2 b t_f + (h-2 t_f)t_w} $$</td>
+						<td>$$ {P = 4b+2h-2t_w} $$</td>
+						<td>$$ {I_{xx}=\frac{bh^3}{12} - \frac{(b-t_w)(h-2t_f)^3}{12}} $$</td>
+						<td>$$ {I_{yy}=\frac{2 t_{f} b^3 + (h-2 t_{f}) t_{w}^3}{12}} $$</td>
+						<td>$$ {I_{zz} = I_{xx} + I_{yy}} $$</td>
+						<td>$$ {S_{x,min}=\frac{I_{xx}}{h - y_{c}}=\frac{2 I_{xx}}{h}} $$</td>
+						<td>$$ {S_{y,min}=\frac{I_{yy}}{b - x_{c}}=\frac{2 I_{yy}}{b} } $$</td>
+					</tr>
+					<tr>
+						<td class=fix style="font-weight: bold;">H section</td>
+						<td>image</td>
+						<td>$$ {\begin{align}x_{c} &= b/2 \\y_{c} &= h/2\end{align}} $$</td>
+						<td>$$ {A = 2 h t_f + (b-2 t_f)t_w} $$</td>
+						<td>$$ {P = 4b+2h-2t_w} $$</td>
+						<td>$$ {I_{xx}=\frac{2 t_{f} b^3 + (b-2 t_{f}) t_{w}^3}{12}} $$</td>
+						<td>$$ {I_{yy}=\frac{hb^3}{12} - \frac{(h-t_w)(b-2t_f)^3}{12}} $$</td>
+						<td>$$ {I_{zz} = I_{xx} + I_{yy}} $$</td>
+						<td>$$ {S_{x,min}=\frac{I_{xx}}{h - y_{c}}=\frac{2 I_{xx}}{h}} $$</td>
+						<td>$$ {S_{y,min}=\frac{I_{yy}}{b - x_{c}}=\frac{2 I_{yy}}{b}} $$</td>
+					</tr>
+				</table>
+			</div>
+		</div>
     </div>
 
 	<div class="choose_section_2">
