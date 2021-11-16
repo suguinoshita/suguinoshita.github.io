@@ -1,4 +1,11 @@
 
+google.load("visualization", "1", {packages:["corechart"]});
+//google.load('visualization', '1.0', {'packages':['corechart']});
+//google.charts.load('current', {'packages':['bar']});
+google.charts.setOnLoadCallback(drawCharts);
+$(window).resize(function(){
+  drawCharts();
+});
 
 function handleInput(e){
   var value = this.valueAsNumber;
@@ -13,6 +20,7 @@ function nan2zero(num) {
 	if(isNaN(num)) num = 0; 
     return num; 
 }
+
 function fillPolygon(data,cg, color,lineColor,mycanvas) {
 	//alert(mycanvas+'data='+data.length);
 	if (data.length == 2) {
@@ -102,7 +110,7 @@ function fillPolygon(data,cg, color,lineColor,mycanvas) {
 function drawCharts() {
 
 
-    //alert('drawCharts');
+    //alert('hey');
 	var fm = document.getElementsByName('myForm')[0];
 	var section = fm.querySelectorAll('select[name="sectionSelector"]')[0].value;
     var section = fm.querySelectorAll('select[name="sectionSelector"]')[0].value;
@@ -176,8 +184,8 @@ function drawCharts() {
         }
     }
 
-	var myChartId = 'Chart1';
-	drawChart(array_area,myChartId,lims,'% change in Area');
+	//var myChartId = 'Chart1';
+	//drawChart(array_area,myChartId,lims,'% change in Area');
 	var myChartId = 'Chart2';
 	drawChart(array_ixx,myChartId,lims,'% change in Ixx');
 	var myChartId = 'Chart3';
@@ -191,56 +199,68 @@ function drawCharts() {
 }
 
 function drawChart(array,myChartId,lims,chartTitle) {
-	
+	//alert(array);
 	var rows = array.length - 1;
 	var cols = array[0].length - 1;
-	//var xValues = [0];
 	
-    //for (var i = 0; i < rows; i++) {
-    //    xValues[i] = array[i+1][0];
-    //}
-	//alert(xValues);
+	//alert('data');
+    var data = google.visualization.arrayToDataTable(array);
 	
-	var xyValues = [[]];
-	for (var k = 0; k < cols-1; k++) {
-		xyValues.push([]);
-	}
-	//alert(xyValues.length);
+	var formatPercent = new google.visualization.NumberFormat({
+		pattern: '#,##0.0%'
+	});
 	
-	for (var k = 0; k < cols; k++) {
-		var temp = [];
-		for (var i = 0; i < rows; i++) {
-			temp[i] = {x: array[i+1][0].toFixed(2) , y: array[i+1][k+1].toFixed(2)  };
-			//alert(temp[i].x+' '+temp[i].y);
-		}
-		xyValues[k] = temp;
+	var formatShort = new google.visualization.NumberFormat({
+		pattern: '0.0E+0'
+	});
+
+    //alert(lims[0]+' '+lims[1]);
+    var t = [array[1][0]];
+    for (var i = 2; i<=rows; i+=1) {
+        t.push(array[i][0]);
     }
+    //t.push(array[rows][0]);
+	// Optional; add a title and set the width and height of the chart
+    var options = {
+        chartArea:{left:50,top:5,width:'80%',height:'75%'},
+        curveType: 'function',
+	    hAxis: {title: '% Change in each dimension',
+	            titleTextStyle: {italic: false},
+                format:'percent',
+                viewWindow: {
+        		    min: lims[0],
+        		    max: lims[1]
+    			    },
+    			ticks: t,
+	            textPosition: 'out'},
+        vAxis: {title: chartTitle,
+                titleTextStyle: {italic: false},
+                format:'percent',
+                viewWindow: {
+        		    min: -1,
+        		    max: 1
+    			    },
+    			ticks: [-1,-0.5,0,0.5,1],
+                },
+        legend: { position: 'in', maxLines: 3 },
+        interpolateNulls: true,
+        series: {
+          0: { lineWidth: 2, pointSize: 0 },
+          1: { lineWidth: 2, pointSize: 0 },
+          2: { lineWidth: 2, pointSize: 0 },
+          3: { lineWidth: 2, pointSize: 0 }
+        }
+        };
 
-	//alert(xyValues);
-	//alert(xyValues[0][0].x);
+    //alert('got here');
+	// Display the chart inside the <div> element with id="piechart"
+	var chart = new google.visualization.ScatterChart(document.getElementById(myChartId));
+	chart.draw(data, options);
 	
-	var myDataset = {
-		type: "scatter",
-		data: {
-			datasets: []
-			},
-		options: {
-			legend: {display: false}
-			}
-	};
-	
-	for (var k = 0; k < cols; k++) {
-		myDataset.data.datasets[k] = {
-			data: xyValues[k],
-			pointRadius: 4,
-			pointBackgroundColor: fillColors[k]
-		};
-	}
-	
-	new Chart(myChartId,myDataset);
-	
+    /*window.addEventListener('resize', function() {
+		chart.draw(view, options);
+    }, false);*/
 }
-
 
 function dimChange(elem){
 	/*alert("dimChange.."+elem.tagName+elem.value);*/
@@ -1099,6 +1119,39 @@ function init() {
     //alert('updating pics');
     updatePictures();
     //alert('updating charts');
-    drawCharts();
+    //drawCharts();
     //alert('all done');
 }
+/*
+var xyValues = [
+  {x:50, y:7},
+  {x:60, y:8},
+  {x:70, y:8},
+  {x:80, y:9},
+  {x:90, y:9},
+  {x:100, y:9},
+  {x:110, y:10},
+  {x:120, y:11},
+  {x:130, y:14},
+  {x:140, y:14},
+  {x:150, y:15}
+];
+
+new Chart("Chart1", {
+  type: "scatter",
+  data: {
+    datasets: [{
+      pointRadius: 4,
+      pointBackgroundColor: "rgb(0,0,255)",
+      data: xyValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    scales: {
+      xAxes: [{ticks: {min: 40, max:160}}],
+      yAxes: [{ticks: {min: 6, max:16}}],
+    }
+  }
+});
+*/

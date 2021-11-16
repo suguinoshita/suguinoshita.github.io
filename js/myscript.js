@@ -355,9 +355,10 @@ function recalculateSection(myForm){
 	var t2 = parseFloat(myForm.querySelectorAll('input[name="dim4"]')[0].value);
 	var dims = [h,b,t,t2];
 	var mycanvas = myForm.querySelectorAll('canvas[name="myCanvas"]')[0].id;
-	//alert(section+h+b+t+t2+mycanvas);
+	///alert(section+h+b+t+t2+mycanvas);
 	
 	var results = calc_properties(section,dims);
+	
 	myForm.querySelectorAll('input[name="area"]')[0].value = results.A.toFixed(2);
 	myForm.querySelectorAll('input[name="perimeter"]')[0].value = results.perimeter.toFixed(2);
 	myForm.querySelectorAll('input[name="xc"]')[0].value = results.xc.toFixed(2);
@@ -792,6 +793,29 @@ function updateForm(fm) {
 				}
 			}
 			break;
+		case 'T section':
+			// labels
+			var lbl = fm.querySelectorAll('p[name="dim1"]')[0];
+			lbl.className = "forms_text";
+			lbl.innerHTML = "Height (h):";
+			lbl = fm.querySelectorAll('p[name="dim2"]')[0];
+			lbl.className = "forms_text";
+			lbl.innerHTML = "Width (b):";
+			lbl = fm.querySelectorAll('p[name="dim3"]')[0];
+			lbl.className = "forms_text";
+			lbl.innerHTML = "Thickness, web (t<sub>w</sub>): ";
+			lbl = fm.querySelectorAll('p[name="dim4"]')[0];
+			lbl.className = "forms_text";
+			lbl.innerHTML = "Thickness, flanges (t<sub>f</sub>): ";
+			// inputs
+			var inputsList = fm.querySelectorAll('input');
+			for (const inp of inputsList) {
+				if (inp.name == "dim1" ||  inp.name == "dim2" ||  inp.name == "dim3" || inp.name == "dim4" ){
+					inp.disabled = false; 
+					inp.className = "email-bt";
+				}
+			}
+			break;
 		default:
 			break;
 	}
@@ -950,6 +974,22 @@ function calc_properties(section,dims){
 			res.Sx_min = res.Ixx/(h-res.yc);
 			res.Sy_min = res.Iyy/(b-res.xc);
 			break;
+		case 'T section':
+			var h = dims[0];
+			var b = dims[1];
+			var tw = dims[2];
+			var tf = dims[3];
+			res.A = b*tf + (h-tf)*tw;
+			res.perimeter = 2*b + 2*h;
+			res.xc = b/2;
+			res.yc = h-(tw*h*h+(b-tw)*tf*tf)/(2*res.A);
+			var Ix0 = tw*h*h*h/3 + (b-tw)*tf*tf*tf/3;
+			res.Ixx = Ix0 - res.A*(h-res.yc)*(h-res.yc);
+			res.Iyy = (h-tf)*tw*tw*tw/12 + tf*b*b*b/12;
+			res.Izz = res.Ixx + res.Iyy;
+			res.Sx_min = res.Ixx/(h-res.yc);
+			res.Sy_min = res.Iyy/(b-res.xc);
+			break;
 		default:
 			res = res;
 			
@@ -959,7 +999,7 @@ function calc_properties(section,dims){
 }
 
 function calc_points(section,dims,canvas_width,canvas_height,bottom_margin,scale){
-
+	
 	switch(section) {
 		case 'Circular':
 			var d = dims[0]*scale;
@@ -1126,6 +1166,24 @@ function calc_points(section,dims,canvas_width,canvas_height,bottom_margin,scale
 				{x: x0+tf , y: y0-h }
 				];
 			break;
+		case 'T section':
+			var h = dims[0]*scale;
+			var b = dims[1]*scale;
+			var tw = dims[2]*scale;
+			var tf = dims[3]*scale;
+			var x0 = canvas_width/2-b/2;
+			var y0 = canvas_height-bottom_margin;
+			var points = [ 
+				{x: x0          , y: y0-h },
+				{x: x0          , y: y0-h+tf },
+				{x: x0+b/2-tw/2 , y: y0-h+tf },
+				{x: x0+b/2-tw/2 , y: y0 },
+				{x: x0+b/2+tw/2 , y: y0 },
+				{x: x0+b/2+tw/2 , y: y0-h+tf },
+				{x: x0+b        , y: y0-h+tf },
+				{x: x0+b        , y: y0-h }
+				];
+			break;
 		default:
 			var points = [ 
 				{x: 0   , y: 0}
@@ -1182,6 +1240,10 @@ const options =
   {
     "text"  : "H section",
     "value" : "H section",
+  },
+  {
+    "text"  : "T section",
+    "value" : "T section",
   }
 ];
 
