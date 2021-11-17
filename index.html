@@ -1,5 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.6.0"></script>
 <head>
 <!-- basic -->
 <meta charset="utf-8">
@@ -112,50 +114,48 @@
     </div>
 	<div class="choose_section_2">
     	<div class="container">
-    	    <div class="row">
-    		    <div class="col-md-4">
-					<div class="form-group">
-						<p class="forms_text">Volume/Mass comparison:</p>
+			<div class="power">
+				<div class="row">
+					<div class="col-md-4">
+							<div class="form-group">
+								<p class="forms_text">Volume/Mass comparison:</p>
+							</div>
+							<!--<div class="chart" id="Chart1" style="width:100%, height:250px"></div>-->
+							<canvas class="icon" id="Chart1" style="width:100%, height:300px"></canvas>
+							<span class="notes_text">&ndash; Volume = A.L<br/>
+													&ndash; Mass = &rho;.A.L<br/>
+													*constant section and homogeneous material.<br/>
+							</span>
 					</div>
-					<div class="chart" id="Chart1" style="width:100%, height:250px">
+					<div class="col-md-4">
+						
+							<div class="form-group">
+								<p class="forms_text">Stiffness comparison:</p>
+							</div>
+							<!--<div class="chart" id="Chart2" style="width:100%, height:250px"></div>-->
+							<canvas class="icon" id="Chart2" style="width:100%, height:300px"></canvas>
+							<span class="notes_text">&ndash; Axial stiffness = E.A/L<br/>
+												  &ndash; Bending stiffness = E.I<sub>xx</sub>/L or E.I<sub>yy</sub>/L<br/>
+												  &ndash; Torsional stiffness = G.I<sub>zz</sub>/L<br/>
+							</span>
+					</div>			
+					<div class="col-md-4">
+						
+							<div class="form-group">
+								<p class="forms_text">Stress comparison:</p>
+							</div>
+							<!--<div class="chart" id="Chart3" style="width:100%, height:250px" ></div>-->
+							<canvas class="icon" id="Chart3" style="width:100%, height:300px"></canvas>
+							<span class="notes_text">&ndash; Axial stress: &sigma; = F/A<br/>
+												  &ndash; Bending stress over x-axis: &sigma; = M<sub>x</sub>/S<sub>x,min</sub><br/>
+												  &ndash; Bending stress over y-axis: &sigma; = M<sub>y</sub>/S<sub>y,min</sub><br/>
+							</span>
 					</div>
-					<span class="notes_text">&ndash; Volume = A.L<br/>
-											&ndash; Mass = &rho;.A.L<br/>
-											*constant section and homogeneous material.<br/>
-					</span>
-    			    <div class="btn_main">
-    			        <p class="forms_text"><br/></p>
-    			    </div>
-    		    </div>
-    		    <div class="col-md-4">
-					<div class="form-group">
-						<p class="forms_text">Stiffness comparison:</p>
-					</div>
-					<div class="chart" id="Chart2" style="width:100%, height:250px">
-					</div>
-					<span class="notes_text">&ndash; Axial stiffness = E.A/L<br/>
-										  &ndash; Bending stiffness = E.I<sub>xx</sub>/L or E.I<sub>yy</sub>/L<br/>
-										  &ndash; Torsional stiffness = G.I<sub>zz</sub>/L<br/>
-					</span>
-    			    <div class="btn_main">
-    			        <p class="forms_text"><br/></p>
-    			    </div>
-    		    </div>			
-    		    <div class="col-md-4">
-					<div class="form-group">
-						<p class="forms_text">Stress comparison:</p>
-					</div>
-					<div class="chart" id="Chart3" style="width:100%, height:250px" >
-					</div>
-					<span class="notes_text">&ndash; Axial stress: &sigma; = F/A<br/>
-										  &ndash; Bending stress over x-axis: &sigma; = M<sub>x</sub>/S<sub>x,min</sub><br/>
-										  &ndash; Bending stress over y-axis: &sigma; = M<sub>y</sub>/S<sub>y,min</sub><br/>
-					</span>
-    			    <div class="btn_main">
-    			        <p class="forms_text"><br/></p>
-    			    </div>
-    		    </div>
-    	    </div>    		
+				</div>
+    	    </div>   
+			<div class="btn_main">
+				<p class="forms_text"><br/></p>
+			</div> 		
     	</div>
     </div>
     <div class="choose_section_2">

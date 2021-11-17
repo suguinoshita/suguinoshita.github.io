@@ -1,12 +1,4 @@
-//google.charts.load("current", {packages:["corechart"]});
 
-google.load("visualization", "1", {packages:["corechart"]});
-//google.load('visualization', '1.0', {'packages':['corechart']});
-//google.charts.load('current', {'packages':['bar']});
-google.charts.setOnLoadCallback(drawCharts);
-$(window).resize(function(){
-  drawCharts();
-});
 
 function handleInput(e){
   var value = this.valueAsNumber;
@@ -121,14 +113,22 @@ function drawCharts() {
 		];
 	
 	var array2 = [
-		['Section', 'Section 1','Section 2','Section 3','Section 4'],
+		[{label: 'Section', type: 'string'},
+		 {label: 'Section 1', type: 'number'},
+		 {label: 'Section 2', type: 'number'},
+		 {label: 'Section 3', type: 'number'},
+		 {label: 'Section 4', type: 'number'}],
 		['Moment of inertia,\n Ixx', 0, 0, 0, 0],
 		['Moment of inertia,\n Iyy', 0, 0, 0, 0],
 		['Polar moment\n of inertia, Izz', 0, 0, 0, 0]
 		];
 	
 	var array3 = [
-		['Section', 'Section 1','Section 2','Section 3','Section 4'],
+		[{label: 'Section', type: 'string'},
+		 {label: 'Section 1', type: 'number'},
+		 {label: 'Section 2', type: 'number'},
+		 {label: 'Section 3', type: 'number'},
+		 {label: 'Section 4', type: 'number'}],
 		['Axial stress', 0, 0, 0, 0],
 		['Bending stress,\n x-axis', 0, 0, 0, 0],
 		['Bending stress,\n y-axis', 0, 0, 0, 0]
@@ -142,15 +142,15 @@ function drawCharts() {
 		
 		var section = fm.querySelectorAll('select[name="sectionSelector"]')[0].value;
 		if (section == 'None') {
-			array1[1][s] = Infinity;
+			array1[1][s] = 0;
+		
+			array2[1][s] = 0;
+			array2[2][s] = 0;
+			array2[3][s] = 0;
 			
-			array2[1][s] = Infinity;
-			array2[2][s] = Infinity;
-			array2[3][s] = Infinity;
-			
-			array3[1][s] = Infinity;
-			array3[2][s] = Infinity;
-			array3[3][s] = Infinity;
+			array3[1][s] = 0;
+			array3[2][s] = 0;
+			array3[3][s] = 0;
 		} else {
 			filled.push(s);
 			var isRef = fm.querySelectorAll('input[name="refSwitch"]')[0].checked;
@@ -170,169 +170,247 @@ function drawCharts() {
 	if (ref == 0 && filled.length > 0) { ref = filled[0]; }
 	var num = filled.length;
 	
-	var myChartId = 'Chart1';
+	var myChartId = 'Chart1'; 
+	var myAxisTitle = 'Lighter \u21D0   \u21D2 Heavier          ';
 	//alert(myChartId);
-	drawChart(array1,ref,myChartId,num);
+	drawChart(array1,ref,myChartId,myAxisTitle,num);
+	
 	myChartId = 'Chart2';
+	var myAxisTitle = 'Lower stiffness \u21D0   \u21D2 Higher stiffness              ';
 	//alert(myChartId);
-	drawChart(array2,ref,myChartId,num);
+	drawChart(array2,ref,myChartId,myAxisTitle,num);
+	
 	myChartId = 'Chart3';
+	var myAxisTitle = 'Lower stress \u21D0   \u21D2 Higher stress          ';
 	//alert(myChartId);
-	drawChart(array3,ref,myChartId,num);
+	drawChart(array3,ref,myChartId,myAxisTitle,num);
+	
 	//alert('charts done');
 }
 
-function drawChart(array,ref,myChartId,num) {
+function drawChart(array,ref,myChartId,myAxisTitle,num) {
 	//alert(array);
+	//alert(myChartId)
 	var rows = array.length - 1;
 	var cols = array[0].length - 1;
 	
-	//alert('data');
-    var data = google.visualization.arrayToDataTable(array);
-	
-	var formatPercent = new google.visualization.NumberFormat({
-		pattern: '#,##0.0%'
-	});
-	
-	var formatShort = new google.visualization.NumberFormat({
-		pattern: '0.0E+0'
-	});
-	//alert('got here');
-	var sig = "";
-    var view = new google.visualization.DataView(data);
-	view.setColumns([0, 1,
-				 { calc: function (dt, row) {
-					var col = 1;
-					var amount =  formatShort.formatValue(dt.getValue(row,col));
-					//var percent = formatPercent.formatValue(dt.getValue(row, col) / groupData.getValue(0, col));
-					if (col == ref) { var percent = "ref"; 
-					} else { 
-					var percent = formatPercent.formatValue((dt.getValue(row, col)- dt.getValue(row, ref))/ dt.getValue(row, ref));
-					if (percent>0) { sig = "+"; }
-					}
-					//return amount + ' (' + sig + percent + ')';
-					return sig + percent;
-					},
-					 sourceColumn: 1,
-					 type: "string",
-					 role: "annotation" },
-				 2,
-				 { calc: function (dt, row) {
-					var col = 2;
-					var amount =  formatShort.formatValue(dt.getValue(row,col));
-					//var percent = formatPercent.formatValue(dt.getValue(row, col) / groupData.getValue(0, col));
-					if (col == ref) { var percent = "ref"; 
-					} else { 
-					var percent = formatPercent.formatValue((dt.getValue(row, col)- dt.getValue(row, ref))/ dt.getValue(row, ref));
-					if (percent>0) { sig = "+"; }
-					}
-					//return amount + ' (' + sig + percent + ')';
-					return sig + percent;
-					},
-					 sourceColumn: 2,
-					 type: "string",
-					 role: "annotation" },
-				 3,
-				 { calc: function (dt, row) {
-					var col = 3;
-					var amount =  formatShort.formatValue(dt.getValue(row,col));
-					//var percent = formatPercent.formatValue(dt.getValue(row, col) / groupData.getValue(0, col));
-					if (col == ref) { var percent = "ref";
-					} else { 
-					var percent = formatPercent.formatValue((dt.getValue(row, col)- dt.getValue(row, ref))/ dt.getValue(row, ref));
-					if (percent>0) { sig = "+"; }
-					}
-					//return amount + ' (' + sig + percent + ')';
-					return sig + percent;
-					},
-					 sourceColumn: 3,
-					 type: "string",
-					 role: "annotation" },
-				 4,
-				 { calc: function (dt, row) {
-					var col = 4;
-					var amount =  formatShort.formatValue(dt.getValue(row,col));
-					//var percent = formatPercent.formatValue(dt.getValue(row, col) / groupData.getValue(0, col));
-					if (col == ref) { var percent = "ref"; 
-					} else { 
-					var percent = formatPercent.formatValue((dt.getValue(row, col)- dt.getValue(row, ref))/ dt.getValue(row, ref));
-					if (percent>0) { sig = "+"; } 
-					}
-					//return amount + ' (' + sig + percent + ')';
-					return sig + percent;
-					},
-					 sourceColumn: 4,
-					 type: "string",
-					 role: "annotation" }
-				 ]);
-	if (num == 1) {
-		view.setColumns([0, 1,
-				 { calc: function (dt, row) {
-					var col = 1;
-					var amount =  formatShort.formatValue(dt.getValue(row,col));
-					return amount;
-					},
-					 sourceColumn: 1,
-					 type: "string",
-					 role: "annotation" },
-				 2,
-				 { calc: function (dt, row) {
-					var col = 2;
-					var amount =  formatShort.formatValue(dt.getValue(row,col));
-					return amount;
-					},
-					 sourceColumn: 2,
-					 type: "string",
-					 role: "annotation" },
-				 3,
-				 { calc: function (dt, row) {
-					var col = 3;
-					var amount =  formatShort.formatValue(dt.getValue(row,col));
-					return amount;
-					},
-					 sourceColumn: 3,
-					 type: "string",
-					 role: "annotation" },
-				 4,
-				 { calc: function (dt, row) {
-					var col = 4;
-					var amount =  formatShort.formatValue(dt.getValue(row,col));
-					return amount;
-					},
-					 sourceColumn: 4,
-					 type: "string",
-					 role: "annotation" }
-				 ]);
+	var yValues = [[]];
+	for (var k = 0; k < cols-1; k++) {
+		yValues.push([]);
 	}
-	var colors = fillColors;
-	colors.forEach(function (color, index) {
-		data.setColumnProperty(index + 1, 'fill-color', color);
-		});	 	
+	//alert(xyValues.length);
 	
-	// Optional; add a title and set the width and height of the chart
-    var options = { bar: {groupWidth: "80%"},
-        hAxis: {format: 'scientific'},
-        bars: 'horizontal',
-		annotations: {alwaysOutside: true},
-        //chartArea: {width: '100%', height: '100%'},
-        //theme: 'maximized',
-        //hAxis: {textPosition: 'out'},
-        vAxis: {textPosition: 'out'},
-        legend: {position: 'top', maxLines: 3, alignment: 'center'},
-		colors: colors,
-		chartArea: {left:90,top:40},
-		//chartArea: {width: '100%', height: '80%'},
-		//width: '100%',
-		//height: '80%',
-        };
+	var ymax = 0;
+	var xValues = [];
+	for (var k = 0; k < cols; k++) {
+		var temp = [];
+		for (var i = 0; i < rows; i++) {
+			temp[i] = array[i+1][k+1].toExponential(2);
+			xValues[i] = array[i+1][0];
+			ymax = Math.max(ymax,temp[i]);
+		}
+		yValues[k] = temp;		
+		//alert(array[0][k+1].label);
+		//alert(yValues[k]);
+    }
+	
+	//alert(ref)
+	//alert(num)
+	
+	var datalabels_format = function calculate(value,context) {
+		var {ref,num} = getRef();
+		var index = context.datasetIndex; // column index
+		var k = context.dataIndex; // row indexif (index+1 == ref) { 
+		if (num == 1) { 
+			out = value;//+' index+1='+(index+1)+' ref='+ref+' row='+k;
+		} else if (index+1 == ref) { 
+			out = 'reference';//+' index+1='+(index+1)+' ref='+ref+' row='+k;
+		} else {
+			var value_ref = context.chart.data.datasets[ref-1].data[k] ;
+			var percent = ((value-value_ref)/value_ref* 100).toFixed(1);
+			if (percent > 0) percent =  '+'+percent;
+			out = percent+'%';//+' index+1='+(index+1)+' ref='+ref+' row='+k;
+		}
+		return out;
+	};
+	
+	function formatLabel(str, maxwidth) {
+		var sections = [];
+		var words = str.split(" ");
+		var temp = "";
+		words.forEach(function(item, index){
+			if(temp.length > 0)
+			{
+				var concat = temp + ' ' + item;
+				if(concat.length > maxwidth){
+					sections.push(temp);
+					temp = "";
+				}
+				else{
+					if(index == (words.length-1))
+					{
+						sections.push(concat);
+						return;
+					}
+					else{
+						temp = concat;
+						return;
+					}
+				}
+			}
+			if(index == (words.length-1))
+			{
+				sections.push(item);
+				return;
+			}
+			if(item.length < maxwidth) {
+				temp = item;
+			}
+			else {
+				sections.push(item);
+			}
+		});
+		return sections;
+	};
 
-	// Display the chart inside the <div> element with id="piechart"
-	var chart = new google.visualization.BarChart(document.getElementById(myChartId));
-	chart.draw(view, options);
+	var myDataset = {
+		type: 'horizontalBar',
+		data: {
+			labels: xValues,
+			datasets: [],
+			},
+		options: {
+			//responsive: true,
+			//maintainAspectRatio: false,
+			legend: false,
+			scales: {
+				xAxes: [{
+					ticks: {
+						beginAtZero: true,
+						display: false,
+						},
+					afterDataLimits(scale) {
+							scale.max = scale.max*1.25;
+						},					
+					scaleLabel: {
+						display: true,
+						labelString: myAxisTitle,
+						},
+					}],
+				
+				yAxes: [{
+					ticks: {
+						callback: function (label){
+							return formatLabel(label,20)
+							}
+						},
+					}]
+				},
+			tooltips: {
+                mode: 'index',
+                intersect: false,
+                callbacks: {
+                    //beforeBody: function(tooltipItem, data) {
+                    //    return 'Change of '},
+                    label: function(tooltipItem, data) {
+							var {ref,num} = getRef();
+							var index = tooltipItem.datasetIndex;
+							var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+							var value_ref = data.datasets[ref-1].data[tooltipItem.index];
+							if (index+1 == ref) {
+								var out = value+' (reference)';
+							} else {
+								var percent = ((value-value_ref)/value_ref* 100).toFixed(1);
+								if (percent > 0) percent =  '+'+percent;
+								var out = value+' ('+percent+'%)';
+							}
+							return out;
+                        },
+					},
+				},
+			plugins: {
+				datalabels: {
+					align: function(context) {
+						var index = context.dataIndex;
+						var value = context.dataset.data[index];
+						var invert = Math.abs(value) <= 1;
+						//return index > 1 ? 'end' : 'start'
+						return 'end'
+						},
+					anchor: 'end',
+					backgroundColor: null,
+					borderColor: null,
+					borderRadius: 4,
+					borderWidth: 1,
+					color: '#333333',
+					font: {
+						size: 11,
+						weight: 400
+						},
+					offset: 4,
+					padding: 0,	
+					display: true,
+					formatter: datalabels_format,
+					},
+				},
+			},
+		};
 	
-    /*window.addEventListener('resize', function() {
-		chart.draw(view, options);
-    }, false);*/
+	for (var k = 0; k < cols; k++) {
+		if (yValues[k][0] == 0){var bool = true;}else{var bool = false;}
+		myDataset.data.datasets[k] = {
+			data: yValues[k],
+            label: array[0][k+1].label,
+			backgroundColor: fillColors[k],
+			hidden: bool,
+		    };
+	}
+	
+	//alert('got here')
+    switch (myChartId) {
+        case 'Chart1':
+            if(typeof Chart1 ==="undefined"){ window.Chart1 = new Chart(document.getElementById(myChartId), myDataset);
+            }else{
+                window.Chart1.config=myDataset; window.Chart1.update();
+            }
+            break;
+        case 'Chart2':
+            if(typeof Chart2 ==="undefined"){ window.Chart2 = new Chart(myChartId, myDataset);
+            }else{
+                window.Chart2.config=myDataset; window.Chart2.update();
+            }
+            break;
+        case 'Chart3':
+            if(typeof Chart3 ==="undefined"){ window.Chart3 = new Chart(myChartId, myDataset);
+            }else{
+                window.Chart3.config=myDataset; window.Chart3.update();
+            }
+            break;
+        default:
+            break;
+    }
+	
+}
+var Chart1, Chart2, Chart3;
+
+function getRef(){
+	var ref = 0;
+	var filled = [];
+	var s = 1;
+	var formList = document.getElementsByName('myForm');
+	for (var fm of formList) {
+		var section = fm.querySelectorAll('select[name="sectionSelector"]')[0].value;
+		if (section != 'None') {
+			filled.push(s);
+			var isRef = fm.querySelectorAll('input[name="refSwitch"]')[0].checked;
+			if (isRef == true) ref = s; 
+		}
+		s = s + 1;
+	}
+	if (ref == 0 && filled.length > 0) ref = filled[0];
+	var num = filled.length;
+	
+return {ref,num};
 }
 
 function dimChange(elem){
@@ -342,7 +420,6 @@ function dimChange(elem){
 	updatePictures();
 	drawCharts();
 }
-
 
 function recalculateSection(myForm){
 	
@@ -1281,5 +1358,5 @@ for (const fm of formList) {
 //alert('updating pics');
 updatePictures();
 //alert('updating charts');
-//drawCharts();
+drawCharts();
 //alert('all done');

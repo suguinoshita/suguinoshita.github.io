@@ -1,4 +1,12 @@
+//google.charts.load("current", {packages:["corechart"]});
 
+google.load("visualization", "1", {packages:["corechart"]});
+//google.load('visualization', '1.0', {'packages':['corechart']});
+//google.charts.load('current', {'packages':['bar']});
+google.charts.setOnLoadCallback(drawCharts);
+$(window).resize(function(){
+  drawCharts();
+});
 
 function handleInput(e){
   var value = this.valueAsNumber;
@@ -13,6 +21,7 @@ function nan2zero(num) {
 	if(isNaN(num)) num = 0; 
     return num; 
 }
+
 function fillPolygon(data,cg, color,lineColor,mycanvas) {
 	//alert(mycanvas+'data='+data.length);
 	if (data.length == 2) {
@@ -28,7 +37,7 @@ function fillPolygon(data,cg, color,lineColor,mycanvas) {
 		var canvas = document.getElementById(mycanvas);
 		var ctx = canvas.getContext("2d");
 		
-		ctx.fillStyle = '#aaaaaa'; // all css colors are accepted by this property
+		ctx.fillStyle = color; // all css colors are accepted by this property
 		var point = points[0];
 		ctx.beginPath();
 		ctx.setLineDash([]);
@@ -41,7 +50,7 @@ function fillPolygon(data,cg, color,lineColor,mycanvas) {
 		ctx.fill();
 				
 		ctx.lineWidth = 3;
-		ctx.strokeStyle = '#777777';
+		ctx.strokeStyle = lineColor;
 		ctx.stroke();
 	}
 	
@@ -65,7 +74,7 @@ function fillPolygon(data,cg, color,lineColor,mycanvas) {
 			ctx.fill();
 					
 			ctx.lineWidth = 3;
-			ctx.strokeStyle = '#777777';
+			ctx.strokeStyle = lineColor;
 			ctx.stroke();
 		}
 	} 
@@ -100,237 +109,231 @@ function fillPolygon(data,cg, color,lineColor,mycanvas) {
 }
 
 function drawCharts() {
-
-
-    //alert('drawCharts');
-	var fm = document.getElementsByName('myForm')[0];
-	var section = fm.querySelectorAll('select[name="sectionSelector"]')[0].value;
-    var section = fm.querySelectorAll('select[name="sectionSelector"]')[0].value;
-	var h = parseFloat(fm.querySelectorAll('input[name="dim1"]')[0].value);
-	var b = parseFloat(fm.querySelectorAll('input[name="dim2"]')[0].value);
-	var t = parseFloat(fm.querySelectorAll('input[name="dim3"]')[0].value);
-	var t2 = parseFloat(fm.querySelectorAll('input[name="dim4"]')[0].value);
-	var dims = [h,b,t,t2];
-	var ref = calc_properties(section,dims);
-
-    var lbl = [fm.querySelectorAll('p[name="dim1"]')[0].innerHTML.split("(")[0]];
-    if (fm.querySelectorAll('p[name="dim2"]')[0].innerHTML != "<br>") {
-        lbl.push(fm.querySelectorAll('p[name="dim2"]')[0].innerHTML.split("(")[0]);}
-    if (fm.querySelectorAll('p[name="dim3"]')[0].innerHTML != "<br>") {
-        lbl.push(fm.querySelectorAll('p[name="dim3"]')[0].innerHTML.split("(")[0]);}
-    if (fm.querySelectorAll('p[name="dim4"]')[0].innerHTML != "<br>") {
-        lbl.push(fm.querySelectorAll('p[name="dim4"]')[0].innerHTML.split("(")[0]);}
-
-    var nplots = lbl.length;
-    //alert(dims_values)
-	var temp = [
-		[{label: 'Change in dimensions', type: 'number'}]
+	
+	var array1 = [
+		//['Section','Section 1','Section 2','Section 3','Section 4'],
+		[{label: 'Section', type: 'string'},
+		 {label: 'Section 1', type: 'number'},
+		 {label: 'Section 2', type: 'number'},
+		 {label: 'Section 3', type: 'number'},
+		 {label: 'Section 4', type: 'number'}],
+		['Cross-section\n Area', 0, 0, 0, 0 ]
 		];
-	//alert(lbl);
-    //alert(temp);
-    var lims = [-0.5,0.5];
-    var steps = 10;
-	for (var i=0; i<=steps; i+=1 ) {
-        var diff = lims[0] + i*(lims[1]-lims[0])/steps;
-        temp.push([diff]);
-    }
-    //alert(temp);
-    var array_area = []; // create empty array to hold copy
-    var array_ixx = [];
-    var array_iyy = [];
-    var array_izz = [];
-    var array_sx = [];
-    var array_sy = [];
-    // use for loop to apply slice to sub-arrays
-    for (var i = 0, len = temp.length; i < len; i++) {
-        array_area[i] = temp[i].slice();
-        array_ixx[i] = temp[i].slice();
-        array_iyy[i] = temp[i].slice();
-        array_izz[i] = temp[i].slice();
-        array_sx[i] = temp[i].slice();
-        array_sy[i] = temp[i].slice();
-    }
+	
+	var array2 = [
+		['Section', 'Section 1','Section 2','Section 3','Section 4'],
+		['Moment of inertia,\n Ixx', 0, 0, 0, 0],
+		['Moment of inertia,\n Iyy', 0, 0, 0, 0],
+		['Polar moment\n of inertia, Izz', 0, 0, 0, 0]
+		];
+	
+	var array3 = [
+		['Section', 'Section 1','Section 2','Section 3','Section 4'],
+		['Axial stress', 0, 0, 0, 0],
+		['Bending stress,\n x-axis', 0, 0, 0, 0],
+		['Bending stress,\n y-axis', 0, 0, 0, 0]
+		];
 
-    for (var idx=0; idx<nplots; idx += 1){
-        var delta = dims.slice(0);
-        //alert(delta+' '+dims);
-        var variable = dims[idx];
-        var header_col = {"label": lbl[idx],"type": 'number'};
-        array_area[0][idx+1] = header_col;
-        array_ixx[0][idx+1] = header_col;
-        array_iyy[0][idx+1] = header_col;
-        array_izz[0][idx+1] = header_col;
-        array_sx[0][idx+1] = header_col;
-        array_sy[0][idx+1] = header_col;
-        for (var i=0; i<=steps; i+=1 ) {
-            var diff = lims[0] + i*(lims[1]-lims[0])/steps;
-            delta[idx] = (1+diff)*variable;
-            //alert('i='+i+', dim1='+variable+', delta1='+delta[idx]);
-            var results = calc_properties(section,delta);
-            array_area[i+1][idx+1] = (results.A - ref.A)/ref.A;
-            array_ixx[i+1][idx+1] = (results.Ixx - ref.Ixx)/ref.Ixx;
-            array_iyy[i+1][idx+1] = (results.Iyy - ref.Iyy)/ref.Iyy;
-            array_izz[i+1][idx+1] = (results.Izz - ref.Izz)/ref.Izz;
-            array_sx[i+1][idx+1] = (1/results.Sx_min - 1/ref.Sx_min)/(1/ref.Sx_min);
-            array_sy[i+1][idx+1] = (1/results.Sy_min - 1/ref.Sy_min)/(1/ref.Sy_min);
-        }
-    }
-
+	var ref = 0;
+	var filled = [];
+	var s = 1;
+	var formList = document.getElementsByName('myForm');
+	for (var fm of formList) {
+		
+		var section = fm.querySelectorAll('select[name="sectionSelector"]')[0].value;
+		if (section == 'None') {
+			array1[1][s] = Infinity;
+			
+			array2[1][s] = Infinity;
+			array2[2][s] = Infinity;
+			array2[3][s] = Infinity;
+			
+			array3[1][s] = Infinity;
+			array3[2][s] = Infinity;
+			array3[3][s] = Infinity;
+		} else {
+			filled.push(s);
+			var isRef = fm.querySelectorAll('input[name="refSwitch"]')[0].checked;
+			if (isRef == true) { ref = s; }
+			array1[1][s] = parseFloat(fm.querySelectorAll('input[name="area"]')[0].value);
+			
+			array2[1][s] = parseFloat(fm.querySelectorAll('input[name="Ixx"]')[0].value);
+			array2[2][s] = parseFloat(fm.querySelectorAll('input[name="Iyy"]')[0].value);
+			array2[3][s] = parseFloat(fm.querySelectorAll('input[name="Izz"]')[0].value);
+			
+			array3[1][s] = 1/parseFloat(fm.querySelectorAll('input[name="area"]')[0].value);
+			array3[2][s] = 1/parseFloat(fm.querySelectorAll('input[name="Sx_min"]')[0].value);
+			array3[3][s] = 1/parseFloat(fm.querySelectorAll('input[name="Sy_min"]')[0].value);
+		}
+		s = s + 1;
+	}
+	if (ref == 0 && filled.length > 0) { ref = filled[0]; }
+	var num = filled.length;
+	
 	var myChartId = 'Chart1';
-	drawChart(array_area,myChartId,lims,'% change in Area');
-	var myChartId = 'Chart2';
-	drawChart(array_ixx,myChartId,lims,'% change in Ixx');
-	var myChartId = 'Chart3';
-	drawChart(array_iyy,myChartId,lims,'% change in Iyy');
-	var myChartId = 'Chart4';
-	drawChart(array_izz,myChartId,lims,'% change in Izz');
-	var myChartId = 'Chart5';
-	drawChart(array_sx,myChartId,lims,'% change in Stress');
-	var myChartId = 'Chart6';
-	drawChart(array_sy,myChartId,lims,'% change in Stress');
+	//alert(myChartId);
+	drawChart(array1,ref,myChartId,num);
+	myChartId = 'Chart2';
+	//alert(myChartId);
+	drawChart(array2,ref,myChartId,num);
+	myChartId = 'Chart3';
+	//alert(myChartId);
+	drawChart(array3,ref,myChartId,num);
+	//alert('charts done');
 }
 
-function drawChart(array,myChartId,lims,chartTitle) {
-	
+function drawChart(array,ref,myChartId,num) {
+	//alert(array);
 	var rows = array.length - 1;
 	var cols = array[0].length - 1;
-	//var xValues = [0];
 	
-    //for (var i = 0; i < rows; i++) {
-    //    xValues[i] = array[i+1][0];
-    //}
-	//alert(xValues);
+	//alert('data');
+    var data = google.visualization.arrayToDataTable(array);
 	
-	var xyValues = [[]];
-	for (var k = 0; k < cols-1; k++) {
-		xyValues.push([]);
+	var formatPercent = new google.visualization.NumberFormat({
+		pattern: '#,##0.0%'
+	});
+	
+	var formatShort = new google.visualization.NumberFormat({
+		pattern: '0.0E+0'
+	});
+	//alert('got here');
+	var sig = "";
+    var view = new google.visualization.DataView(data);
+	view.setColumns([0, 1,
+				 { calc: function (dt, row) {
+					var col = 1;
+					var amount =  formatShort.formatValue(dt.getValue(row,col));
+					//var percent = formatPercent.formatValue(dt.getValue(row, col) / groupData.getValue(0, col));
+					if (col == ref) { var percent = "ref"; 
+					} else { 
+					var percent = formatPercent.formatValue((dt.getValue(row, col)- dt.getValue(row, ref))/ dt.getValue(row, ref));
+					if (percent>0) { sig = "+"; }
+					}
+					//return amount + ' (' + sig + percent + ')';
+					return sig + percent;
+					},
+					 sourceColumn: 1,
+					 type: "string",
+					 role: "annotation" },
+				 2,
+				 { calc: function (dt, row) {
+					var col = 2;
+					var amount =  formatShort.formatValue(dt.getValue(row,col));
+					//var percent = formatPercent.formatValue(dt.getValue(row, col) / groupData.getValue(0, col));
+					if (col == ref) { var percent = "ref"; 
+					} else { 
+					var percent = formatPercent.formatValue((dt.getValue(row, col)- dt.getValue(row, ref))/ dt.getValue(row, ref));
+					if (percent>0) { sig = "+"; }
+					}
+					//return amount + ' (' + sig + percent + ')';
+					return sig + percent;
+					},
+					 sourceColumn: 2,
+					 type: "string",
+					 role: "annotation" },
+				 3,
+				 { calc: function (dt, row) {
+					var col = 3;
+					var amount =  formatShort.formatValue(dt.getValue(row,col));
+					//var percent = formatPercent.formatValue(dt.getValue(row, col) / groupData.getValue(0, col));
+					if (col == ref) { var percent = "ref";
+					} else { 
+					var percent = formatPercent.formatValue((dt.getValue(row, col)- dt.getValue(row, ref))/ dt.getValue(row, ref));
+					if (percent>0) { sig = "+"; }
+					}
+					//return amount + ' (' + sig + percent + ')';
+					return sig + percent;
+					},
+					 sourceColumn: 3,
+					 type: "string",
+					 role: "annotation" },
+				 4,
+				 { calc: function (dt, row) {
+					var col = 4;
+					var amount =  formatShort.formatValue(dt.getValue(row,col));
+					//var percent = formatPercent.formatValue(dt.getValue(row, col) / groupData.getValue(0, col));
+					if (col == ref) { var percent = "ref"; 
+					} else { 
+					var percent = formatPercent.formatValue((dt.getValue(row, col)- dt.getValue(row, ref))/ dt.getValue(row, ref));
+					if (percent>0) { sig = "+"; } 
+					}
+					//return amount + ' (' + sig + percent + ')';
+					return sig + percent;
+					},
+					 sourceColumn: 4,
+					 type: "string",
+					 role: "annotation" }
+				 ]);
+	if (num == 1) {
+		view.setColumns([0, 1,
+				 { calc: function (dt, row) {
+					var col = 1;
+					var amount =  formatShort.formatValue(dt.getValue(row,col));
+					return amount;
+					},
+					 sourceColumn: 1,
+					 type: "string",
+					 role: "annotation" },
+				 2,
+				 { calc: function (dt, row) {
+					var col = 2;
+					var amount =  formatShort.formatValue(dt.getValue(row,col));
+					return amount;
+					},
+					 sourceColumn: 2,
+					 type: "string",
+					 role: "annotation" },
+				 3,
+				 { calc: function (dt, row) {
+					var col = 3;
+					var amount =  formatShort.formatValue(dt.getValue(row,col));
+					return amount;
+					},
+					 sourceColumn: 3,
+					 type: "string",
+					 role: "annotation" },
+				 4,
+				 { calc: function (dt, row) {
+					var col = 4;
+					var amount =  formatShort.formatValue(dt.getValue(row,col));
+					return amount;
+					},
+					 sourceColumn: 4,
+					 type: "string",
+					 role: "annotation" }
+				 ]);
 	}
-	//alert(xyValues.length);
+	var colors = fillColors;
+	colors.forEach(function (color, index) {
+		data.setColumnProperty(index + 1, 'fill-color', color);
+		});	 	
 	
-	for (var k = 0; k < cols; k++) {
-		var temp = [];
-		for (var i = 0; i < rows; i++) {
-			temp[i] = {x: array[i+1][0].toFixed(2) , y: array[i+1][k+1].toFixed(2)  };
-			//alert(temp[i].x+' '+temp[i].y);
-		}
-		xyValues[k] = temp;
-    }
+	// Optional; add a title and set the width and height of the chart
+    var options = { bar: {groupWidth: "80%"},
+        hAxis: {format: 'scientific'},
+        bars: 'horizontal',
+		annotations: {alwaysOutside: true},
+        //chartArea: {width: '100%', height: '100%'},
+        //theme: 'maximized',
+        //hAxis: {textPosition: 'out'},
+        vAxis: {textPosition: 'out'},
+        legend: {position: 'top', maxLines: 3, alignment: 'center'},
+		colors: colors,
+		chartArea: {left:90,top:40},
+		//chartArea: {width: '100%', height: '80%'},
+		//width: '100%',
+		//height: '80%',
+        };
 
-	//alert(xyValues);
-	//alert(xyValues[0][0].x);
+	// Display the chart inside the <div> element with id="piechart"
+	var chart = new google.visualization.BarChart(document.getElementById(myChartId));
+	chart.draw(view, options);
 	
-	var myDataset = {
-		type: "scatter",
-		data: {
-			datasets: []
-			},
-    	maintainAspectRatio: false,
-		options: {
-			legend: {
-			    display: true,
-			    position: 'right'
-			    },
-			hover: {
-                mode: 'nearest',
-                intersect: true,
-                },
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        min: -0.5,
-                        max: 0.5,
-                        //stepSize: 0.1,
-                        callback: function(value){return 100*value+ "%"}
-                        },
-                    scaleLabel: {
-                        display: true,
-                        labelString: "% change in each dimension"
-                        }
-                    }],
-                yAxes: [{
-                    ticks: {
-                        min: -1,
-                        max: 1,
-                        stepSize: 0.25,
-                        callback: function(value){return 100*value+ "%"}
-                        },
-                    scaleLabel: {
-                        display: true,
-                        labelString: chartTitle
-                        }
-                    }]
-                },
-            tooltips: {
-                mode: 'index',
-                intersect: false,
-                callbacks: {
-                    //beforeBody: function(tooltipItem, data) {
-                    //    return 'Change of '},
-                    label: function(tooltipItem, data) {
-                        var percentx = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].x* 100;
-                        percentx = percentx.toFixed(0);
-                        var percenty = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].y* 100;
-                        percenty = percenty.toFixed(0);
-                        return percentx + '% change in ' + data.datasets[tooltipItem.datasetIndex].label + ' = ' + percenty + chartTitle;
-                        }
-                }
-            }
-        }
-	};
-	
-	for (var k = 0; k < cols; k++) {
-		myDataset.data.datasets[k] = {
-			data: xyValues[k],
-            label: array[0][k+1].label,
-            pointRadius: 2,
-			borderColor: fillColors[k],
-            showLine: true,
-            fill: false
-		    };
-	}
-
-    switch (myChartId) {
-        case 'Chart1':
-            if(typeof Chart1 ==="undefined"){ window.Chart1 = new Chart(myChartId, myDataset);
-            }else{
-                window.Chart1.config=myDataset; window.Chart1.update();
-            }
-            break;
-        case 'Chart2':
-            if(typeof Chart2 ==="undefined"){ window.Chart2 = new Chart(myChartId, myDataset);
-            }else{
-                window.Chart2.config=myDataset; window.Chart2.update();
-            }
-            break;
-        case 'Chart3':
-            if(typeof Chart3 ==="undefined"){ window.Chart3 = new Chart(myChartId, myDataset);
-            }else{
-                window.Chart3.config=myDataset; window.Chart3.update();
-            }
-            break;
-        case 'Chart4':
-            if(typeof Chart4 ==="undefined"){ window.Chart4 = new Chart(myChartId, myDataset);
-            }else{
-                window.Chart4.config=myDataset; window.Chart4.update();
-            }
-            break;
-        case 'Chart5':
-            if(typeof Chart5 ==="undefined"){ window.Chart5 = new Chart(myChartId, myDataset);
-            }else{
-                window.Chart5.config=myDataset; window.Chart5.update();
-            }
-            break;
-        case 'Chart6':
-            if(typeof Chart6 ==="undefined"){ window.Chart6 = new Chart(myChartId, myDataset);
-            }else{
-                window.Chart6.config=myDataset; window.Chart6.update();
-            }
-            break;
-        default:
-            break;
-    }
+    /*window.addEventListener('resize', function() {
+		chart.draw(view, options);
+    }, false);*/
 }
-var Chart1, Chart2, Chart3, Chart4, Chart5, Chart6;
 
 function dimChange(elem){
 	/*alert("dimChange.."+elem.tagName+elem.value);*/
@@ -352,9 +355,10 @@ function recalculateSection(myForm){
 	var t2 = parseFloat(myForm.querySelectorAll('input[name="dim4"]')[0].value);
 	var dims = [h,b,t,t2];
 	var mycanvas = myForm.querySelectorAll('canvas[name="myCanvas"]')[0].id;
-	//alert(section+h+b+t+t2+mycanvas);
+	///alert(section+h+b+t+t2+mycanvas);
 	
 	var results = calc_properties(section,dims);
+	
 	myForm.querySelectorAll('input[name="area"]')[0].value = results.A.toFixed(2);
 	myForm.querySelectorAll('input[name="perimeter"]')[0].value = results.perimeter.toFixed(2);
 	myForm.querySelectorAll('input[name="xc"]')[0].value = results.xc.toFixed(2);
@@ -470,25 +474,107 @@ function selectorChange(elem) {
 	drawCharts();
 }
 
+function setReference(elem) {
+	formatReference(elem);
+	drawCharts();
+}
+	
+function formatReference(elem) {
+	//alert('switch'+elem.checked);
+	var isRef = elem.checked;
+	var myForm = elem.closest('div[name="myForm"]');
+	var myFormId = myForm.id; 
+	if (isRef == true) {
+		//alert('turning on'+myFormId);
+		var fm = myForm.querySelectorAll('div[class="power"]')[0];
+		fm.className = "power_full";
+		
+		var formList = document.getElementsByName('myForm');
+		//alert('forms foud = '+formList.length);
+		for (const fm of formList) {
+			//alert('checking'+fm.id);
+			if (fm.id != myFormId) {
+				//alert('turning off'+fm.id+fm.className);
+				input = fm.querySelectorAll('input[name="refSwitch"]')[0];
+				input.checked = false; 
+				var formu = fm.querySelectorAll('div[class="power_full"]')[0];
+				//alert('turning off'+formu.tagName+formu.className);
+				if (fm.querySelectorAll('div[class="power_full"]').length>0){
+					formu.className = "power";
+				}
+			}
+		}
+	} else {
+		if (myForm.querySelectorAll('div[class="power_full"]').length>0){
+			var fm = myForm.querySelectorAll('div[class="power_full"]')[0];
+			fm.className = "power";
+		}
+	}
+	
+}
+
 function updateForm(fm) {
 	// Enables or Disables the form based on the "Section type" selection
 	
 	var section = fm.querySelectorAll('select[name="sectionSelector"]')[0].value;
 	//alert('updating form ='+fm.id);
 	//alert('section ='+section);
-
-    // ensure labels are black
-    var labelsList = fm.querySelectorAll(".forms_text_disabled");
-    for (const lbl of labelsList) {
-        lbl.className = "forms_text";
-    }
-
-    // set inputs to black
-    var inputsList = fm.querySelectorAll('input[class="email-bt_disabled"]');
-    for (const inp of inputsList) {
-        inp.className = "email-bt";
-    }
-    
+	if (section == 'None') {
+		// set labels to gray
+		var labelsList = fm.querySelectorAll(".forms_text");
+		//alert('labels='+labelsList.length);
+		for (const lbl of labelsList) {
+			if ( lbl.name != "sectionSelector" ) {
+				lbl.className = "forms_text_disabled";
+			}
+		}
+		lbl = fm.querySelectorAll('p[name="dim1"]')[0];
+		lbl.innerHTML = "<br/>";
+		lbl = fm.querySelectorAll('p[name="dim2"]')[0];
+		lbl.innerHTML = "<br/>";
+		lbl = fm.querySelectorAll('p[name="dim3"]')[0];
+		lbl.innerHTML = "<br/>";
+		lbl = fm.querySelectorAll('p[name="dim4"]')[0];
+		lbl.innerHTML = "<br/>";
+		// set inputs to gray
+		var inputsList = fm.querySelectorAll('input[class="email-bt"]');
+		for (const inp of inputsList) {
+			inp.className = "email-bt_disabled";
+		}
+		// disable inputs			
+		var input = fm.querySelectorAll('input[name="dim1"]')[0];
+		input.disabled = true;
+		input = fm.querySelectorAll('input[name="dim2"]')[0];
+		input.disabled = true;
+		input = fm.querySelectorAll('input[name="dim3"]')[0];
+		input.disabled = true;
+		input = fm.querySelectorAll('input[name="dim4"]')[0];
+		input.disabled = true; 
+		input = fm.querySelectorAll('input[name="refSwitch"]')[0];
+		input.disabled = true; 
+		input.checked = false; 
+		formatReference(input);
+		
+		// clear canvas
+		var mycanvas = fm.querySelectorAll('canvas[name="myCanvas"]')[0].id;
+		var canvas = document.getElementById(mycanvas);
+		var ctx = canvas.getContext("2d");
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		
+	} else {
+		// ensure labels are black
+		var labelsList = fm.querySelectorAll(".forms_text_disabled");
+		for (const lbl of labelsList) {
+			lbl.className = "forms_text";
+		}
+		// set inputs to black
+		var inputsList = fm.querySelectorAll('input[class="email-bt_disabled"]');
+		for (const inp of inputsList) {
+			inp.className = "email-bt";
+		}
+		var input = fm.querySelectorAll('input[name="refSwitch"]')[0];
+		input.disabled = false; 
+	}
 	var lbl = fm.querySelectorAll('p[name="sectionSelector"]')[0];
 	lbl.className = "forms_text";
 	
@@ -625,10 +711,10 @@ function updateForm(fm) {
 			lbl.innerHTML = "Width (b):";
 			lbl = fm.querySelectorAll('p[name="dim3"]')[0];
 			lbl.className = "forms_text";
-			lbl.innerHTML = "Thickness, web (t<sub>w</sub>):";
+			lbl.innerHTML = "Thickness, web (t<sub>w</sub>): ";
 			lbl = fm.querySelectorAll('p[name="dim4"]')[0];
 			lbl.className = "forms_text";
-			lbl.innerHTML = "Thickness, flanges (t<sub>f</sub>):";
+			lbl.innerHTML = "Thickness, flanges (t<sub>f</sub>): ";
 			// inputs
 			var inputsList = fm.querySelectorAll('input');
 			for (const inp of inputsList) {
@@ -648,10 +734,10 @@ function updateForm(fm) {
 			lbl.innerHTML = "Width (b):";
 			lbl = fm.querySelectorAll('p[name="dim3"]')[0];
 			lbl.className = "forms_text";
-			lbl.innerHTML = "Thickness, web (t<sub>w</sub>):";
+			lbl.innerHTML = "Thickness, web (t<sub>w</sub>): ";
 			lbl = fm.querySelectorAll('p[name="dim4"]')[0];
 			lbl.className = "forms_text";
-			lbl.innerHTML = "Thickness, flanges (t<sub>f</sub>):";
+			lbl.innerHTML = "Thickness, flanges (t<sub>f</sub>): ";
 			// inputs
 			var inputsList = fm.querySelectorAll('input');
 			for (const inp of inputsList) {
@@ -671,10 +757,10 @@ function updateForm(fm) {
 			lbl.innerHTML = "Width (b):";
 			lbl = fm.querySelectorAll('p[name="dim3"]')[0];
 			lbl.className = "forms_text";
-			lbl.innerHTML = "Thickness, web (t<sub>w</sub>):";
+			lbl.innerHTML = "Thickness, web (t<sub>w</sub>): ";
 			lbl = fm.querySelectorAll('p[name="dim4"]')[0];
 			lbl.className = "forms_text";
-			lbl.innerHTML = "Thickness, flanges (t<sub>f</sub>):";
+			lbl.innerHTML = "Thickness, flanges (t<sub>f</sub>): ";
 			// inputs
 			var inputsList = fm.querySelectorAll('input');
 			for (const inp of inputsList) {
@@ -694,10 +780,10 @@ function updateForm(fm) {
 			lbl.innerHTML = "Width (b):";
 			lbl = fm.querySelectorAll('p[name="dim3"]')[0];
 			lbl.className = "forms_text";
-			lbl.innerHTML = "Thickness, web (t<sub>w</sub>):";
+			lbl.innerHTML = "Thickness, web (t<sub>w</sub>): ";
 			lbl = fm.querySelectorAll('p[name="dim4"]')[0];
 			lbl.className = "forms_text";
-			lbl.innerHTML = "Thickness, flanges (t<sub>f</sub>):";
+			lbl.innerHTML = "Thickness, flanges (t<sub>f</sub>): ";
 			// inputs
 			var inputsList = fm.querySelectorAll('input');
 			for (const inp of inputsList) {
@@ -913,7 +999,7 @@ function calc_properties(section,dims){
 }
 
 function calc_points(section,dims,canvas_width,canvas_height,bottom_margin,scale){
-
+	
 	switch(section) {
 		case 'Circular':
 			var d = dims[0]*scale;
@@ -1115,9 +1201,13 @@ const bottom_margin = 10;
 const options =
 [
   {
+    "text"  : "None",
+    "value" : "None",
+    "selected" : true
+  },
+  {
     "text"  : "Circular",
     "value" : "Circular",
-    "selected" : true
   },
   {
     "text"     : "Circular tube",
@@ -1165,30 +1255,31 @@ const options =
 const fillColors = ['#3cba54','#3498db','#e64b3b','#e67e22']; //#3d566e
 const lineColors = ['#298039','#2880b8','#c0392b','#d25300'];//#2c3e50
 
-init();
-function init() {
-    var selectBoxList = document.querySelectorAll('select[name="sectionSelector"]');
-    for (const selectBox of selectBoxList) {
-        for(var i = 0, l = options.length; i < l; i++){
-            var option = options[i];
-            selectBox.options.add( new Option(option.text, option.value, option.selected) );
-        }
-    }
-
-    var myForm = document.querySelector('#Form1');
-    var section = myForm.querySelectorAll('select[name="sectionSelector"]')[0];
-    section.value = "L section";
-
-    var fm = document.getElementsByName('myForm')[0];
-    //alert('recalculateSection '+fm.id)
-    recalculateSection(fm);
-    //alert('updateForm '+fm.id)
-    updateForm(fm);
-    //alert('done  '+fm.id)
-
-    //alert('updating pics');
-    updatePictures();
-    //alert('updating charts');
-    drawCharts();
-    //alert('all done');
+var selectBoxList = document.querySelectorAll('select[name="sectionSelector"]');
+for (const selectBox of selectBoxList) {
+	for(var i = 0, l = options.length; i < l; i++){
+		var option = options[i];
+		selectBox.options.add( new Option(option.text, option.value, option.selected) );
+	}
 }
+
+var myForm = document.querySelector('#Form1');
+var section = myForm.querySelectorAll('select[name="sectionSelector"]')[0];
+section.value = "L section";
+var myForm = document.querySelector('#Form2');
+var section = myForm.querySelectorAll('select[name="sectionSelector"]')[0];
+section.value = "L section";
+
+var formList = document.getElementsByName('myForm');
+for (const fm of formList) {
+	//alert('recalculateSection '+fm.id)
+	recalculateSection(fm);
+	//alert('updateForm '+fm.id)
+	updateForm(fm);
+	//alert('done  '+fm.id)
+}
+//alert('updating pics');
+updatePictures();
+//alert('updating charts');
+//drawCharts();
+//alert('all done');
