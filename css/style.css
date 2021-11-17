@@ -909,7 +909,7 @@ tr:nth-child(even) {
     line-height: 30px;
     -webkit-box-shadow: -5px -5px 15px rgba(48, 54, 61, 0.2);
     box-shadow: -5px -5px 15px rgba(48, 54, 61, 0.2);
-    /*background: #2b2b2b;*/
+    background: #2b2b2b;
     opacity: 0;
     cursor: default;
     pointer-events: none
@@ -924,14 +924,14 @@ tr:nth-child(even) {
     width: 0;
     position: absolute;
     pointer-events: none;
-    /*border-color: #2a3035 transparent transparent;*/
+    border-color: #2a3035 transparent transparent;
     border-width: 10px;
     margin-left: -10px
 }
 
 .mytooltip .tooltip-content img {
     position: relative;
-    height: 140px;
+    height: 189px;
     display: block;
     float: left;
     margin-right: 1em

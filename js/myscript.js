@@ -549,6 +549,7 @@ function selectorChange(elem) {
 	
 	updatePictures();
 	drawCharts();
+	updateTooltips();
 }
 
 function setReference(elem) {
@@ -589,6 +590,56 @@ function formatReference(elem) {
 	}
 	
 }
+
+function updateTooltips() {
+	var formList = document.getElementsByName('myForm');
+	for (const fm of formList) {
+		var section = fm.querySelectorAll('select[name="sectionSelector"]')[0].value;
+		var path = getImgPath(section);
+		fm.querySelectorAll('img[name="tooltip-image"]')[0].src = path;
+	}
+}
+
+function getImgPath(section) {
+	switch(section) {
+		case 'Circular':
+			imgPath = "images/dimensions/sections/Slide1.png";
+			break;
+		case 'Circular tube':
+			imgPath = "images/dimensions/sections/Slide2.png";
+			break;
+		case 'Rectangular':
+			imgPath = "images/dimensions/sections/Slide3.png";
+			break;
+		case 'Rectangular tube':
+			imgPath = "images/dimensions/sections/Slide4.png";
+			break;
+		case 'L section':
+			imgPath = "images/dimensions/sections/Slide5.png";
+			break;
+		case 'C channel':
+			imgPath = "images/dimensions/sections/Slide6.png";
+			break;
+		case 'U channel':
+			imgPath = "images/dimensions/sections/Slide7.png";
+			break;
+		case 'I section':
+			imgPath = "images/dimensions/sections/Slide8.png";
+			break;
+		case 'H section':
+			imgPath = "images/dimensions/sections/Slide9.png";
+			break;
+		case 'T section':
+			imgPath = "images/dimensions/sections/Slide10.png";
+			break;
+		default:
+			imgPath = "images/dimensions/sections/none.png";
+			break;
+	}
+	//alert('update done');
+	return imgPath;
+}
+
 
 function updateForm(fm) {
 	// Enables or Disables the form based on the "Section type" selection
@@ -1359,6 +1410,7 @@ for (const fm of formList) {
 updatePictures();
 //alert('updating charts');
 drawCharts();
+updateTooltips();
 //alert('all done');
 /*
 $(function () {
