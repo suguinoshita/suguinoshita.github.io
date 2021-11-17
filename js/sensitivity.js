@@ -224,12 +224,12 @@ function drawChart(array,myChartId,lims,chartTitle) {
 		data: {
 			datasets: []
 			},
+    	maintainAspectRatio: false,
 		options: {
-            tooltips: {
-                //mode: 'index',
-                //intersect: false,
-                },
-			//legend: {display: false}
+			legend: {
+			    display: true,
+			    position: 'right'
+			    },
 			hover: {
                 mode: 'nearest',
                 intersect: true,
@@ -288,11 +288,49 @@ function drawChart(array,myChartId,lims,chartTitle) {
             fill: false
 		    };
 	}
-	
-	new Chart(myChartId,myDataset);
-	
-}
 
+    switch (myChartId) {
+        case 'Chart1':
+            if(typeof Chart1 ==="undefined"){ window.Chart1 = new Chart(myChartId, myDataset);
+            }else{
+                window.Chart1.config=myDataset; window.Chart1.update();
+            }
+            break;
+        case 'Chart2':
+            if(typeof Chart2 ==="undefined"){ window.Chart2 = new Chart(myChartId, myDataset);
+            }else{
+                window.Chart2.config=myDataset; window.Chart2.update();
+            }
+            break;
+        case 'Chart3':
+            if(typeof Chart3 ==="undefined"){ window.Chart3 = new Chart(myChartId, myDataset);
+            }else{
+                window.Chart3.config=myDataset; window.Chart3.update();
+            }
+            break;
+        case 'Chart4':
+            if(typeof Chart4 ==="undefined"){ window.Chart4 = new Chart(myChartId, myDataset);
+            }else{
+                window.Chart4.config=myDataset; window.Chart4.update();
+            }
+            break;
+        case 'Chart5':
+            if(typeof Chart5 ==="undefined"){ window.Chart5 = new Chart(myChartId, myDataset);
+            }else{
+                window.Chart5.config=myDataset; window.Chart5.update();
+            }
+            break;
+        case 'Chart6':
+            if(typeof Chart6 ==="undefined"){ window.Chart6 = new Chart(myChartId, myDataset);
+            }else{
+                window.Chart6.config=myDataset; window.Chart6.update();
+            }
+            break;
+        default:
+            break;
+    }
+}
+var Chart1, Chart2, Chart3, Chart4, Chart5, Chart6;
 
 function dimChange(elem){
 	/*alert("dimChange.."+elem.tagName+elem.value);*/
