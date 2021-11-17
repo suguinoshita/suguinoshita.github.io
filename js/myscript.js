@@ -1360,3 +1360,7 @@ updatePictures();
 //alert('updating charts');
 drawCharts();
 //alert('all done');
+/*
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})*/
