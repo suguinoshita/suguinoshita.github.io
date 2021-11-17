@@ -28,7 +28,7 @@ function fillPolygon(data,cg, color,lineColor,mycanvas) {
 		var canvas = document.getElementById(mycanvas);
 		var ctx = canvas.getContext("2d");
 		
-		ctx.fillStyle = color; // all css colors are accepted by this property
+		ctx.fillStyle = '#aaaaaa'; // all css colors are accepted by this property
 		var point = points[0];
 		ctx.beginPath();
 		ctx.setLineDash([]);
@@ -41,7 +41,7 @@ function fillPolygon(data,cg, color,lineColor,mycanvas) {
 		ctx.fill();
 				
 		ctx.lineWidth = 3;
-		ctx.strokeStyle = lineColor;
+		ctx.strokeStyle = '#777777';
 		ctx.stroke();
 	}
 	
@@ -65,7 +65,7 @@ function fillPolygon(data,cg, color,lineColor,mycanvas) {
 			ctx.fill();
 					
 			ctx.lineWidth = 3;
-			ctx.strokeStyle = lineColor;
+			ctx.strokeStyle = '#777777';
 			ctx.stroke();
 		}
 	} 
@@ -225,16 +225,68 @@ function drawChart(array,myChartId,lims,chartTitle) {
 			datasets: []
 			},
 		options: {
-			legend: {display: false}
-			}
+            tooltips: {
+                //mode: 'index',
+                //intersect: false,
+                },
+			//legend: {display: false}
+			hover: {
+                mode: 'nearest',
+                intersect: true,
+                },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        min: -0.5,
+                        max: 0.5,
+                        //stepSize: 0.1,
+                        callback: function(value){return 100*value+ "%"}
+                        },
+                    scaleLabel: {
+                        display: true,
+                        labelString: "% change in each dimension"
+                        }
+                    }],
+                yAxes: [{
+                    ticks: {
+                        min: -1,
+                        max: 1,
+                        //stepSize: 0.25,
+                        callback: function(value){return 100*value+ "%"}
+                        },
+                    scaleLabel: {
+                        display: true,
+                        labelString: chartTitle
+                        }
+                    }]
+                },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+                callbacks: {
+                    //beforeBody: function(tooltipItem, data) {
+                    //    return 'Change of '},
+                    label: function(tooltipItem, data) {
+                        var percentx = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].x* 100;
+                        percentx = percentx.toFixed(0);
+                        var percenty = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].y* 100;
+                        percenty = percenty.toFixed(0);
+                        return percentx + '% change in ' + data.datasets[tooltipItem.datasetIndex].label + ' = ' + percenty + chartTitle;
+                        }
+                }
+            }
+        }
 	};
 	
 	for (var k = 0; k < cols; k++) {
 		myDataset.data.datasets[k] = {
 			data: xyValues[k],
-			pointRadius: 4,
-			pointBackgroundColor: fillColors[k]
-		};
+            label: array[0][k+1].label,
+            pointRadius: 2,
+			borderColor: fillColors[k],
+            showLine: true,
+            fill: false
+		    };
 	}
 	
 	new Chart(myChartId,myDataset);
