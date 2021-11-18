@@ -333,7 +333,7 @@ width: 55%;
     .last { display: none; }
     .carousel-caption {display: none;} 
 .header { padding-top: 0px; }
-.logo { float: inherit; padding-bottom: 15px; text-align: center;}
+.logo { float: inherit; /*padding-bottom: 15px*/ margin-top: 20px; text-align: center;}
 .btn-primary {max-width: 126px;
 margin-right: 2px;
 font-size: 14px;}

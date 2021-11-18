@@ -43,7 +43,7 @@
                   <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
                      <div class="full">
                         <div class="center-desk">
-                           <div class="logo"><a href="index.html"><img src="images/logo1.png" style="max-width: 100%;"></a> 
+                           <div class="logo"><a href="index.html"><img src="images/logo1.png" ></a> 
                            </div>
                         </div>
                      </div>
@@ -97,7 +97,10 @@
 									</span>								
 								</p>
 							</div>
-							<canvas class="icon" id="Chart1" style="width:100%, height:300px"></canvas>
+							<canvas class="icon" id="Chart1" style="width:100%; min-height:180px; max-height:200px"></canvas>
+							<!--<div style="width:100%; min-height:200px">
+							<canvas class="icon" id="Chart1" ></canvas>
+							</div>-->
 					</div>
 					<div class="col-md-4">
 						
@@ -115,7 +118,7 @@
 									</span>								
 								</p>
 							</div>
-							<canvas class="icon" id="Chart2" style="width:100%, height:300px"></canvas>
+							<canvas class="icon" id="Chart2" style="width:100%; min-height:180px; max-height:200px"></canvas>
 					</div>			
 					<div class="col-md-4">						
 							<div class="form-group">
@@ -132,7 +135,7 @@
 									</span>								
 								</p>
 							</div>
-							<canvas class="icon" id="Chart3" style="width:100%, height:300px"></canvas>
+							<canvas class="icon" id="Chart3" style="width:100%; min-height:180px; max-height:200px"></canvas>
 					</div>
 				</div>
     	    </div>   
@@ -144,365 +147,376 @@
     <div class="choose_section_2">
     	<div class="container">
     	    <div class="row">
-    		    <div class="col-sm" id="Form1" name="myForm">
-    			    <div class="power_full">
-    				    <!-- <div class="icon"><a href="#"><img src="images/power-full-icon.png"></a></div>-->
-    				    <div class="icon">
+    		    <div class="col-md-6">				
+					<div class="row">
+						<div class="col-sm-6" id="Form1" name="myForm">
+							<div class="power_full">
+								<!-- <div class="icon"><a href="#"><img src="images/power-full-icon.png"></a></div>-->
+								<div class="icon">
 
-						<span class="mytooltip tooltip-effect-1">
-							<span class="tooltip-item">
-								<canvas name="myCanvas" id="myCanvas1" width="200px" height="200px" background=transparent style="width:100px; height:100px"></canvas>
-							</span>
-							<span class="tooltip-content clearfix">
-								<img name="tooltip-image" src="images/favicon-32x32.png">
-							</span>
-						</span>
-						
+								<span class="mytooltip tooltip-effect-1">
+									<span class="tooltip-item">
+										<canvas name="myCanvas" id="myCanvas1" width="200px" height="200px" background=transparent style="width:100px; height:100px"></canvas>
+									</span>
+									<span class="tooltip-content clearfix">
+										<img name="tooltip-image" src="images/favicon-32x32.png">
+									</span>
+								</span>
+								
+								</div>
+								<form>
+								
+									<div class="form-group">
+										<label class="switch">
+											<input type="checkbox" name="refSwitch" onchange="setReference(this)" checked="true">
+											<div class="slider round"></div>
+											<span class="forms_text" name="refSwitch"> Set as reference</span>
+										</label>
+									</div>
+
+									<div class="form-group">
+										<p class="forms_text" name="sectionSelector" >Section type: </p>
+										<select class="selectpicker" name="sectionSelector" id="Select1" placeholder="Select one" onchange="selectorChange(this)"> </select>
+									</div>
+
+									<div class="form-group" name="dim1">
+										<p class="forms_text" name="dim1">Height (h): </p>
+										<input type="number" class="email-bt" placeholder="80" value=80 name="dim1" onchange="dimChange(this)">
+									</div>
+									<div class="form-group" name="dim2">
+										<p class="forms_text" name="dim2">Width (b): </p>
+										<input type="number" class="email-bt" placeholder="70" value=70 name="dim2" onchange="dimChange(this)">
+									</div>
+									<div class="form-group" name="dim3">
+										<p class="forms_text" name="dim3">Thickness (t): </p>
+										<input type="number" class="email-bt" placeholder="15" value=15 name="dim3" onchange="dimChange(this)">
+									</div>
+									<div class="form-group" name="dim4">
+										<p class="forms_text" name="dim4"><br/></p>
+										<input type="number" class="email-bt-hidden" placeholder="-" value=10 name="dim4" onchange="dimChange(this)" disabled>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >Area (unit<sup>2</sup>):</p>
+										<input type="text" class="email-bt2" name="area" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >Perim. (unit):</p>
+										<input type="text" class="email-bt2" name="perimeter" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >x<sub>c</sub> (unit): </p>
+										<input type="text" class="email-bt2" name="xc" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >y<sub>c</sub> (unit): </p>
+										<input type="text" class="email-bt2" name="yc" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >I<sub>x</sub> (unit<sup>4</sup>): </p>
+										<input type="text" class="email-bt2" name="Ixx" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >I<sub>y</sub> (unit<sup>4</sup>): </p>
+										<input type="text" class="email-bt2" name="Iyy" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >I<sub>z</sub> (unit<sup>4</sup>): </p>
+										<input type="text" class="email-bt2" name="Izz" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >S<sub>x,min</sub> (unit<sup>3</sup>): </p>
+										<input type="text" class="email-bt2" name="Sx_min" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >S<sub>y,min</sub> (unit<sup>3</sup>): </p>
+										<input type="text" class="email-bt2" name="Sy_min" readonly>
+									</div>
+								</form>
+							</div>
+							<div class="btn_main">
+								<p class="forms_text"><br/></p>
+							</div>
 						</div>
-						<form>
-						
-							<div class="form-group">
-								<label class="switch">
-									<input type="checkbox" name="refSwitch" onchange="setReference(this)" checked="true">
-									<div class="slider round"></div>
-									<span class="forms_text" name="refSwitch"> Set as reference</span>
-								</label>
-							</div>
+						<div class="col-sm-6" id="Form2" name="myForm">
+							<div class="power">
+								<!-- <div class="icon"><a href="#"><img src="images/power-full-icon.png"></a></div>-->
+								
+								<div class="icon">
 
-							<div class="form-group">
-								<p class="forms_text" name="sectionSelector" >Section type: </p>
-								<select class="selectpicker" name="sectionSelector" id="Select1" placeholder="Select one" onchange="selectorChange(this)"> </select>
+								<span class="mytooltip tooltip-effect-1">
+									<span class="tooltip-item">
+										<canvas name="myCanvas" id="myCanvas2" width="200px" height="200px" background=transparent style="width:100px; height:100px"></canvas>
+									</span>
+									<span class="tooltip-content clearfix">
+										<img name="tooltip-image" src="images/dimensions/sections/Slide1.png">
+									</span>
+								</span>
+								
+								</div>
+								<!-- <h2 class="powerful_text">Powerful Features</h2>-->
+								<!-- <p class="making_tetx"> </p>-->
+								<form>
+								
+									<div class="form-group">
+										<label class="switch">
+											<input type="checkbox" name="refSwitch" onchange="setReference(this)" >
+											<div class="slider round"></div>
+											<span class="forms_text" name="refSwitch" > Set as reference</span>
+										</label>
+									</div>
+									
+									<div class="form-group">
+										<p class="forms_text" name="sectionSelector" >Section type: </p>
+										<select class="selectpicker" name="sectionSelector" id="Select2" placeholder="Select one" onchange="selectorChange(this)"> </select>
+									</div>
+									
+									<div class="form-group">
+										<p class="forms_text" name="dim1">Height (h): </p>
+										<input type="number" class="email-bt" placeholder="80" value=80 name="dim1" onchange="dimChange(this)">
+									</div>
+									<div class="form-group">
+										<p class="forms_text" name="dim2">Width (b): </p>
+										<input type="number" class="email-bt" placeholder="70" value=50 name="dim2" onchange="dimChange(this)">
+									</div>
+									<div class="form-group">
+										<p class="forms_text" name="dim3">Thickness, web (t<sub>w</sub>): </p>
+										<input type="number" class="email-bt" placeholder="5" value=10 name="dim3" onchange="dimChange(this)">
+									</div>
+									<div class="form-group">
+										<p class="forms_text" name="dim4">Thickness, flanges (t<sub>f</sub>): </p>
+										<input type="number" class="email-bt" placeholder="-"  value=10 name="dim4" onchange="dimChange(this)" >
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >Area (unit<sup>2</sup>):</p>
+										<input type="text" class="email-bt2" name="area" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >Perim. (unit):</p>
+										<input type="text" class="email-bt2" name="perimeter" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >x<sub>c</sub> (unit): </p>
+										<input type="text" class="email-bt2" name="xc" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >y<sub>c</sub> (unit): </p>
+										<input type="text" class="email-bt2" name="yc" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >I<sub>x</sub> (unit<sup>4</sup>): </p>
+										<input type="text" class="email-bt2" name="Ixx" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >I<sub>y</sub> (unit<sup>4</sup>): </p>
+										<input type="text" class="email-bt2" name="Iyy" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >I<sub>z</sub> (unit<sup>4</sup>): </p>
+										<input type="text" class="email-bt2" name="Izz" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >S<sub>x,min</sub> (unit<sup>3</sup>): </p>
+										<input type="text" class="email-bt2" name="Sx_min" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >S<sub>y,min</sub> (unit<sup>3</sup>): </p>
+										<input type="text" class="email-bt2" name="Sy_min" readonly>
+									</div>
+								</form>
 							</div>
-
-							<div class="form-group" name="dim1">
-								<p class="forms_text" name="dim1">Height (h): </p>
-								<input type="number" class="email-bt" placeholder="80" value=80 name="dim1" onchange="dimChange(this)">
-							</div>
-							<div class="form-group" name="dim2">
-								<p class="forms_text" name="dim2">Width (b): </p>
-								<input type="number" class="email-bt" placeholder="70" value=70 name="dim2" onchange="dimChange(this)">
-							</div>
-							<div class="form-group" name="dim3">
-								<p class="forms_text" name="dim3">Thickness (t): </p>
-								<input type="number" class="email-bt" placeholder="15" value=15 name="dim3" onchange="dimChange(this)">
-							</div>
-							<div class="form-group" name="dim4">
-								<p class="forms_text" name="dim4"><br/></p>
-								<input type="number" class="email-bt-hidden" placeholder="-" value=10 name="dim4" onchange="dimChange(this)" disabled>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >Area (unit<sup>2</sup>):</p>
-								<input type="text" class="email-bt2" name="area" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >Perim. (unit):</p>
-								<input type="text" class="email-bt2" name="perimeter" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >x<sub>c</sub> (unit): </p>
-								<input type="text" class="email-bt2" name="xc" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >y<sub>c</sub> (unit): </p>
-								<input type="text" class="email-bt2" name="yc" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >I<sub>x</sub> (unit<sup>4</sup>): </p>
-								<input type="text" class="email-bt2" name="Ixx" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >I<sub>y</sub> (unit<sup>4</sup>): </p>
-								<input type="text" class="email-bt2" name="Iyy" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >I<sub>z</sub> (unit<sup>4</sup>): </p>
-								<input type="text" class="email-bt2" name="Izz" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >S<sub>x,min</sub> (unit<sup>3</sup>): </p>
-								<input type="text" class="email-bt2" name="Sx_min" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >S<sub>y,min</sub> (unit<sup>3</sup>): </p>
-								<input type="text" class="email-bt2" name="Sy_min" readonly>
-							</div>
-						</form>
-					</div>
-    			    <div class="btn_main">
-    			        <p class="forms_text"><br/></p>
-    			    </div>
-    		    </div>
-    		    <div class="col-sm" id="Form2" name="myForm">
-    			    <div class="power">
-    				    <!-- <div class="icon"><a href="#"><img src="images/power-full-icon.png"></a></div>-->
-    				    
-						<div class="icon">
-
-						<span class="mytooltip tooltip-effect-1">
-							<span class="tooltip-item">
-								<canvas name="myCanvas" id="myCanvas2" width="200px" height="200px" background=transparent style="width:100px; height:100px"></canvas>
-							</span>
-							<span class="tooltip-content clearfix">
-								<img name="tooltip-image" src="images/dimensions/sections/Slide1.png">
-							</span>
-						</span>
-						
+							<div class="btn_main">
+								<p class="forms_text"><br/></p>
+							</div>					
 						</div>
-						<!-- <h2 class="powerful_text">Powerful Features</h2>-->
-    				    <!-- <p class="making_tetx"> </p>-->
-						<form>
 						
-							<div class="form-group">
-								<label class="switch">
-									<input type="checkbox" name="refSwitch" onchange="setReference(this)" >
-									<div class="slider round"></div>
-									<span class="forms_text" name="refSwitch" > Set as reference</span>
-								</label>
-							</div>
-							
-							<div class="form-group">
-								<p class="forms_text" name="sectionSelector" >Section type: </p>
-								<select class="selectpicker" name="sectionSelector" id="Select2" placeholder="Select one" onchange="selectorChange(this)"> </select>
-							</div>
-							
-							<div class="form-group">
-								<p class="forms_text" name="dim1">Height (h): </p>
-								<input type="number" class="email-bt" placeholder="80" value=80 name="dim1" onchange="dimChange(this)">
-							</div>
-							<div class="form-group">
-								<p class="forms_text" name="dim2">Width (b): </p>
-								<input type="number" class="email-bt" placeholder="70" value=50 name="dim2" onchange="dimChange(this)">
-							</div>
-							<div class="form-group">
-								<p class="forms_text" name="dim3">Thickness, web (t<sub>w</sub>): </p>
-								<input type="number" class="email-bt" placeholder="5" value=10 name="dim3" onchange="dimChange(this)">
-							</div>
-							<div class="form-group">
-								<p class="forms_text" name="dim4">Thickness, flanges (t<sub>f</sub>): </p>
-								<input type="number" class="email-bt" placeholder="-"  value=10 name="dim4" onchange="dimChange(this)" >
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >Area (unit<sup>2</sup>):</p>
-								<input type="text" class="email-bt2" name="area" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >Perim. (unit):</p>
-								<input type="text" class="email-bt2" name="perimeter" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >x<sub>c</sub> (unit): </p>
-								<input type="text" class="email-bt2" name="xc" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >y<sub>c</sub> (unit): </p>
-								<input type="text" class="email-bt2" name="yc" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >I<sub>x</sub> (unit<sup>4</sup>): </p>
-								<input type="text" class="email-bt2" name="Ixx" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >I<sub>y</sub> (unit<sup>4</sup>): </p>
-								<input type="text" class="email-bt2" name="Iyy" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >I<sub>z</sub> (unit<sup>4</sup>): </p>
-								<input type="text" class="email-bt2" name="Izz" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >S<sub>x,min</sub> (unit<sup>3</sup>): </p>
-								<input type="text" class="email-bt2" name="Sx_min" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >S<sub>y,min</sub> (unit<sup>3</sup>): </p>
-								<input type="text" class="email-bt2" name="Sy_min" readonly>
-							</div>
-						</form>
 					</div>
-    			    <div class="btn_main">
-    			        <p class="forms_text"><br/></p>
-    			    </div>
-    		    </div>
-    		    <div class="col-sm" id="Form3" name="myForm">
-    			    <div class="power">
-    				    <!-- <div class="icon"><a href="#"><img src="images/power-full-icon.png"></a></div>-->
-    				    <div class="icon">
+				</div>
+				<div class="col-md-6">
+					<div class="row">						
+						<div class="col-sm-6" id="Form3" name="myForm">
+							<div class="power">
+								<!-- <div class="icon"><a href="#"><img src="images/power-full-icon.png"></a></div>-->
+								<div class="icon">
 
-						<span class="mytooltip tooltip-effect-1">
-							<span class="tooltip-item">
-								<canvas name="myCanvas" id="myCanvas3" width="200px" height="200px" background=transparent style="width:100px; height:100px"></canvas>
-							</span>
-							<span class="tooltip-content clearfix">
-								<img name="tooltip-image" src="images/favicon-32x32.png">
-							</span>
-						</span>
-						
+								<span class="mytooltip tooltip-effect-1">
+									<span class="tooltip-item">
+										<canvas name="myCanvas" id="myCanvas3" width="200px" height="200px" background=transparent style="width:100px; height:100px"></canvas>
+									</span>
+									<span class="tooltip-content clearfix">
+										<img name="tooltip-image" src="images/favicon-32x32.png">
+									</span>
+								</span>
+								
+								</div>
+								<!-- <h2 class="powerful_text">Powerful Features</h2>-->
+								<!-- <p class="making_tetx"> </p>-->
+								<form>
+								
+									<div class="form-group">
+										<label class="switch">
+											<input type="checkbox" name="refSwitch" onchange="setReference(this)">
+											<div class="slider round"></div>
+											<span class="forms_text" name="refSwitch" > Set as reference</span>
+										</label>
+									</div>
+									
+									<div class="form-group" >
+										<p class="forms_text" name="sectionSelector" >Section type: </p>
+										<select class="selectpicker" name="sectionSelector" placeholder="Select one" onchange="selectorChange(this)"> </select>
+									</div>
+									
+									<div class="form-group">
+										<p class="forms_text" name="dim1">Height (h): </p>
+										<input type="number" class="email-bt" placeholder="80" value=80 name="dim1" onchange="dimChange(this)">
+									</div>
+									<div class="form-group">
+										<p class="forms_text" name="dim2">Width (b): </p>
+										<input type="number" class="email-bt" placeholder="70" value=70 name="dim2" onchange="dimChange(this)">
+									</div>
+									<div class="form-group">
+										<p class="forms_text" name="dim3">Thickness, web (t<sub>b</sub>): </p>
+										<input type="number" class="email-bt" placeholder="5" value=5 name="dim3" onchange="dimChange(this)">
+									</div>
+									<div class="form-group">
+										<p class="forms_text" name="dim4">Thickness, flanges (t<sub>w</sub>): </p>
+										<input type="number" class="email-bt" placeholder="-"  value=10 name="dim4" onchange="dimChange(this)" >
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >Area (unit<sup>2</sup>):</p>
+										<input type="text" class="email-bt2" name="area" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >Perim. (unit):</p>
+										<input type="text" class="email-bt2" name="perimeter" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >x<sub>c</sub> (unit): </p>
+										<input type="text" class="email-bt2" name="xc" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >y<sub>c</sub> (unit): </p>
+										<input type="text" class="email-bt2" name="yc" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >I<sub>x</sub> (unit<sup>4</sup>): </p>
+										<input type="text" class="email-bt2" name="Ixx" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >I<sub>y</sub> (unit<sup>4</sup>): </p>
+										<input type="text" class="email-bt2" name="Iyy" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >I<sub>z</sub> (unit<sup>4</sup>): </p>
+										<input type="text" class="email-bt2" name="Izz" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >S<sub>x,min</sub> (unit<sup>3</sup>): </p>
+										<input type="text" class="email-bt2" name="Sx_min" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >S<sub>y,min</sub> (unit<sup>3</sup>): </p>
+										<input type="text" class="email-bt2" name="Sy_min" readonly>
+									</div>
+								</form>
+							</div>
+							<div class="btn_main">
+								<p class="forms_text"><br/></p>
+							</div>
 						</div>
-						<!-- <h2 class="powerful_text">Powerful Features</h2>-->
-    				    <!-- <p class="making_tetx"> </p>-->
-						<form>
-						
-							<div class="form-group">
-								<label class="switch">
-									<input type="checkbox" name="refSwitch" onchange="setReference(this)">
-									<div class="slider round"></div>
-									<span class="forms_text" name="refSwitch" > Set as reference</span>
-								</label>
-							</div>
-							
-							<div class="form-group" >
-								<p class="forms_text" name="sectionSelector" >Section type: </p>
-								<select class="selectpicker" name="sectionSelector" placeholder="Select one" onchange="selectorChange(this)"> </select>
-							</div>
-							
-							<div class="form-group">
-								<p class="forms_text" name="dim1">Height (h): </p>
-								<input type="number" class="email-bt" placeholder="80" value=80 name="dim1" onchange="dimChange(this)">
-							</div>
-							<div class="form-group">
-								<p class="forms_text" name="dim2">Width (b): </p>
-								<input type="number" class="email-bt" placeholder="70" value=70 name="dim2" onchange="dimChange(this)">
-							</div>
-							<div class="form-group">
-								<p class="forms_text" name="dim3">Thickness, web (t<sub>b</sub>): </p>
-								<input type="number" class="email-bt" placeholder="5" value=5 name="dim3" onchange="dimChange(this)">
-							</div>
-							<div class="form-group">
-								<p class="forms_text" name="dim4">Thickness, flanges (t<sub>w</sub>): </p>
-								<input type="number" class="email-bt" placeholder="-"  value=10 name="dim4" onchange="dimChange(this)" >
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >Area (unit<sup>2</sup>):</p>
-								<input type="text" class="email-bt2" name="area" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >Perim. (unit):</p>
-								<input type="text" class="email-bt2" name="perimeter" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >x<sub>c</sub> (unit): </p>
-								<input type="text" class="email-bt2" name="xc" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >y<sub>c</sub> (unit): </p>
-								<input type="text" class="email-bt2" name="yc" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >I<sub>x</sub> (unit<sup>4</sup>): </p>
-								<input type="text" class="email-bt2" name="Ixx" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >I<sub>y</sub> (unit<sup>4</sup>): </p>
-								<input type="text" class="email-bt2" name="Iyy" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >I<sub>z</sub> (unit<sup>4</sup>): </p>
-								<input type="text" class="email-bt2" name="Izz" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >S<sub>x,min</sub> (unit<sup>3</sup>): </p>
-								<input type="text" class="email-bt2" name="Sx_min" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >S<sub>y,min</sub> (unit<sup>3</sup>): </p>
-								<input type="text" class="email-bt2" name="Sy_min" readonly>
-							</div>
-						</form>
-					</div>
-    			    <div class="btn_main">
-    			        <p class="forms_text"><br/></p>
-    			    </div>
-    		    </div>
-    		    <div class="col-sm" id="Form4" name="myForm">
-    			    <div class="power">
-    				    <!-- <div class="icon"><a href="#"><img src="images/power-full-icon.png"></a></div>-->
-    				    <div class="icon">
+						<div class="col-sm-6" id="Form4" name="myForm">
+							<div class="power">
+								<!-- <div class="icon"><a href="#"><img src="images/power-full-icon.png"></a></div>-->
+								<div class="icon">
 
-						<span class="mytooltip tooltip-effect-1">
-							<span class="tooltip-item">
-								<canvas name="myCanvas" id="myCanvas4" width="200px" height="200px" background=transparent style="width:100px; height:100px"></canvas>
-							</span>
-							<span class="tooltip-content clearfix">
-								<img name="tooltip-image" src="images/favicon-32x32.png">
-							</span>
-						</span>
-						
+								<span class="mytooltip tooltip-effect-1">
+									<span class="tooltip-item">
+										<canvas name="myCanvas" id="myCanvas4" width="200px" height="200px" background=transparent style="width:100px; height:100px"></canvas>
+									</span>
+									<span class="tooltip-content clearfix">
+										<img name="tooltip-image" src="images/favicon-32x32.png">
+									</span>
+								</span>
+								
+								</div>
+								<!-- <h2 class="powerful_text">Powerful Features</h2>-->
+								<!-- <p class="making_tetx"> </p>-->
+								<form>
+								
+									<div class="form-group">
+										<label class="switch">
+											<input type="checkbox" name="refSwitch" onchange="setReference(this)" >
+											<div class="slider round"></div>
+											<span class="forms_text" name="refSwitch" > Set as reference</span>
+										</label>
+									</div>
+								
+									<div class="form-group">
+										<p class="forms_text" name="sectionSelector" >Section type: </p>
+										<select class="selectpicker" name="sectionSelector" placeholder="Select one" onchange="selectorChange(this)"> </select>
+									</div>
+									
+									<div class="form-group">
+										<p class="forms_text" name="dim1">Height (h): </p>
+										<input type="number" class="email-bt" placeholder="0" value=80 name="dim1" onchange="dimChange(this)">
+									</div>
+									<div class="form-group">
+										<p class="forms_text" name="dim2">Width (b): </p>
+										<input type="number" class="email-bt" placeholder="0" value=70 name="dim2" onchange="dimChange(this)">
+									</div>
+									<div class="form-group">
+										<p class="forms_text" name="dim3">Thickness, web (t<sub>b</sub>): </p>
+										<input type="number" class="email-bt" placeholder="0" value=10 name="dim3" onchange="dimChange(this)">
+									</div>
+									<div class="form-group">
+										<p class="forms_text" name="dim4">Thickness, flanges (t<sub>w</sub>): </p>
+										<input type="number" class="email-bt" placeholder="0"  value=10 name="dim4" onchange="dimChange(this)" >
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >Area (unit<sup>2</sup>):</p>
+										<input type="text" class="email-bt2" name="area" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >Perim. (unit):</p>
+										<input type="text" class="email-bt2" name="perimeter" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >x<sub>c</sub> (unit): </p>
+										<input type="text" class="email-bt2" name="xc" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >y<sub>c</sub> (unit): </p>
+										<input type="text" class="email-bt2" name="yc" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >I<sub>x</sub> (unit<sup>4</sup>): </p>
+										<input type="text" class="email-bt2" name="Ixx" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >I<sub>y</sub> (unit<sup>4</sup>): </p>
+										<input type="text" class="email-bt2" name="Iyy" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >I<sub>z</sub> (unit<sup>4</sup>): </p>
+										<input type="text" class="email-bt2" name="Izz" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >S<sub>x,min</sub> (unit<sup>3</sup>): </p>
+										<input type="text" class="email-bt2" name="Sx_min" readonly>
+									</div>
+									<div class="form-group form-group-res" >
+										<p  class="forms_text2" >S<sub>y,min</sub> (unit<sup>3</sup>): </p>
+										<input type="text" class="email-bt2" name="Sy_min" readonly>
+									</div>
+								</form>
+							</div>
+							<div class="btn_main">
+								<p class="forms_text"><br/></p>
+							</div>
 						</div>
-						<!-- <h2 class="powerful_text">Powerful Features</h2>-->
-    				    <!-- <p class="making_tetx"> </p>-->
-						<form>
 						
-							<div class="form-group">
-								<label class="switch">
-									<input type="checkbox" name="refSwitch" onchange="setReference(this)" >
-									<div class="slider round"></div>
-									<span class="forms_text" name="refSwitch" > Set as reference</span>
-								</label>
-							</div>
-						
-							<div class="form-group">
-								<p class="forms_text" name="sectionSelector" >Section type: </p>
-								<select class="selectpicker" name="sectionSelector" placeholder="Select one" onchange="selectorChange(this)"> </select>
-							</div>
-							
-							<div class="form-group">
-								<p class="forms_text" name="dim1">Height (h): </p>
-								<input type="number" class="email-bt" placeholder="0" value=80 name="dim1" onchange="dimChange(this)">
-							</div>
-							<div class="form-group">
-								<p class="forms_text" name="dim2">Width (b): </p>
-								<input type="number" class="email-bt" placeholder="0" value=70 name="dim2" onchange="dimChange(this)">
-							</div>
-							<div class="form-group">
-								<p class="forms_text" name="dim3">Thickness, web (t<sub>b</sub>): </p>
-								<input type="number" class="email-bt" placeholder="0" value=10 name="dim3" onchange="dimChange(this)">
-							</div>
-							<div class="form-group">
-								<p class="forms_text" name="dim4">Thickness, flanges (t<sub>w</sub>): </p>
-								<input type="number" class="email-bt" placeholder="0"  value=10 name="dim4" onchange="dimChange(this)" >
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >Area (unit<sup>2</sup>):</p>
-								<input type="text" class="email-bt2" name="area" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >Perim. (unit):</p>
-								<input type="text" class="email-bt2" name="perimeter" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >x<sub>c</sub> (unit): </p>
-								<input type="text" class="email-bt2" name="xc" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >y<sub>c</sub> (unit): </p>
-								<input type="text" class="email-bt2" name="yc" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >I<sub>x</sub> (unit<sup>4</sup>): </p>
-								<input type="text" class="email-bt2" name="Ixx" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >I<sub>y</sub> (unit<sup>4</sup>): </p>
-								<input type="text" class="email-bt2" name="Iyy" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >I<sub>z</sub> (unit<sup>4</sup>): </p>
-								<input type="text" class="email-bt2" name="Izz" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >S<sub>x,min</sub> (unit<sup>3</sup>): </p>
-								<input type="text" class="email-bt2" name="Sx_min" readonly>
-							</div>
-							<div class="form-group form-group-res" >
-								<p  class="forms_text2" >S<sub>y,min</sub> (unit<sup>3</sup>): </p>
-								<input type="text" class="email-bt2" name="Sy_min" readonly>
-							</div>
-						</form>
 					</div>
-    			    <div class="btn_main">
-    			        <p class="forms_text"><br/></p>
-    			    </div>
-    		    </div>
+				</div>
+			
     	    </div>    		
     	</div>
     </div>

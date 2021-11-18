@@ -284,8 +284,8 @@ function drawChart(array,ref,myChartId,myAxisTitle,num) {
             animation: {
                 duration: 0,
                 },
-			//responsive: true,
-			//maintainAspectRatio: false,
+			responsive: true,
+			maintainAspectRatio: false,
 			legend: false,
 			scales: {
 				xAxes: [{

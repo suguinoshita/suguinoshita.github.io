@@ -224,8 +224,10 @@ function drawChart(array,myChartId,lims,chartTitle) {
 		data: {
 			datasets: []
 			},
-    	maintainAspectRatio: false,
+    	//maintainAspectRatio: false,
 		options: {
+			responsive: true,
+			maintainAspectRatio: false,
             animation: {
                 duration: 0,
                 },
