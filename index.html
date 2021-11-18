@@ -43,7 +43,7 @@
                   <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
                      <div class="full">
                         <div class="center-desk">
-                           <div class="logo"><a href="#home"><img src="images/logo.png" style="max-width: 100%;"></a> 
+                           <div class="logo"><a href="index.html"><img src="images/logo1.png" style="max-width: 100%;"></a> 
                            </div>
                         </div>
                      </div>
@@ -65,42 +65,6 @@
             </div>
          </div>
          <!-- end header inner -->
-	  <!--
-      <section >
-      	<div class="bannen_inner">
-            <div class="container">
-                <div class="row marginii">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    	<div class="taital_main">
-                    		
-                    	</div>
-                        <h1 class="web_text"><strong>Unlimited Web Hosting</strong></h1>
-                        <p class="donec_text">Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. 
-                           Aenean dignissim pellentesque felis.Donec nec justo
-                           eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.</p>
-                         <a class="get_bg" href="#" role="button">Get Started</a>
-                         <a class="btn btn-lg btn-dark" href="about.html" role="button">Contact Us</a>
-                    </div>
-                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                 <div class="img-box">
-                    <figure><img src="images/woofer.png" alt="img"/ style="max-width: 100%;"></figure>
-                 </div>
-            </div>
-           </div>
-           <div class="emaim-bt">
-           	<div class="col-md-9 margin-0">
-            <div class="input-group mb-3 margin-top-20">
-                <input type="text" class="form-control" placeholder="Enter domain name here">
-            <div class="input-group-append">
-                <button class="search_bt" type="Subscribe"><a href="#">Search</a></button>  
-            </div>
-            </div>           
-        </div>
-       </div>
-     </div>
-    </div>
-    </section>
-	 -->
 	</header>
     <!-- banner end -->
     <!-- choose start -->
@@ -109,8 +73,7 @@
     	<div class="container">
     		<div class="col-sm-12">
     			<h1 class="choose_text">Beam section properties calculator and <span class="color">comparison</span></h1>
-    			<p class="lorem_text">Check and compare different beam cross-section properties and improve your designs!</p>
-				
+    			<p class="lorem_text">Check and compare different beam cross-section properties and improve your designs!</p>				
     		</div>
     	</div>
     </div>
@@ -121,42 +84,58 @@
 				<div class="row">
 					<div class="col-md-4">
 							<div class="form-group">
-								<p class="forms_text">Volume/Mass comparison:</p>
+								<p class="forms_text">Weight comparison: 								
+									<span class="mytooltip tooltip-effect-1">
+										<span class="tooltip-item">
+											<i class="fa fa-info-circle"></i>
+										</span>
+										<span class="mytooltip tooltip-content tooltip-text tooltip-item">
+											&ndash; Volume = Area x Length<br/>
+											&ndash; Mass = &rho; x Area x Length<br/>
+											*constant section and homogeneous material.
+										</span>
+									</span>								
+								</p>
 							</div>
-							<!--<div class="chart" id="Chart1" style="width:100%, height:250px"></div>-->
 							<canvas class="icon" id="Chart1" style="width:100%, height:300px"></canvas>
-							<span class="notes_text">&ndash; Volume = A.L<br/>
-													&ndash; Mass = &rho;.A.L<br/>
-													*constant section and homogeneous material.<br/>
-							</span>
 					</div>
 					<div class="col-md-4">
 						
 							<div class="form-group">
-								<p class="forms_text">Stiffness comparison:</p>
+								<p class="forms_text">Stiffness comparison: 								
+									<span class="mytooltip tooltip-effect-1">
+										<span class="tooltip-item">
+											<i class="fa fa-info-circle"></i>
+										</span>
+										<span class="mytooltip tooltip-content tooltip-text tooltip-item">
+											&ndash; Axial stiffness = E.A/L<br/>
+											&ndash; Bending stiffness = E.I<sub>xx</sub>/L or E.I<sub>yy</sub>/L<br/>
+											&ndash; Torsional stiffness = G.I<sub>zz</sub>/L<br/>
+										</span>
+									</span>								
+								</p>
 							</div>
-							<!--<div class="chart" id="Chart2" style="width:100%, height:250px"></div>-->
 							<canvas class="icon" id="Chart2" style="width:100%, height:300px"></canvas>
-							<span class="notes_text">&ndash; Axial stiffness = E.A/L<br/>
-												  &ndash; Bending stiffness = E.I<sub>xx</sub>/L or E.I<sub>yy</sub>/L<br/>
-												  &ndash; Torsional stiffness = G.I<sub>zz</sub>/L<br/>
-							</span>
 					</div>			
-					<div class="col-md-4">
-						
+					<div class="col-md-4">						
 							<div class="form-group">
-								<p class="forms_text">Stress comparison:</p>
+								<p class="forms_text">Stress comparison: 								
+									<span class="mytooltip tooltip-effect-1">
+										<span class="tooltip-item">
+											<i class="fa fa-info-circle"></i>
+										</span>
+										<span class="mytooltip tooltip-content tooltip-text tooltip-item">
+											&ndash; Axial stress: &sigma; = F/A<br/>
+											&ndash; Bending stress over x-axis: &sigma; = M<sub>x</sub>/S<sub>x,min</sub><br/>
+											&ndash; Bending stress over y-axis: &sigma; = M<sub>y</sub>/S<sub>y,min</sub><br/>
+										</span>
+									</span>								
+								</p>
 							</div>
-							<!--<div class="chart" id="Chart3" style="width:100%, height:250px" ></div>-->
 							<canvas class="icon" id="Chart3" style="width:100%, height:300px"></canvas>
-							<span class="notes_text">&ndash; Axial stress: &sigma; = F/A<br/>
-												  &ndash; Bending stress over x-axis: &sigma; = M<sub>x</sub>/S<sub>x,min</sub><br/>
-												  &ndash; Bending stress over y-axis: &sigma; = M<sub>y</sub>/S<sub>y,min</sub><br/>
-							</span>
 					</div>
 				</div>
-    	    <!--</div>-->
-			</div>
+    	    </div>   
 			<div class="btn_main">
 				<p class="forms_text"><br/></p>
 			</div> 		
@@ -211,41 +190,41 @@
 								<p class="forms_text" name="dim4"><br/></p>
 								<input type="number" class="email-bt-hidden" placeholder="-" value=10 name="dim4" onchange="dimChange(this)" disabled>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">Area (length<sup>2</sup>): </p>
-								<input type="text" class="email-bt" name="area" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >Area (unit<sup>2</sup>):</p>
+								<input type="text" class="email-bt2" name="area" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">Perimeter (length): </p>
-								<input type="text" class="email-bt" name="perimeter" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >Perim. (unit):</p>
+								<input type="text" class="email-bt2" name="perimeter" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">x<sub>c</sub> (length): </p>
-								<input type="text" class="email-bt" name="xc" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >x<sub>c</sub> (unit): </p>
+								<input type="text" class="email-bt2" name="xc" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">y<sub>c</sub> (length): </p>
-								<input type="text" class="email-bt" name="yc" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >y<sub>c</sub> (unit): </p>
+								<input type="text" class="email-bt2" name="yc" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">I<sub>x</sub> (length<sup>4</sup>): </p>
-								<input type="text" class="email-bt" name="Ixx" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >I<sub>x</sub> (unit<sup>4</sup>): </p>
+								<input type="text" class="email-bt2" name="Ixx" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">I<sub>y</sub> (length<sup>4</sup>): </p>
-								<input type="text" class="email-bt" name="Iyy" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >I<sub>y</sub> (unit<sup>4</sup>): </p>
+								<input type="text" class="email-bt2" name="Iyy" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">I<sub>z</sub> (length<sup>4</sup>): </p>
-								<input type="text" class="email-bt" name="Izz" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >I<sub>z</sub> (unit<sup>4</sup>): </p>
+								<input type="text" class="email-bt2" name="Izz" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">S<sub>x,min</sub> (length<sup>3</sup>): </p>
-								<input type="text" class="email-bt" name="Sx_min" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >S<sub>x,min</sub> (unit<sup>3</sup>): </p>
+								<input type="text" class="email-bt2" name="Sx_min" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">S<sub>y,min</sub> (length<sup>3</sup>): </p>
-								<input type="text" class="email-bt" name="Sy_min" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >S<sub>y,min</sub> (unit<sup>3</sup>): </p>
+								<input type="text" class="email-bt2" name="Sy_min" readonly>
 							</div>
 						</form>
 					</div>
@@ -302,41 +281,41 @@
 								<p class="forms_text" name="dim4">Thickness, flanges (t<sub>f</sub>): </p>
 								<input type="number" class="email-bt" placeholder="-"  value=10 name="dim4" onchange="dimChange(this)" >
 							</div>
-							<div class="form-group">
-								<p class="forms_text">Area (length<sup>2</sup>): </p>
-								<input type="text" class="email-bt" name="area" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >Area (unit<sup>2</sup>):</p>
+								<input type="text" class="email-bt2" name="area" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">Perimeter (length): </p>
-								<input type="text" class="email-bt" name="perimeter" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >Perim. (unit):</p>
+								<input type="text" class="email-bt2" name="perimeter" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">x<sub>c</sub> (length): </p>
-								<input type="text" class="email-bt" name="xc" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >x<sub>c</sub> (unit): </p>
+								<input type="text" class="email-bt2" name="xc" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">y<sub>c</sub> (length): </p>
-								<input type="text" class="email-bt" name="yc" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >y<sub>c</sub> (unit): </p>
+								<input type="text" class="email-bt2" name="yc" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">I<sub>x</sub> (length<sup>4</sup>): </p>
-								<input type="text" class="email-bt" name="Ixx" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >I<sub>x</sub> (unit<sup>4</sup>): </p>
+								<input type="text" class="email-bt2" name="Ixx" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">I<sub>y</sub> (length<sup>4</sup>): </p>
-								<input type="text" class="email-bt" name="Iyy" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >I<sub>y</sub> (unit<sup>4</sup>): </p>
+								<input type="text" class="email-bt2" name="Iyy" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">I<sub>z</sub> (length<sup>4</sup>): </p>
-								<input type="text" class="email-bt" name="Izz" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >I<sub>z</sub> (unit<sup>4</sup>): </p>
+								<input type="text" class="email-bt2" name="Izz" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">S<sub>x,min</sub> (length<sup>3</sup>): </p>
-								<input type="text" class="email-bt" name="Sx_min" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >S<sub>x,min</sub> (unit<sup>3</sup>): </p>
+								<input type="text" class="email-bt2" name="Sx_min" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">S<sub>y,min</sub> (length<sup>3</sup>): </p>
-								<input type="text" class="email-bt" name="Sy_min" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >S<sub>y,min</sub> (unit<sup>3</sup>): </p>
+								<input type="text" class="email-bt2" name="Sy_min" readonly>
 							</div>
 						</form>
 					</div>
@@ -392,41 +371,41 @@
 								<p class="forms_text" name="dim4">Thickness, flanges (t<sub>w</sub>): </p>
 								<input type="number" class="email-bt" placeholder="-"  value=10 name="dim4" onchange="dimChange(this)" >
 							</div>
-							<div class="form-group">
-								<p class="forms_text">Area (length<sup>2</sup>): </p>
-								<input type="text" class="email-bt" name="area" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >Area (unit<sup>2</sup>):</p>
+								<input type="text" class="email-bt2" name="area" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">Perimeter (length): </p>
-								<input type="text" class="email-bt" name="perimeter" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >Perim. (unit):</p>
+								<input type="text" class="email-bt2" name="perimeter" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">x<sub>c</sub> (length): </p>
-								<input type="text" class="email-bt" name="xc" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >x<sub>c</sub> (unit): </p>
+								<input type="text" class="email-bt2" name="xc" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">y<sub>c</sub> (length): </p>
-								<input type="text" class="email-bt" name="yc" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >y<sub>c</sub> (unit): </p>
+								<input type="text" class="email-bt2" name="yc" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">I<sub>x</sub> (length<sup>4</sup>): </p>
-								<input type="text" class="email-bt" name="Ixx" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >I<sub>x</sub> (unit<sup>4</sup>): </p>
+								<input type="text" class="email-bt2" name="Ixx" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">I<sub>y</sub> (length<sup>4</sup>): </p>
-								<input type="text" class="email-bt" name="Iyy" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >I<sub>y</sub> (unit<sup>4</sup>): </p>
+								<input type="text" class="email-bt2" name="Iyy" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">I<sub>z</sub> (length<sup>4</sup>): </p>
-								<input type="text" class="email-bt" name="Izz" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >I<sub>z</sub> (unit<sup>4</sup>): </p>
+								<input type="text" class="email-bt2" name="Izz" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">S<sub>x,min</sub> (length<sup>3</sup>): </p>
-								<input type="text" class="email-bt" name="Sx_min" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >S<sub>x,min</sub> (unit<sup>3</sup>): </p>
+								<input type="text" class="email-bt2" name="Sx_min" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">S<sub>y,min</sub> (length<sup>3</sup>): </p>
-								<input type="text" class="email-bt" name="Sy_min" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >S<sub>y,min</sub> (unit<sup>3</sup>): </p>
+								<input type="text" class="email-bt2" name="Sy_min" readonly>
 							</div>
 						</form>
 					</div>
@@ -482,41 +461,41 @@
 								<p class="forms_text" name="dim4">Thickness, flanges (t<sub>w</sub>): </p>
 								<input type="number" class="email-bt" placeholder="0"  value=10 name="dim4" onchange="dimChange(this)" >
 							</div>
-							<div class="form-group">
-								<p class="forms_text">Area (length<sup>2</sup>): </p>
-								<input type="text" class="email-bt" name="area" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >Area (unit<sup>2</sup>):</p>
+								<input type="text" class="email-bt2" name="area" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">Perimeter (length): </p>
-								<input type="text" class="email-bt" name="perimeter" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >Perim. (unit):</p>
+								<input type="text" class="email-bt2" name="perimeter" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">x<sub>c</sub> (length): </p>
-								<input type="text" class="email-bt" name="xc" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >x<sub>c</sub> (unit): </p>
+								<input type="text" class="email-bt2" name="xc" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">y<sub>c</sub> (length): </p>
-								<input type="text" class="email-bt" name="yc" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >y<sub>c</sub> (unit): </p>
+								<input type="text" class="email-bt2" name="yc" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">I<sub>x</sub> (length<sup>4</sup>): </p>
-								<input type="text" class="email-bt" name="Ixx" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >I<sub>x</sub> (unit<sup>4</sup>): </p>
+								<input type="text" class="email-bt2" name="Ixx" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">I<sub>y</sub> (length<sup>4</sup>): </p>
-								<input type="text" class="email-bt" name="Iyy" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >I<sub>y</sub> (unit<sup>4</sup>): </p>
+								<input type="text" class="email-bt2" name="Iyy" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">I<sub>z</sub> (length<sup>4</sup>): </p>
-								<input type="text" class="email-bt" name="Izz" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >I<sub>z</sub> (unit<sup>4</sup>): </p>
+								<input type="text" class="email-bt2" name="Izz" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">S<sub>x,min</sub> (length<sup>3</sup>): </p>
-								<input type="text" class="email-bt" name="Sx_min" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >S<sub>x,min</sub> (unit<sup>3</sup>): </p>
+								<input type="text" class="email-bt2" name="Sx_min" readonly>
 							</div>
-							<div class="form-group">
-								<p class="forms_text">S<sub>y,min</sub> (length<sup>3</sup>): </p>
-								<input type="text" class="email-bt" name="Sy_min" readonly>
+							<div class="form-group form-group-res" >
+								<p  class="forms_text2" >S<sub>y,min</sub> (unit<sup>3</sup>): </p>
+								<input type="text" class="email-bt2" name="Sy_min" readonly>
 							</div>
 						</form>
 					</div>

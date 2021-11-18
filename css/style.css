@@ -146,13 +146,16 @@ a {
 .header_main{
 	width: 100%;
 	float: left;
-	background-image: url(../images/banner.png);
+	/*background-image: url(../images/banner.png);*/
 	height: auto;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	background-size:cover;
 	background-size: 100%;
     background-repeat: no-repeat;
+	
+    background: rgb(20,65,29);
+	background: linear-gradient(106deg, rgba(20,65,29,1) 0%, rgba(27,88,39,1) 30%, rgba(70,221,100,1) 100%);
 }
 
 .main-menu ul>li a {
@@ -180,6 +183,7 @@ ul, li, ol {
     margin: 0px;
     padding: 0px;
     list-style: none;
+	transition: 150ms transform cubic-bezier(0, 1, 0, 1);
 }
 
 .main-menu ul li:first-child {
@@ -195,7 +199,7 @@ ul, li, ol {
     color: #fff;
 }
 
-.mean-container .mean-bar { background: #2aab7c;}
+.mean-container .mean-bar { background: rgba(27,88,39,1);}
 
 
 .web_taital{
@@ -203,7 +207,15 @@ ul, li, ol {
 
 }
 
-.logo{ width: 100%; float: left; }
+.logo{
+	width: 100%; 
+	float: left;
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
 .web_text{ width: 100%; float: left; font-size: 48px; padding-top: 160px;}
 .margin-top-20{ margin-top: 20px; }
 
@@ -265,7 +277,6 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
 
 }
 
-
 .form-control:not(:last-child) {
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
@@ -275,8 +286,8 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
 .choose_section{
 	width: 100%;
 	float: left;
-	margin-top: 40px;
-	margin-bottom: 40px;
+	margin-top: 40px;/*
+	margin-bottom: 40px;*/
 }
 
 .choose_text{
@@ -354,7 +365,7 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
 
 }
 
-.forms_text{
+.forms_text, .forms_text2{
 	width: 100%;
 	float: left;
 	text-align: left;
@@ -363,7 +374,13 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
 	color: #ffffff;
 	color: #000;
 	margin-left: 0;
+}
 
+.forms_text2{
+	margin-left: -5px;
+	width: auto;
+	padding: 2px 0 0;
+    font-size: 14px;	
 }
 
 .notes_text{
@@ -588,43 +605,40 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
     border-radius: 20px;
     margin-top: 15px;
 }
-.email-bt {
+
+.form-group-res {
+	display: inline-block; 
+	margin-bottom: 0px;
+}
+
+.email-bt, .email-bt_disabled, .email-bt-hidden, 
+.email-bt2 {
     background: #ececec;
     border: none;
     color: #000;
     width: 100%;
     height: 20px;
     font-size: 14px;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
-    margin-top: 6px;
+    margin-top: 0px;
      font-family: 'Poppins', sans-serif;
 }
 
 .email-bt_disabled {
-    background: #ececec;
-    border: none;
     color: #adadad;
     width: 100%;
-    height: 20px;
-    font-size: 14px;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 6px;
-    font-family: 'Poppins', sans-serif;
 }
 
 .email-bt-hidden {
-    background: #ececec;
-    border: none;
     color: #000;
     width: 100%;
-    height: 20px;
-    font-size: 14px;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 6px;
 	visibility: hidden;
+}
+
+.email-bt2 {
+	width: 50%;
+	float: right;
 }
 
 .selectpicker {
@@ -719,7 +733,7 @@ button.main_bt a:hover {
 }
 .menu ul{margin: 0px; padding: 0px;}
 
-.menu ul li{ color: #fcfcfc; }
+.menu ul li{ color: rgba(20,65,29,1); }
 .menu ul li a:hover{ color: #fcfcfc; }
 .useful_text{ 
 	width: 100%; 
@@ -755,7 +769,7 @@ button.main_bt a:hover {
     text-align: center;}
 .menu_text ul { margin: 0px; padding: 0px;}	
 .menu_text li { float: left; padding-left: 6px; padding-right: 25px; }
-.copyright_main{ width: 100%; float: left; background-color: #17ad74; 
+.copyright_main{ width: 100%; float: left; background-color: rgba(20,65,29,1); 
 	height: auto; padding-bottom: 5px; padding-top: 5px; }
 .copy_text{ width: 100%; float: left; text-align: center; color: #ffffff;   
   margin-left: 0px; margin-right: 0px; }
@@ -970,12 +984,19 @@ tr:nth-child(even) {
 }
 
 .mytooltip .tooltip-text {
-    font-size: 14px;
-    line-height: 24px;
+	text-align: left;
+    font-size: 12px;
+    line-height: 18px;
     display: block;
-    padding: 1.31em 1.21em 1.21em 0;
-    color: #fff
+    /*padding: 1.31em 1.21em 1.21em 0;*/
+    color: #fff;
+	width: 300px;
+	margin-left: -140px;
+    bottom: 100%;
+    left: 50%;
+    padding: 5px 15px
 }
+
 
 div.sticky {
   position: -webkit-sticky;
