@@ -273,6 +273,7 @@ function drawChart(array,ref,myChartId,myAxisTitle,num) {
 		return sections;
 	};
 
+    //if (typeof Chart3 ==="undefined") {
 	var myDataset = {
 		type: 'horizontalBar',
 		data: {
@@ -280,6 +281,9 @@ function drawChart(array,ref,myChartId,myAxisTitle,num) {
 			datasets: [],
 			},
 		options: {
+            animation: {
+                duration: 0,
+                },
 			//responsive: true,
 			//maintainAspectRatio: false,
 			legend: false,
@@ -355,7 +359,13 @@ function drawChart(array,ref,myChartId,myAxisTitle,num) {
 				},
 			},
 		};
-	
+	/*} else {
+	var myDataset = {
+		data: {
+			datasets: [], label: '',backgroundColor: '',hidden: true,
+			},
+		};
+	}*/
 	for (var k = 0; k < cols; k++) {
 		if (yValues[k][0] == 0){var bool = true;}else{var bool = false;}
 		myDataset.data.datasets[k] = {

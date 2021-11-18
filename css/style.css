@@ -326,9 +326,13 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
 
 .icon{
 	text-align: center;
-	margin-top: 40px;
+	margin-top: 1px;
 }
-
+/*
+.icon:hover {
+  transform: scale(1.1); 
+}
+*/
 
 .powerful_text{
 	width: 100%;
@@ -972,3 +976,17 @@ tr:nth-child(even) {
     padding: 1.31em 1.21em 1.21em 0;
     color: #fff
 }
+
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: -100px;
+  z-index:9999;
+}
+/*
+@media (max-width: 769px) {
+  div.sticky {
+    position: relative;
+  }
+}
+}*/

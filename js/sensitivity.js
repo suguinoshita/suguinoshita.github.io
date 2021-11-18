@@ -210,7 +210,7 @@ function drawChart(array,myChartId,lims,chartTitle) {
 	for (var k = 0; k < cols; k++) {
 		var temp = [];
 		for (var i = 0; i < rows; i++) {
-			temp[i] = {x: array[i+1][0].toFixed(2) , y: array[i+1][k+1].toFixed(2)  };
+			temp[i] = {x: array[i+1][0] , y: array[i+1][k+1]  };
 			//alert(temp[i].x+' '+temp[i].y);
 		}
 		xyValues[k] = temp;
@@ -226,6 +226,9 @@ function drawChart(array,myChartId,lims,chartTitle) {
 			},
     	maintainAspectRatio: false,
 		options: {
+            animation: {
+                duration: 0,
+                },
 			legend: {
 			    display: true,
 			    position: 'right'
