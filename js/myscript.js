@@ -41,7 +41,7 @@ function fillPolygon(data,cg, color,lineColor,mycanvas) {
 		ctx.closePath();      // go back to point 1
 		ctx.fill();
 				
-		ctx.lineWidth = 3;
+		ctx.lineWidth = 6;
 		ctx.strokeStyle = lineColor;
 		ctx.stroke();
 	}
@@ -65,36 +65,36 @@ function fillPolygon(data,cg, color,lineColor,mycanvas) {
 			ctx.closePath();      // go back to point 1
 			ctx.fill();
 					
-			ctx.lineWidth = 3;
+			ctx.lineWidth = 6;
 			ctx.strokeStyle = lineColor;
 			ctx.stroke();
 		}
 	} 
 	
 	ctx.beginPath();
-	ctx.setLineDash([5, 3]);/*dashes are 5px and spaces are 3px*/
-	ctx.lineWidth = 1;
+	ctx.setLineDash([10, 6]);/*dashes are 5px and spaces are 3px*/
+	ctx.lineWidth = 2;
 	ctx.strokeStyle = "black";
 	ctx.moveTo(canvas.width/2, canvas.height);
 	ctx.lineTo(canvas.width/2, 0);
 	ctx.stroke();
 	
 	ctx.beginPath();
-	ctx.setLineDash([5, 3]);/*dashes are 5px and spaces are 3px*/
-	ctx.lineWidth = 1;
+	ctx.setLineDash([10, 6]);/*dashes are 5px and spaces are 3px*/
+	ctx.lineWidth = 2;
 	ctx.strokeStyle = "black";
 	ctx.moveTo(           0, canvas.height-cg[1]-bottom_margin);
 	ctx.lineTo(canvas.width, canvas.height-cg[1]-bottom_margin);
 	ctx.stroke();
 		
-	ctx.font = "10px Arial";
+	ctx.font = "20px Arial";
 	ctx.fillStyle = "#000"; 
 	ctx.fillText("x",            0+3, canvas.height-cg[1]-bottom_margin-5);
-	ctx.fillText("x", canvas.width-5, canvas.height-cg[1]-bottom_margin-5);
-	ctx.font = "10px Arial";
+	ctx.fillText("x", canvas.width-10, canvas.height-cg[1]-bottom_margin-5);
+	ctx.font = "20px Arial";
 	ctx.fillStyle = "#000";
 	ctx.fillText("y",canvas.width/2+2, canvas.height-3);
-	ctx.fillText("y",canvas.width/2+2, 5);
+	ctx.fillText("y",canvas.width/2+2, 10);
 	
 	
 	//alert(mycanvas+' updated');

@@ -155,7 +155,7 @@ a {
     background-repeat: no-repeat;
 	
     background: rgb(20,65,29);
-	background: linear-gradient(106deg, rgba(20,65,29,1) 0%, rgba(27,88,39,1) 30%, rgba(70,221,100,1) 100%);
+	background: linear-gradient(110deg, rgba(20,65,29,1) 0%, rgba(27,88,39,1) 30%, rgba(60,186,84,1) 100%);
 }
 
 .main-menu ul>li a {
@@ -199,22 +199,21 @@ ul, li, ol {
     color: #fff;
 }
 
-.mean-container .mean-bar { background: rgba(27,88,39,1);}
-
+.mean-container .mean-bar { background: transparent /*rgba(27,88,39,1)*/;}
 
 .web_taital{
 	font-size: 24pt;
-
 }
 
 .logo{
 	width: 100%; 
 	float: left;
+	/*
 	margin: 0;
 	position: absolute;
 	top: 50%;
 	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
+	transform: translateY(-50%);*/
 }
 .web_text{ width: 100%; float: left; font-size: 48px; padding-top: 160px;}
 .margin-top-20{ margin-top: 20px; }
@@ -733,7 +732,7 @@ button.main_bt a:hover {
 }
 .menu ul{margin: 0px; padding: 0px;}
 
-.menu ul li{ color: rgba(20,65,29,1); }
+.menu ul li{ color: rgba(200,65,29,1); } /*rgba(20,65,29,1)*/
 .menu ul li a:hover{ color: #fcfcfc; }
 .useful_text{ 
 	width: 100%; 
