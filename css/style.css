@@ -1016,3 +1016,24 @@ div.sticky {
   }
 }
 }*/
+
+.mobileShow {
+	display: none;
+	width: 100%;
+	float: left;
+	text-align: center;
+	/*color: #3cba54;/*#030907;*/
+	color: #030907;
+	font-weight: 600;
+	padding: 1px 1px;
+	background-color: #e7e7e7;
+	border-radius: 5px;
+	border: 2px solid #3cba54;
+}
+
+/* Smartphone Portrait and Landscape */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px){ 
+  .mobileShow {display: inline;}
+}
