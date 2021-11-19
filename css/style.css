@@ -328,7 +328,7 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
     border: 2px solid #298039;
 }
 
-.power .power-image {
+.power, .power-image {
 	width: 100%;
 	float: left;
 	background-color: #ffffff;
