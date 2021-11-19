@@ -24,7 +24,7 @@
         margin: 0px 0px;
     }
     .menu-area-main {
-        height: 140px;
+        height: 180px;
         overflow-y: auto;
     }
     .megamenu>.row [class*="col-"] {
@@ -120,7 +120,7 @@
         float: none;
     }
     .menu-area-main {
-        height: 140px;
+        height: 180px;
         overflow-y: auto;
     }
     .mean-container .mean-nav ul li a.mean-expand {
