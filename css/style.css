@@ -328,7 +328,7 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
     border: 2px solid #298039;
 }
 
-.power, .power-image {
+.power {
 	width: 100%;
 	float: left;
 	background-color: #ffffff;
@@ -337,12 +337,13 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
     box-shadow: 0px 0px 8px 0px;
 }
 
+
 .power-image img {
 	width: 100%;
 	float: left;
+	padding: 0px;
 	background-color: #ffffff;
 	border-radius: 15px;
-	/*padding: 20px;*/
     box-shadow: 0px 0px 8px 0px;
 }
 
@@ -470,7 +471,7 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
 	margin-top: 70px; 
 	margin-bottom: 30px;
 	position: relative;
-	clip-path: polygon(0 calc(5vw), 100% 0, 100% calc(100% - 5vw), 0 100%);
+	clip-path: polygon(0 0, 100% calc(5vw),  100%  100% , 0 calc(100% - 5vw));
  }
 
 
@@ -843,55 +844,56 @@ input:checked + .slider:before {
   float: left;
 }
 
-}	
+.outer {
+  margin-right: 5px;
+  margin-left: 5px;
+  overflow: scroll;
+  position: relative;	
+  max-height: 140vw;
+}
 
 table {
   font-family: 'Poppins', sans-serif;
+  position: relative;
   border-collapse: collapse;
   color: #000;
-  width: 100%;
-  *margin-left: -80px;
-  table-layout: fixed;
   vertical-align: middle;
-
+  font-size: 12px;
 }
+
+
 td, th {
   text-align: center;
   padding: 8px;
   border: 1px solid #ddd;
+  /*white-space: wrap;*/
 }
 
-th {
+thead th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  top: 0;
   color: #110f0a;
+  background: #FFF;
+  z-index: 9999;
+}
+
+thead th:first-child {
+  left: 0;
+}
+
+tbody th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  left: 0;
+  background: #FFF;
+  border-right: 1px solid #CCC;
+  z-index: 999;
 }
 
 tr:nth-child(even) {
   background-color: #eeeeee;
-  }
-
-.fix {
-  position: absolute;
-  *position: relative;
-  margin-left: -80px;
-  width: 80px;
-  vertical-align: middle;
-  border: none;
-  color: #110f0a;
 }
-
-.outer{
-  position: relative;
-  margin-right: 20px;
-  margin-left: 80px;
-}
-
-.inner{
-  overflow-x: scroll;
-  overflow-y: visible;
-  width: 100%;
-  margin-left: 10px;
-}
-
 
 .chart {
   text-align: center;
