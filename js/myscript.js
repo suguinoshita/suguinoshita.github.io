@@ -1403,10 +1403,10 @@ for (const selectBox of selectBoxList) {
 
 var myForm = document.querySelector('#Form1');
 var section = myForm.querySelectorAll('select[name="sectionSelector"]')[0];
-section.value = "L section";
+section.value = "Circular tube";
 var myForm = document.querySelector('#Form2');
 var section = myForm.querySelectorAll('select[name="sectionSelector"]')[0];
-section.value = "L section";
+section.value = "Circular tube";
 
 var formList = document.getElementsByName('myForm');
 for (const fm of formList) {
