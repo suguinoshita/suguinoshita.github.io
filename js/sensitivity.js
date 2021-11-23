@@ -956,7 +956,7 @@ function calc_properties(section,dims){
 			res.Ixx = Ix0 - res.A*(h-res.yc)*(h-res.yc);
 			res.Iyy = (h-tf)*tw*tw*tw/12 + tf*b*b*b/12;
 			res.Izz = res.Ixx + res.Iyy;
-			res.Sx_min = res.Ixx/(h-res.yc);
+			res.Sx_min = res.Ixx/(res.yc);
 			res.Sy_min = res.Iyy/(b-res.xc);
 			break;
 		default:
