@@ -924,7 +924,7 @@ tr:nth-child(even) {
 .mytooltip .tooltip-content {
     position: absolute;
     z-index: 9999;
-    width: 100%;
+    width: 180px;
     left: 50%;
     margin: 0 0 20px -80px;
     bottom: 100%;
