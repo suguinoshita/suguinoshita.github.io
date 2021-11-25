@@ -577,7 +577,7 @@ function dimChange(elem){
 	recalculateSection(myForm);	
 	updatePictures();
 	drawCharts();
-	saveForm();
+	//saveForm();
 }
 
 function recalculateSection(myForm){
@@ -709,7 +709,7 @@ function selectorChange(elem) {
 	updatePictures();
 	drawCharts();
 	updateTooltips();
-	saveForm();
+	//saveForm();
 }
 
 function setReference(elem) {
@@ -1558,7 +1558,7 @@ var myForm = document.querySelector('#Form2');
 var section = myForm.querySelectorAll('select[name="sectionSelector"]')[0];
 section.value = "Circular tube";
 
-loadForm();
+//loadForm();
 var formList = document.getElementsByName('myForm');
 for (const fm of formList) {
 	//alert('recalculateSection '+fm.id)
