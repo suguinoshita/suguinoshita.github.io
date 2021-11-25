@@ -1224,6 +1224,11 @@ init();
 function init() {*/
 
 $(document).ready(function() {
+    //Use this inside your document ready jQuery
+   $(window).on('popstate', function() {
+      location.reload(true);
+   });
+   
     var selectBoxList = document.querySelectorAll('select[name="sectionSelector"]');
     for (const selectBox of selectBoxList) {
         for(var i = 0, l = options.length; i < l; i++){

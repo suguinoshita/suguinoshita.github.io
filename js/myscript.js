@@ -1545,6 +1545,11 @@ const lineColors = ['#298039','#2880b8','#c0392b','#d25300'];//#2c3e50
 
 
 $(document).ready(function() {
+    //Use this inside your document ready jQuery
+   $(window).on('popstate', function() {
+      location.reload(true);
+   });
+
     var selectBoxList = document.querySelectorAll('select[name="sectionSelector"]');
     for (const selectBox of selectBoxList) {
         for(var i = 0, l = options.length; i < l; i++){
