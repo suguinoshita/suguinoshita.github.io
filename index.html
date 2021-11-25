@@ -161,7 +161,7 @@
 										<canvas name="myCanvas" id="myCanvas1" width="200px" height="200px" background=transparent style="width:100px; height:100px"></canvas>
 									</span>
 									<span class="tooltip-content clearfix">
-										<img name="tooltip-image" src="images/favicon-32x32.png">
+										<img name="tooltip-image">
 									</span>
 								</span>
 								
@@ -250,7 +250,7 @@
 										<canvas name="myCanvas" id="myCanvas2" width="200px" height="200px" background=transparent style="width:100px; height:100px"></canvas>
 									</span>
 									<span class="tooltip-content clearfix">
-										<img name="tooltip-image" src="images/dimensions/sections/Slide1.png">
+										<img name="tooltip-image">
 									</span>
 								</span>
 								
@@ -274,19 +274,19 @@
 									
 									<div class="form-group">
 										<p class="forms_text" name="dim1">Height (h): </p>
-										<input type="number" class="email-bt" placeholder="31" value=31.8 name="dim1" onchange="dimChange(this)">
+										<input type="number" class="email-bt" value=31.8 name="dim1" onchange="dimChange(this)">
 									</div>
 									<div class="form-group">
 										<p class="forms_text" name="dim2">Width (b): </p>
-										<input type="number" class="email-bt" placeholder="10" value=1.6 name="dim2" onchange="dimChange(this)">
+										<input type="number" class="email-bt"  value=1.6 name="dim2" onchange="dimChange(this)">
 									</div>
 									<div class="form-group">
 										<p class="forms_text" name="dim3">Thickness, web (t<sub>w</sub>): </p>
-										<input type="number" class="email-bt" placeholder="5" value=1 name="dim3" onchange="dimChange(this)">
+										<input type="number" class="email-bt" value=1 name="dim3" onchange="dimChange(this)">
 									</div>
 									<div class="form-group">
 										<p class="forms_text" name="dim4">Thickness, flanges (t<sub>f</sub>): </p>
-										<input type="number" class="email-bt" placeholder="-"  value=1 name="dim4" onchange="dimChange(this)" >
+										<input type="number" class="email-bt" value=1 name="dim4" onchange="dimChange(this)" >
 									</div>
 									<div class="form-group form-group-res" >
 										<p  class="forms_text2" >Area (unit<sup>2</sup>):</p>
@@ -345,7 +345,7 @@
 										<canvas name="myCanvas" id="myCanvas3" width="200px" height="200px" background=transparent style="width:100px; height:100px"></canvas>
 									</span>
 									<span class="tooltip-content clearfix">
-										<img name="tooltip-image" src="images/favicon-32x32.png">
+										<img name="tooltip-image">
 									</span>
 								</span>
 								
@@ -435,7 +435,7 @@
 										<canvas name="myCanvas" id="myCanvas4" width="200px" height="200px" background=transparent style="width:100px; height:100px"></canvas>
 									</span>
 									<span class="tooltip-content clearfix">
-										<img name="tooltip-image" src="images/favicon-32x32.png">
+										<img name="tooltip-image">
 									</span>
 								</span>
 								
@@ -562,22 +562,23 @@
     <!-- javascript --> 
     <script src="js/myscript.js"></script>
     <script src="js/owl.carousel.js"></script>
-    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script> --> 
 	<script src="https://www.google.com/jsapi"></script>
     <script>
         $(document).ready(function(){
-        $(".fancybox").fancybox({
-        openEffect: "none",
-        closeEffect: "none"
-        });
-         
-        $(".zoom").hover(function(){
-         
-        $(this).addClass('transition');
-        }, function(){
-        
-        $(this).removeClass('transition');
-        });
+			$(".fancybox").fancybox({
+			openEffect: "none",
+			closeEffect: "none"
+			});
+			 
+			$(".zoom").hover(function(){
+			 
+				$(this).addClass('transition');
+			}, function(){
+			
+				$(this).removeClass('transition');
+			});
+		});
     </script> 
  
 </body>

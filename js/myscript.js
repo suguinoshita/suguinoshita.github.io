@@ -51,6 +51,100 @@
 })();
 
 
+function saveForm() {
+	//nothing to work with, get out of here
+	if(typeof window.sessionStorage ==="undefined"){return;}
+	saveValues();
+	//alert('saved to sessionStorage!')
+	return;
+}
+
+
+function loadForm() {
+	//nothing to work with, get out of here
+	if(window.sessionStorage) {
+		//alert('sessionStorage found! '+window.sessionStorage.type)
+		setValues();
+	} else {
+		//alert('sessionStorage not found!');
+	}
+	return;
+}
+
+function saveValues(){
+	var i = 0;
+	var formList = document.getElementsByName('myForm');
+	for (const fm of formList) {
+		
+		var KEY = 'input'+i;
+		window.sessionStorage.setItem( KEY, fm.querySelectorAll('select[name="sectionSelector"]')[0].value);
+		
+		i += 1;
+		var KEY = 'input'+i;
+		window.sessionStorage.setItem( KEY,  fm.querySelectorAll('input[name="dim1"]')[0].value);
+		
+		i += 1;
+		var KEY = 'input'+i;
+		window.sessionStorage.setItem( KEY, fm.querySelectorAll('input[name="dim2"]')[0].value);
+		
+		i += 1;
+		var KEY = 'input'+i;
+		window.sessionStorage.setItem( KEY, fm.querySelectorAll('input[name="dim3"]')[0].value);
+		
+		i += 1;
+		var KEY = 'input'+i;
+		window.sessionStorage.setItem( KEY, fm.querySelectorAll('input[name="dim4"]')[0].value);
+		i += 1;
+	}	
+	return true;
+}
+
+
+function setValues(){
+	var i = 0;
+	var formList = document.getElementsByName('myForm');
+	for (const fm of formList) {
+		
+		var KEY = 'input'+i;	
+		var val = window.sessionStorage.getItem(KEY);
+		if(val !== null){
+			fm.querySelectorAll('select[name="sectionSelector"]')[0].value = val;
+		}
+		
+		i += 1;
+		var KEY = 'input'+i;
+		var val = window.sessionStorage.getItem(KEY);
+		if(val !== null){
+			fm.querySelectorAll('input[name="dim1"]')[0].value = val;
+		}
+		
+		i += 1;
+		var KEY = 'input'+i;
+		var val = window.sessionStorage.getItem(KEY);
+		if(val !== null){
+			fm.querySelectorAll('input[name="dim2"]')[0].value  = val;
+		}
+		
+		i += 1;
+		var KEY = 'input'+i;
+		var val = window.sessionStorage.getItem(KEY);
+		if(val !== null){
+			fm.querySelectorAll('input[name="dim3"]')[0].value = val;
+		}
+		
+		i += 1;
+		var KEY = 'input'+i;
+		var val = window.sessionStorage.getItem(KEY);
+		if(val !== null){
+			fm.querySelectorAll('input[name="dim4"]')[0].value = val;
+		}
+		i += 1;
+	}	
+	return true;
+}
+
+
+
 
 function handleInput(e){
   var value = this.valueAsNumber;
@@ -481,6 +575,7 @@ function dimChange(elem){
 	recalculateSection(myForm);	
 	updatePictures();
 	drawCharts();
+	saveForm();
 }
 
 function recalculateSection(myForm){
@@ -612,6 +707,7 @@ function selectorChange(elem) {
 	updatePictures();
 	drawCharts();
 	updateTooltips();
+	saveForm();
 }
 
 function setReference(elem) {
@@ -1460,6 +1556,7 @@ var myForm = document.querySelector('#Form2');
 var section = myForm.querySelectorAll('select[name="sectionSelector"]')[0];
 section.value = "Circular tube";
 
+loadForm();
 var formList = document.getElementsByName('myForm');
 for (const fm of formList) {
 	//alert('recalculateSection '+fm.id)
