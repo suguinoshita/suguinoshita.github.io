@@ -53,26 +53,28 @@
 
 function saveForm() {
 	//nothing to work with, get out of here
-	if(typeof window.sessionStorage ==="undefined"){return;}
+/*	if(typeof window.sessionStorage ==="undefined"){return;}
 	saveValues();
 	//alert('saved to sessionStorage!')
+	*/
 	return;
 }
 
 
 function loadForm() {
 	//nothing to work with, get out of here
-	if(window.sessionStorage) {
+/*	if(window.sessionStorage) {
 		//alert('sessionStorage found! '+window.sessionStorage.type)
 		setValues();
 	} else {
 		//alert('sessionStorage not found!');
 	}
+	*/
 	return;
 }
 
 function saveValues(){
-	var i = 0;
+/*	var i = 0;
 	var formList = document.getElementsByName('myForm');
 	for (const fm of formList) {
 		
@@ -95,13 +97,13 @@ function saveValues(){
 		var KEY = 'input'+i;
 		window.sessionStorage.setItem( KEY, fm.querySelectorAll('input[name="dim4"]')[0].value);
 		i += 1;
-	}	
+	}	*/
 	return true;
 }
 
 
 function setValues(){
-	var i = 0;
+/*	var i = 0;
 	var formList = document.getElementsByName('myForm');
 	for (const fm of formList) {
 		
@@ -139,7 +141,7 @@ function setValues(){
 			fm.querySelectorAll('input[name="dim4"]')[0].value = val;
 		}
 		i += 1;
-	}	
+	}	*/
 	return true;
 }
 
