@@ -1220,8 +1220,7 @@ const options =
 const fillColors = ['#3cba54','#3498db','#e64b3b','#e67e22']; //#3d566e
 const lineColors = ['#298039','#2880b8','#c0392b','#d25300'];//#2c3e50
 
-init();
-function init() {
+window.onload = function() {
     var selectBoxList = document.querySelectorAll('select[name="sectionSelector"]');
     for (const selectBox of selectBoxList) {
         for(var i = 0, l = options.length; i < l; i++){

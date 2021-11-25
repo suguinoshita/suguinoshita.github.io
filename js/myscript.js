@@ -1543,37 +1543,39 @@ const options =
 const fillColors = ['#3cba54','#3498db','#e64b3b','#e67e22']; //#3d566e
 const lineColors = ['#298039','#2880b8','#c0392b','#d25300'];//#2c3e50
 
-var selectBoxList = document.querySelectorAll('select[name="sectionSelector"]');
-for (const selectBox of selectBoxList) {
-	for(var i = 0, l = options.length; i < l; i++){
-		var option = options[i];
-		selectBox.options.add( new Option(option.text, option.value, option.selected) );
-	}
-}
+window.onload = function() {
+    var selectBoxList = document.querySelectorAll('select[name="sectionSelector"]');
+    for (const selectBox of selectBoxList) {
+        for(var i = 0, l = options.length; i < l; i++){
+            var option = options[i];
+            selectBox.options.add( new Option(option.text, option.value, option.selected) );
+        }
+    }
 
-var myForm = document.querySelector('#Form1');
-var section = myForm.querySelectorAll('select[name="sectionSelector"]')[0];
-section.value = "Circular tube";
-var myForm = document.querySelector('#Form2');
-var section = myForm.querySelectorAll('select[name="sectionSelector"]')[0];
-section.value = "Circular tube";
+    var myForm = document.querySelector('#Form1');
+    var section = myForm.querySelectorAll('select[name="sectionSelector"]')[0];
+    section.value = "Circular tube";
+    var myForm = document.querySelector('#Form2');
+    var section = myForm.querySelectorAll('select[name="sectionSelector"]')[0];
+    section.value = "Circular tube";
 
-//loadForm();
-var formList = document.getElementsByName('myForm');
-for (const fm of formList) {
-	//alert('recalculateSection '+fm.id)
-	recalculateSection(fm);
-	//alert('updateForm '+fm.id)
-	updateForm(fm);
-	//alert('done  '+fm.id)
+    //loadForm();
+    var formList = document.getElementsByName('myForm');
+    for (const fm of formList) {
+        //alert('recalculateSection '+fm.id)
+        recalculateSection(fm);
+        //alert('updateForm '+fm.id)
+        updateForm(fm);
+        //alert('done  '+fm.id)
+    }
+    //alert('updating pics');
+    updatePictures();
+    //alert('updating charts');
+    drawCharts();
+    updateTooltips();
+    //alert('all done');
+    /*
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })*/
 }
-//alert('updating pics');
-updatePictures();
-//alert('updating charts');
-drawCharts();
-updateTooltips();
-//alert('all done');
-/*
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})*/
