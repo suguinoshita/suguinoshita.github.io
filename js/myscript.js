@@ -1536,6 +1536,7 @@ $(document).ready(function() {
 	
     var formList = document.getElementsByName('myForm');
     for (const fm of formList) {
+		formatReference(fm.querySelectorAll('input[name="refSwitch"]')[0])
         recalculateSection(fm);
         updateForm(fm);
     }
