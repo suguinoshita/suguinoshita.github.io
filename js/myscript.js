@@ -701,7 +701,7 @@ function formatReference(elem) {
 	if (isRef == true) {
 		//alert('turning on'+myFormId);
 		var fm = myForm.querySelectorAll('div[class="power"]')[0];
-		fm.className = "power_full";
+		if (fm) fm.className = "power_full";
 		
 		var formList = document.getElementsByName('myForm');
 		//alert('forms foud = '+formList.length);
@@ -1537,7 +1537,7 @@ $(document).ready(function() {
     var formList = document.getElementsByName('myForm');
     for (const fm of formList) {
 		formatReference(fm.querySelectorAll('input[name="refSwitch"]')[0])
-        recalculateSection(fm);
+		recalculateSection(fm);
         updateForm(fm);
     }
     updatePictures();
