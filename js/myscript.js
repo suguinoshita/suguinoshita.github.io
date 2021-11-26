@@ -53,99 +53,105 @@
 
 function saveForm() {
 	//nothing to work with, get out of here
-/*	if(typeof window.sessionStorage ==="undefined"){return;}
+	if(typeof window.sessionStorage ==="undefined"){return;}
 	saveValues();
-	//alert('saved to sessionStorage!')
-	*/
+	//console.log('saved to sessionStorage!')
 	return;
 }
 
 
 function loadForm() {
 	//nothing to work with, get out of here
-/*	if(window.sessionStorage) {
-		//alert('sessionStorage found! '+window.sessionStorage.type)
-		setValues();
+	if(window.sessionStorage) {
+		if(sessionStorage.length == 0){			
+			//console.log('empty sessionStorage! ');
+			return;
+			} else { 
+				//console.log('sessionStorage found! ');
+				setValues();
+			}
 	} else {
-		//alert('sessionStorage not found!');
+		//console.log('sessionStorage not found!');
 	}
-	*/
+	
 	return;
 }
 
 function saveValues(){
-/*	var i = 0;
+	window.sessionStorage.clear();
+	var i = 1;
 	var formList = document.getElementsByName('myForm');
 	for (const fm of formList) {
 		
-		var KEY = 'input'+i;
+		var KEY = 'form'+i+'switch';
+		window.sessionStorage.setItem( KEY, fm.querySelectorAll('input[name="refSwitch"]')[0].checked);
+		
+		var KEY = 'form'+i+'selector';
 		window.sessionStorage.setItem( KEY, fm.querySelectorAll('select[name="sectionSelector"]')[0].value);
 		
-		i += 1;
-		var KEY = 'input'+i;
+		var KEY = 'form'+i+'dim1';
 		window.sessionStorage.setItem( KEY,  fm.querySelectorAll('input[name="dim1"]')[0].value);
 		
-		i += 1;
-		var KEY = 'input'+i;
+		var KEY = 'form'+i+'dim2';
 		window.sessionStorage.setItem( KEY, fm.querySelectorAll('input[name="dim2"]')[0].value);
 		
-		i += 1;
-		var KEY = 'input'+i;
+		var KEY = 'form'+i+'dim3';
 		window.sessionStorage.setItem( KEY, fm.querySelectorAll('input[name="dim3"]')[0].value);
-		
-		i += 1;
-		var KEY = 'input'+i;
+	
+		var KEY = 'form'+i+'dim4';
 		window.sessionStorage.setItem( KEY, fm.querySelectorAll('input[name="dim4"]')[0].value);
 		i += 1;
-	}	*/
+	}	
 	return true;
 }
 
 
 function setValues(){
-/*	var i = 0;
+	var i = 1;
 	var formList = document.getElementsByName('myForm');
 	for (const fm of formList) {
 		
-		var KEY = 'input'+i;	
+		var KEY = 'form'+i+'switch';
+		var val = window.sessionStorage.getItem(KEY);
+		if(val=="true"){
+			fm.querySelectorAll('input[name="refSwitch"]')[0].checked = true;
+		} else {
+			fm.querySelectorAll('input[name="refSwitch"]')[0].checked = false;
+		}
+		
+		var KEY = 'form'+i+'selector';
 		var val = window.sessionStorage.getItem(KEY);
 		if(val !== null){
 			fm.querySelectorAll('select[name="sectionSelector"]')[0].value = val;
 		}
 		
-		i += 1;
-		var KEY = 'input'+i;
+		var KEY = 'form'+i+'dim1';
 		var val = window.sessionStorage.getItem(KEY);
 		if(val !== null){
 			fm.querySelectorAll('input[name="dim1"]')[0].value = val;
 		}
 		
-		i += 1;
-		var KEY = 'input'+i;
+		var KEY = 'form'+i+'dim2';
 		var val = window.sessionStorage.getItem(KEY);
 		if(val !== null){
 			fm.querySelectorAll('input[name="dim2"]')[0].value  = val;
 		}
 		
-		i += 1;
-		var KEY = 'input'+i;
+		var KEY = 'form'+i+'dim3';
 		var val = window.sessionStorage.getItem(KEY);
 		if(val !== null){
 			fm.querySelectorAll('input[name="dim3"]')[0].value = val;
 		}
 		
-		i += 1;
-		var KEY = 'input'+i;
+		var KEY = 'form'+i+'dim4';
 		var val = window.sessionStorage.getItem(KEY);
 		if(val !== null){
 			fm.querySelectorAll('input[name="dim4"]')[0].value = val;
 		}
 		i += 1;
-	}	*/
+	}	
 	return true;
 }
-
-
 
 
 function handleInput(e){
@@ -163,7 +169,6 @@ function nan2zero(num) {
 }
 
 function fillPolygon(data,cg, color,lineColor,mycanvas) {
-	//alert(mycanvas+'data='+data.length);
 	if (data.length == 2) {
 		var points = data[0];
 	} else if (data.length > 2) {
@@ -172,7 +177,6 @@ function fillPolygon(data,cg, color,lineColor,mycanvas) {
 		return
 	}
 	
-	//alert(mycanvas+'points='+points.length);
 	if (points.length > 0) {
 		var canvas = document.getElementById(mycanvas);
 		var ctx = canvas.getContext("2d");
@@ -337,8 +341,6 @@ function drawCharts() {
 }
 
 function drawChart(array,ref,myChartId,myAxisTitle,num) {
-	//alert(array);
-	//alert(myChartId)
 	var rows = array.length - 1;
 	var cols = array[0].length - 1;
 	
@@ -346,7 +348,6 @@ function drawChart(array,ref,myChartId,myAxisTitle,num) {
 	for (var k = 0; k < cols-1; k++) {
 		yValues.push([]);
 	}
-	//alert(xyValues.length);
 	
 	var ymax = 0;
 	var xValues = [];
@@ -358,26 +359,21 @@ function drawChart(array,ref,myChartId,myAxisTitle,num) {
 			ymax = Math.max(ymax,temp[i]);
 		}
 		yValues[k] = temp;		
-		//alert(array[0][k+1].label);
-		//alert(yValues[k]);
     }
-	
-	//alert(ref)
-	//alert(num)
 	
 	var datalabels_format = function calculate(value,context) {
 		var {ref,num} = getRef();
 		var index = context.datasetIndex; // column index
 		var k = context.dataIndex; // row indexif (index+1 == ref) { 
 		if (num == 1) { 
-			out = value;//+' index+1='+(index+1)+' ref='+ref+' row='+k;
+			out = value;
 		} else if (index+1 == ref) { 
-			out = 'reference';//+' index+1='+(index+1)+' ref='+ref+' row='+k;
+			out = 'reference';
 		} else {
 			var value_ref = context.chart.data.datasets[ref-1].data[k] ;
 			var percent = ((value-value_ref)/value_ref* 100).toFixed(1);
 			if (percent > 0) percent =  '+'+percent;
-			out = percent+'%';//+' index+1='+(index+1)+' ref='+ref+' row='+k;
+			out = percent+'%';
 		}
 		return out;
 	};
@@ -421,7 +417,6 @@ function drawChart(array,ref,myChartId,myAxisTitle,num) {
 		return sections;
 	};
 
-    //if (typeof Chart3 ==="undefined") {
 	var myDataset = {
 		type: 'horizontalBar',
 		data: {
@@ -462,8 +457,6 @@ function drawChart(array,ref,myChartId,myAxisTitle,num) {
                 mode: 'index',
                 intersect: false,
                 callbacks: {
-                    //beforeBody: function(tooltipItem, data) {
-                    //    return 'Change of '},
                     label: function(tooltipItem, data) {
 							var {ref,num} = getRef();
 							var index = tooltipItem.datasetIndex;
@@ -507,13 +500,6 @@ function drawChart(array,ref,myChartId,myAxisTitle,num) {
 				},
 			},
 		};
-	/*} else {
-	var myDataset = {
-		data: {
-			datasets: [], label: '',backgroundColor: '',hidden: true,
-			},
-		};
-	}*/
 	for (var k = 0; k < cols; k++) {
 		if (yValues[k][0] == 0){var bool = true;}else{var bool = false;}
 		myDataset.data.datasets[k] = {
@@ -524,7 +510,6 @@ function drawChart(array,ref,myChartId,myAxisTitle,num) {
 		    };
 	}
 	
-	//alert('got here')
     switch (myChartId) {
         case 'Chart1':
             if(typeof Chart1 ==="undefined"){ window.Chart1 = new Chart(document.getElementById(myChartId), myDataset);
@@ -577,13 +562,10 @@ function dimChange(elem){
 	recalculateSection(myForm);	
 	updatePictures();
 	drawCharts();
-	//saveForm();
+	saveForm();
 }
 
 function recalculateSection(myForm){
-	
-	//alert("function3."+myForm.tagName);
-	/*alert("The input value has changed."+myForm.tagName);*/
 	var section = myForm.querySelectorAll('select[name="sectionSelector"]')[0].value;
 	var h = parseFloat(myForm.querySelectorAll('input[name="dim1"]')[0].value);
 	var b = parseFloat(myForm.querySelectorAll('input[name="dim2"]')[0].value);
@@ -591,7 +573,6 @@ function recalculateSection(myForm){
 	var t2 = parseFloat(myForm.querySelectorAll('input[name="dim4"]')[0].value);
 	var dims = [h,b,t,t2];
 	var mycanvas = myForm.querySelectorAll('canvas[name="myCanvas"]')[0].id;
-	///alert(section+h+b+t+t2+mycanvas);
 	
 	var results = calc_properties(section,dims);
 	
@@ -613,7 +594,6 @@ function recalculateSection(myForm){
 }
 
 function updatePictures(){
-	//alert('updatePictures');
 	var scale = getScale();
 	var formList = document.getElementsByName('myForm');
 	for (const fm of formList) {
@@ -664,8 +644,7 @@ function getColors(fm){
 }
 
 function getScale() {
-	// Calculate the scale needed to fit all the pictures on each canvas, keeping the proportions
-	
+	// Calculate the scale needed to fit all the pictures on each canvas, keeping the proportions	
 	var scales = [];
 	var formList = document.getElementsByName('myForm');
 	for (const fm of formList) {
@@ -693,28 +672,25 @@ function getScale() {
 		}		
 	}
 	var scale = Math.min(...scales); // keep the min scale
-	//alert('scale='+scale);
 	return scale;
 }
 
 function selectorChange(elem) {
 	
-	//alert("selectorChange");
 	var myForm = elem.closest('div[name="myForm"]');
-	//alert('recalculateSection, form'+myForm.id);
 	recalculateSection(myForm);
-	//alert('updating form');
 	updateForm(myForm);
 	
 	updatePictures();
 	drawCharts();
 	updateTooltips();
-	//saveForm();
+	saveForm();
 }
 
 function setReference(elem) {
 	formatReference(elem);
 	drawCharts();
+	saveForm();
 }
 	
 function formatReference(elem) {
@@ -802,15 +778,11 @@ function getImgPath(section) {
 
 
 function updateForm(fm) {
-	// Enables or Disables the form based on the "Section type" selection
-	
+	// Enables or Disables the form based on the "Section type" selection	
 	var section = fm.querySelectorAll('select[name="sectionSelector"]')[0].value;
-	//alert('updating form ='+fm.id);
-	//alert('section ='+section);
 	if (section == 'None') {
 		// set labels to gray
 		var labelsList = fm.querySelectorAll(".forms_text");
-		//alert('labels='+labelsList.length);
 		for (const lbl of labelsList) {
 			if ( lbl.name != "sectionSelector" ) {
 				lbl.className = "forms_text_disabled";
@@ -1111,7 +1083,6 @@ function updateForm(fm) {
 }
 
 function calc_properties(section,dims){
-	//alert('calc='+section+dims[0]);
 	var res = {
 		A: 0,
 		perimeter: 0,
@@ -1482,16 +1453,12 @@ function calc_points(section,dims,canvas_width,canvas_height,bottom_margin,scale
 	return points;
 }
 
-
-
-//alert("loading1.");
 const bottom_margin = 10;
 const options =
 [
   {
     "text"  : "None",
     "value" : "None",
-    "selected" : true
   },
   {
     "text"  : "Circular",
@@ -1554,7 +1521,7 @@ $(document).ready(function() {
     for (const selectBox of selectBoxList) {
         for(var i = 0, l = options.length; i < l; i++){
             var option = options[i];
-            selectBox.options.add( new Option(option.text, option.value, option.selected) );
+            selectBox.options.add( new Option(option.text, option.value) );
         }
     }
 
@@ -1565,18 +1532,14 @@ $(document).ready(function() {
     var section = myForm.querySelectorAll('select[name="sectionSelector"]')[0];
     section.value = "Circular tube";
 
-    //loadForm();
+    loadForm();
+	
     var formList = document.getElementsByName('myForm');
     for (const fm of formList) {
-        //alert('recalculateSection '+fm.id)
         recalculateSection(fm);
-        //alert('updateForm '+fm.id)
         updateForm(fm);
-        //alert('done  '+fm.id)
     }
-    //alert('updating pics');
     updatePictures();
-    //alert('updating charts');
     drawCharts();
     updateTooltips();
     //alert('all done');
