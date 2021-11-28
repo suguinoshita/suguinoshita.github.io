@@ -97,6 +97,11 @@ strong {
 	font-weight: 800;
 }
 
+mark{
+    background-color: #8FFA9E;
+	padding:0.1em 0.2em;
+}
+
 *,
 *::after,
 *::before {
