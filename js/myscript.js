@@ -329,17 +329,17 @@ function drawCharts() {
 	var num = filled.length;
 	
 	var myChartId = 'Chart1'; 
-	var myAxisTitle = 'Lighter \u21D0   \u21D2 Heavier          ';
+	var myAxisTitle = 'Lighter (Better) \u21D0   \u21D2 Heavier (Worse)                   ';
 	//alert(myChartId);
 	drawChart(array1,ref,myChartId,myAxisTitle,num);
 	
 	myChartId = 'Chart2';
-	var myAxisTitle = 'Lower stiffness \u21D0   \u21D2 Higher stiffness              ';
+	var myAxisTitle = 'Lower stiffness \u21D0   \u21D2 Higher stiffness                          ';
 	//alert(myChartId);
 	drawChart(array2,ref,myChartId,myAxisTitle,num);
 	
 	myChartId = 'Chart3';
-	var myAxisTitle = 'Lower stress \u21D0   \u21D2 Higher stress          ';
+	var myAxisTitle = 'Lower stress (Better) \u21D0   \u21D2 Higher stress (Worse)                         ';//,'Better \u21D0   \u21D2 Worse          '];
 	//alert(myChartId);
 	drawChart(array3,ref,myChartId,myAxisTitle,num);
 	
@@ -446,11 +446,10 @@ function drawChart(array,ref,myChartId,myAxisTitle,num) {
 							scale.max = scale.max*1.25;
 						},					
 					scaleLabel: {
-						display: true,
+						display: false,
 						labelString: myAxisTitle,
 						},
 					}],
-				
 				yAxes: [{
 					ticks: {
 						callback: function (label){
