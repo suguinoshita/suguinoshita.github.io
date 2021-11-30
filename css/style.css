@@ -70,7 +70,8 @@ h6 {
 }
 
 h1 {
-     font-size: 48px
+     font-size: 48px;
+	 padding-top:  100px;
 }
 
 h2 {
@@ -151,15 +152,17 @@ a {
    padding: 90px 0;
 }
 
-.center-desk{ width: 100%; float: left; padding-bottom: 20px; }
+.center-desk{ width: 100%; float: left; padding-bottom: 10px; }
 
 .header_main{
+	position: fixed;
+	z-index: 500;
 	width: 100%;
 	float: left;
 	/*background-image: url(../images/banner.png);*/
 	height: auto;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	background-size:cover;
 	background-size: 100%;
     background-repeat: no-repeat;
@@ -186,7 +189,7 @@ nav.main-menu {
 .main-menu ul {
     margin: 0;
     list-style-type: none;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }
 
 ul, li, ol {
@@ -221,12 +224,17 @@ ul, li, ol {
 	max-width: 300px;*/
 	float: left;
     /*padding: 10px auto 10px auto;*/
-	
 	margin: 0;
 	position: absolute;
 	top: 50%;
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
+}
+
+@media only screen and (max-width:7680px){
+	.logo img{
+		max-width: 200px;
+	}
 }
 .web_text{ width: 100%; float: left; font-size: 48px; padding-top: 160px;}
 .margin-top-20{ margin-top: 20px; }
@@ -297,6 +305,7 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
     padding-left: 25px;
 }
 
+
 .choose_section{
 	width: 100%;
 	float: left;
@@ -309,9 +318,17 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
 	float: left;
 	text-align: center;
 	color: #030907;
-	    font-weight: 600;
-
+	font-weight: 600;
+	
 }
+
+a.anchor{	
+    display: block;
+    position: relative;
+    top: -150px;
+    visibility: hidden;
+}
+
 .lorem_text{
 	width: 100%;
 	float: left;
@@ -327,26 +344,19 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
 	float: left;
 }
 
-.power_full{
+
+.power, .power_full {
 	width: 100%;
 	float: left;
-	background-color: #2aaf80;
 	background-color: #ffffff;
 	border-radius: 30px;
 	padding: 20px;
-	box-shadow: 0px 0px 8px 0px;
+    box-shadow: 0px 0px 10px 0px #d0d0d0;
+}
+
+.power_full{
     border: 2px solid #298039;
 }
-
-.power {
-	width: 100%;
-	float: left;
-	background-color: #ffffff;
-	border-radius: 30px;
-	padding: 20px;
-    box-shadow: 0px 0px 8px 0px;
-}
-
 
 .power-image img {
 	width: 100%;
@@ -354,8 +364,9 @@ button.btn.btn-primary, button.btn.btn-primary:hover, button.btn.btn-primary:foc
 	padding: 0px;
 	background-color: #ffffff;
 	border-radius: 15px;
-    box-shadow: 0px 0px 8px 0px;
+    box-shadow: 0px 0px 10px 0px #d0d0d0;
 }
+
 
 .icon{
 	text-align: center;
@@ -886,11 +897,12 @@ thead th {
   top: 0;
   color: #110f0a;
   background: #FFF;
-  z-index: 9999;
+  z-index: 95;
 }
 
 thead th:first-child {
   left: 0;
+  z-index: 100;
 }
 
 tbody th {
@@ -899,7 +911,7 @@ tbody th {
   left: 0;
   background: #FFF;
   border-right: 1px solid #CCC;
-  z-index: 999;
+  z-index: 90;
 }
 
 tr:nth-child(even) {
@@ -917,7 +929,7 @@ tr:nth-child(even) {
 .mytooltip {
     display: inline;
     position: relative;
-    z-index: 999
+    z-index: 99
 }
 
 .mytooltip .tooltip-item {
@@ -1015,7 +1027,7 @@ div.sticky {
   position: -webkit-sticky;
   position: sticky;
   top: -100px;
-  z-index:9999;
+  z-index:90;
 }
 /*
 @media (max-width: 769px) {
@@ -1052,7 +1064,7 @@ and (max-device-width : 480px){
     left: 0;
     width: 100%;
     margin: 0 !important;
-    z-index: 999;
+    z-index: 9999;
     opacity: 0;
     visibility: hidden;
     border-radius: 0;
