@@ -13,7 +13,7 @@ function nan2zero(num) {
 	if(isNaN(num)) num = 0; 
     return num; 
 }
-function fillPolygon(data,cg, color,lineColor,mycanvas) {
+function fillPolygon(data,cg, color,lineColor,isValid,mycanvas) {
 	//alert(mycanvas+'data='+data.length);
 	if (data.length == 2) {
 		var points = data[0];
@@ -94,7 +94,13 @@ function fillPolygon(data,cg, color,lineColor,mycanvas) {
 	ctx.fillStyle = "#000";
 	ctx.fillText("y",canvas.width/2+2, canvas.height-3);
 	ctx.fillText("y",canvas.width/2+2, 10);
-	
+		
+	if (!isValid) {
+		ctx.font = "20px Arial";
+		ctx.lineWidth=5;
+		ctx.fillStyle = "black";
+		ctx.fillText("invalid dimensions !",0.05*canvas.width, 50);
+	}
 	
 	//alert(mycanvas+' updated');
 }
@@ -388,6 +394,7 @@ function updatePictures(){
 		var t = parseFloat(fm.querySelectorAll('input[name="dim3"]')[0].value);
 		var t2 = parseFloat(fm.querySelectorAll('input[name="dim4"]')[0].value);
 		var dims = [h,b,t,t2];
+		var isValid = checkDims(dims,section);
 		var xc = parseFloat(fm.querySelectorAll('input[name="xc"]')[0].value);
 		var yc = parseFloat(fm.querySelectorAll('input[name="yc"]')[0].value);
 		var cg = [xc*scale,yc*scale];
@@ -398,7 +405,7 @@ function updatePictures(){
 		//alert('drawing on '+mycanvas);
 		var points = calc_points(section,dims,canvas.width,canvas.height,bottom_margin,scale);
 		var colors = getColors(fm);
-		fillPolygon(points,cg, colors[0],colors[1],mycanvas);
+		fillPolygon(points,cg, colors[0],colors[1],isValid,mycanvas);
 		//alert('drawing on '+mycanvas+' done');
 	}	
 }
@@ -523,6 +530,46 @@ function getImgPath(section) {
 	}
 	//alert('update done');
 	return imgPath;
+}
+
+
+function checkDims(dims,section) {
+	if (dims.some(v => v <= 0)) return false;
+	switch(section) {
+		case 'Circular':
+			break;
+		case 'Circular tube':
+			if (dims[1]>dims[0]/2) return false;
+			break;
+		case 'Rectangular':
+			break;
+		case 'Rectangular tube':
+			if ( (dims[2]>=dims[0]/2) || (dims[2]>=dims[1]/2) ) return false;
+			break;
+		case 'L section':
+			if ( (dims[2]>=dims[0]) || (dims[2]>=dims[1]) ) return false;
+			break;
+		case 'C channel':
+			if ( (dims[2]>=dims[1]) || (dims[3]>=dims[0]/2) ) return false;
+			break;
+		case 'U channel':
+			if ( (dims[2]>=dims[0]) || (dims[3]>=dims[1]/2) ) return false;
+			break;
+		case 'I section':
+			if ( (dims[2]>=dims[1]) || (dims[3]>=dims[0]/2) ) return false;
+			break;
+		case 'H section':
+			if ( (dims[2]>=dims[0]) || (dims[3]>=dims[1]/2) ) return false;
+			break;
+		case 'T section':
+			if ( (dims[2]>=dims[1]) || (dims[3]>=dims[0]) ) return false;
+			break;
+		default:
+			return true;
+			break;
+	}
+	//alert('update done');
+	return true;
 }
 
 function updateForm(fm) {
